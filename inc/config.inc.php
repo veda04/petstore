@@ -4,15 +4,15 @@
 */
 
 // LOCAL
-define('SITE_ADDRESS','http://localhost/ecom/');
-define('DOCROOT','D:/xampp/htdocs/ecom/');
-define('ADMIN_ADDRESS','http://localhost/ecom/ctrl/'); //  */
+define('SITE_ADDRESS','http://localhost/petstore/');
+define('DOCROOT','D:/xampp/htdocs/petstore');
+define('ADMIN_ADDRESS','http://localhost/petstore/ctrl/'); //  */
 
 // Local DB
 define('DB_HOST','localhost');
 define('DB_USERNAME','root');
 define('DB_PASSWORD','');
-define('DB_NAME','ecom');  // */
+define('DB_NAME','petstore');  // */
 
 // Incase of sending Emails
 define("HOST", "");
