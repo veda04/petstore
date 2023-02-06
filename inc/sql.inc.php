@@ -14,7 +14,7 @@ function sql_query($q, $err_code='ERR', $kill='Y')
 		$err_str .= '<br>query: '.$q.' <br>error: ';
 
 	if(!empty($IS_LOG_SQL))
-		logSQl('sql.txt', NOW.','.$_SERVER['PHP_SELF'].',"'.NewlinesToBR($q).'"'.NEWLINE);
+		logSQl('sql.txt', NOW.','.$_SERVER['PHP_SELF'].',"'.nl2br($q).'"'.NEWLINE);
 
 	if($kill == 'Y') $r = mysqli_query($CON,$q) or die($err_str.mysqli_error($CON));
 	else $r = mysqli_query($CON,$q);
@@ -25,7 +25,7 @@ function sql_query($q, $err_code='ERR', $kill='Y')
 	{
 		$q = strtolower(trim($q));
 		if(strpos($q, 'update vendor')===0)
-			logSQl('sql.txt', '**'.NOW.','.$_SERVER['PHP_SELF'].',"'.NewlinesToBR($q).'"'.NEWLINE);
+			logSQl('sql.txt', '**'.NOW.','.$_SERVER['PHP_SELF'].',"'.nl2br($q).'"'.NEWLINE);
 
 	}
 

@@ -27,4 +27,121 @@ if(!$logged && empty($NO_REDIRECT))
 {
 	ForceOut(6);
 }
+
+// menu
+$menu = array();
+// Home
+$menu[] = array(
+			'title' => "Home",
+			'link' => "dashboard.php",
+			'icon' => "",
+			'has_dropdown' => "N"
+		);
+// Orders
+$menu[] = array(
+			'title' => "Orders",
+			'link' => "orders.php",
+			'icon' => "",
+			'has_dropdown' => "N"
+		);
+// Product Menu
+$product_sub = array();
+
+$product_sub[] = array(
+				'title' => "Categories",
+				'link' => "categories.php",
+				'icon' => "",
+			);
+
+$product_sub[] = array(
+				'title' => "Inventory",
+				'link' => "inventory.php",
+				'icon' => "",
+			);
+
+$product_sub[] = array(
+				'title' => "Items",
+				'link' => "items.php",
+				'icon' => "",
+			);
+// Product
+$menu[] = array(
+			'title' => "Products",
+			'link' => "products.php",
+			'icon' => "",
+			'has_dropdown' => "Y",
+			'dropdown' => $product_sub
+		);
+// Vendor Sub Menu
+$vendor_sub = array();
+
+$vendor_sub[] = array(
+				'title' => "Stock Request",
+				'link' => "stock_request.php",
+				'icon' => "",
+			);
+
+$vendor_sub[] = array(
+				'title' => "Vendors",
+				'link' => "change_password.php",
+				'icon' => "",
+			);
+// Vendors
+$menu[] = array(
+			'title' => "Vendors",
+			'link' => "vendors.php",
+			'icon' => "",
+			'has_dropdown' => "Y",
+			'dropdown' => $vendor_sub
+		);
+// Customers
+$menu[] = array(
+			'title' => "Customers",
+			'link' => "customers.php",
+			'icon' => "",
+			'has_dropdown' => "N"
+		);
+// Users
+$menu[] = array(
+			'title' => "Users",
+			'link' => "users.php",
+			'icon' => "",
+			'has_dropdown' => "N"
+		);
+$communications_sub[] = array(
+				'title' => "Order Email",
+				'link' => "order_email.php",
+				'icon' => "",
+			);
+// Vendors
+$menu[] = array(
+			'title' => "Communications",
+			'link' => "communications.php",
+			'icon' => "",
+			'has_dropdown' => "Y",
+			'dropdown' => $communications_sub
+		);
+// Settings Sub Menu
+$setting_sub = array();
+
+$setting_sub[] = array(
+				'title' => "SEO",
+				'link' => "seo.php",
+				'icon' => "",
+			);
+
+$setting_sub[] = array(
+				'title' => "Services",
+				'link' => "services.php",
+				'icon' => "",
+			);
+// Settings
+$menu[] = array(
+			'title' => "Settings",
+			'link' => "settings.php",
+			'icon' => "",
+			'has_dropdown' => "Y",
+			'dropdown' => $setting_sub
+		);
+
 ?>
