@@ -15,9 +15,10 @@ function ConnectSQL() {
 
 // Logging SQL Queries and issues
 function logSQl($f_name, $txt = "") {
-	$logfile = fopen(LOG_PATH.$f_name, "a");// or die("Unable to open file!");
-	fwrite($logfile, $txt);
-	fclose($logfile);
+	/*$f_path = LOG_PATH.$f_name;
+	$logfile = fopen($f_path, "a");// or die("Unable to open file!");
+	fwrite($f_path, $txt);
+	fclose($f_path);*/
 }
 
 // Redirecting function if required
