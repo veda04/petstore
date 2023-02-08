@@ -41,4 +41,13 @@ function ForceOutCu($code = 0, $page = "index.php", $sess_destroy="N") {
 	header("location: $page?err=$code");
 	exit;
 }
+
+// Increment the id value while inserting the inputs
+function NextId(){
+	$q1 = "SELECT MAX(id) FROM user";
+	$r1 = sql_query($q1);
+	list($disp) = sql_fetch_row($r1);
+	$txt_id = $disp + 1;
+	return $txt_id;
+}
 ?>

@@ -48,6 +48,35 @@
     <script src="js/knob/jquery.knob.js"></script>
     <script src="js/knob/jquery.appear.js"></script>
     <script src="js/knob/knob-active.js"></script>
+    <!-- icheck JS
+        ============================================ -->
+   <!--  <script src="js/icheck/icheck.min.js"></script>
+    <script src="js/icheck/icheck-active.js"></script> -->
+    <!--  todo JS
+        ============================================ -->
+    <script src="js/todo/jquery.todo.js"></script>
+    <!-- datapicker JS
+        ============================================ -->
+    <script src="js/datapicker/bootstrap-datepicker.js"></script>
+    <script src="js/datapicker/datepicker-active.js"></script>
+    <!-- bootstrap select JS
+        ============================================ -->
+    <script src="js/bootstrap-select/bootstrap-select.js"></script>
+    <!--  color-picker JS
+        ============================================ -->
+    <script src="js/color-picker/farbtastic.min.js"></script>
+    <script src="js/color-picker/color-picker.js"></script>
+    <!--  notification JS
+        ============================================ -->
+    <script src="js/notification/bootstrap-growl.min.js"></script>
+    <script src="js/notification/notification-active.js"></script>
+    <!--  summernote JS
+        ============================================ -->
+    <script src="js/summernote/summernote-updated.min.js"></script>
+    <script src="js/summernote/summernote-active.js"></script>
+    <!-- dropzone JS
+        ============================================ -->
+    <script src="js/dropzone/dropzone.js"></script>
     <!--  wave JS
 		============================================ -->
     <script src="js/wave/waves.min.js"></script>
@@ -72,3 +101,13 @@
 	<!-- tawk chat JS
 		============================================ -->
     <!-- <script src="js/tawk-chat.js"></script> -->
+    <script type="text/javascript">
+        function ConfirmDelete(url, title){
+            if(url != ""){
+                var msg = "You are about to delete " + title + ". Continue?";
+                if(confirm(msg)){
+                    window.location.href = url;
+                }
+            }
+        }
+    </script>

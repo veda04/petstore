@@ -3,6 +3,8 @@ $NO_REDIRECT = 1;
 include '../inc/ad.common.php';
 $PAGE_TITLE = "Users";
 
+$edit_page = "user-edit.php";
+
 $q = "SELECT * FROM `user`";//WHERE fkRoleId > 1";
 $r = sql_query($q);
 $num_rows = sql_num_rows($r);
@@ -36,6 +38,7 @@ $num_rows = sql_num_rows($r);
                             <h2>
                                 <?php echo $PAGE_TITLE; ?>
                             </h2>
+                            <a href="<?php echo $edit_page; ?>">Add</a>
                         </div>
                         <div class="table-responsive">
                             <table id="data-table-basic" class="table table-striped">
@@ -47,13 +50,37 @@ $num_rows = sql_num_rows($r);
                                         <th>Role</th>
                                         <th>Last Login</th>
                                         <th>Status</th>
+                                        <th>&nbsp;</th>
+                                        <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     if($num_rows > 0) {
                                         for($i=1; $o=sql_fetch_object($r); $i++) {
-                                            echo $o->username;
+                                            $sr_no = $i.'.';
+                                            $id = $o->id;
+                                            $name = $o->name;
+                                            $user_name = $o->username;
+                                            $role = $o->fkRoleId;
+                                            $last_login = $o->lastLogin;
+                                            $status = $o->status;
+
+                                            $role_name = "";
+                                            $edit_link = $edit_page."?m=R&id=".$id;
+                                            $del_link = $edit_page."?m=D&id=".$id;
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $sr_no; ?></td>
+                                                <td><?php echo $name; ?></td>
+                                                <td><?php echo $user_name; ?></td>
+                                                <td><?php echo $role; ?></td>
+                                                <td><?php echo $last_login; ?></td>
+                                                <td><?php echo $status; ?></td>
+                                                <td><a href="<?php echo $edit_link; ?>">Edit</a></td>
+                                                <td><button onclick="ConfirmDelete('<?php echo $del_link; ?>', 'User')" type="button" class="btn btn-success notika-btn-success waves-effect">Delete</button></td>
+                                            </tr>
+                                            <?php                                            
                                         }
                                     }
                                     ?>

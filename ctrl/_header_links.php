@@ -22,6 +22,36 @@
     <!-- animate CSS
 		============================================ -->
     <link rel="stylesheet" href="css/animate.css">
+    <!-- summernote CSS
+      ============================================ -->
+    <link rel="stylesheet" href="css/summernote/summernote.css">
+    <!-- Range Slider CSS
+      ============================================ -->
+    <link rel="stylesheet" href="css/themesaller-forms.css">
+    <!-- mCustomScrollbar CSS
+      ============================================ -->
+    <link rel="stylesheet" href="css/scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- Notika icon CSS
+      ============================================ -->
+    <link rel="stylesheet" href="css/notika-custom-icon.css">
+    <!-- bootstrap select CSS
+      ============================================ -->
+    <link rel="stylesheet" href="css/bootstrap-select/bootstrap-select.css">
+    <!-- datapicker CSS
+      ============================================ -->
+    <link rel="stylesheet" href="css/datapicker/datepicker3.css">
+    <!-- Color Picker CSS
+      ============================================ -->
+    <link rel="stylesheet" href="css/color-picker/farbtastic.css">
+    <!-- main CSS
+      ============================================ -->
+    <link rel="stylesheet" href="css/chosen/chosen.css">
+    <!-- notification CSS
+      ============================================ -->
+    <link rel="stylesheet" href="css/notification/notification.css">
+    <!-- dropzone CSS
+      ============================================ -->
+    <link rel="stylesheet" href="css/dropzone/dropzone.css">
     <!-- normalize CSS
 		============================================ -->
     <link rel="stylesheet" href="css/normalize.css">
