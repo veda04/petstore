@@ -90,20 +90,19 @@ else if($mode == "R") {
 }
 else if($mode == "U"){
     //update
-    echo 'Mode Update';
-    exit;
+    echo ' Mode Update';
 
-    $txtid = $_POST["txtid"];
+    $txtid = $_POST["id"];
     $name = $_POST["name"];
     $username = $_POST["username"];
     $password = $_POST["password"];
     $role = $_POST["role"];
-    $status = $_POST["staus"];
+    $status = $_POST["active"];
 
-    $q = "UPDATE user SET name='$name', username='$username', password='$password', fkRoleId='$role' status='$status' WHERE id=$txtid";
+    $q = "UPDATE user SET name='$name', username='$username', password='$password', fkRoleId='$role', status='$status' WHERE id='$txtid'";
     $r = sql_query($q);
 
-    header("location: ".$edit_page."?m=C&id=".$txtid);
+    header("location: ".$edit_page."?m=R&id=".$txtid);
     exit;
 }
 else if($mode == "D"){
@@ -153,7 +152,7 @@ else if($mode == "D"){
                                                    <i class="notika-icon notika-support"></i>
                                                </div>
                                                <div class="nk-int-st">
-                                                   <input type="text" name="name" id="name" value="<?php echo $name; ?>"  class="form-control"  placeholder="">
+                                                   <input type="text" name="name" id="name" value="<?php echo $name; ?>"  class="form-control"  placeholder="Name">
                                                </div>
                                            </div>
                                        </div>
@@ -163,7 +162,7 @@ else if($mode == "D"){
                                                    <i class="notika-icon notika-mail"></i>
                                                </div>
                                                <div class="nk-int-st">
-                                                   <input type="text" name="username" value="<?php echo $username; ?>" class="form-control" placeholder="">
+                                                   <input type="text" name="username" value="<?php echo $username; ?>" class="form-control" placeholder="Username">
                                                </div>
                                            </div>
                                        </div>
@@ -173,7 +172,7 @@ else if($mode == "D"){
                                                    <i class="notika-icon notika-mail"></i>
                                                </div>
                                                <div class="nk-int-st">
-                                                   <input type="text" name="password" value="<?php echo $password; ?>" class="form-control" placeholder="">
+                                                   <input type="text" name="password" value="<?php echo $password; ?>" class="form-control" placeholder="Password">
                                                </div>
                                            </div>
                                        </div>
