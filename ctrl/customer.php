@@ -1,11 +1,11 @@
 <?php
 // $NO_REDIRECT = 1;
 include '../inc/ad.common.php';
-$PAGE_TITLE = "Users";
+$PAGE_TITLE = "Customers";
 
 $edit_page = "user-edit.php";
 
-$q = "SELECT * FROM `user` WHERE fkRoleId > 1";
+$q = "SELECT * FROM `customer`";//WHERE fkRoleId > 1";
 $r = sql_query($q);
 $num_rows = sql_num_rows($r);
 ?>
@@ -37,8 +37,6 @@ $num_rows = sql_num_rows($r);
                         <div class="basic-tb-hd flex-space">
                             <h2>
                                 <?php echo $PAGE_TITLE; ?>
-                                <?php echo $sess_info_str; ?>
-
                             </h2>
                             <a class="btn btn-info info-icon-notika waves-effect" href="<?php echo $edit_page; ?>">Add</a>
                         </div>
@@ -49,11 +47,8 @@ $num_rows = sql_num_rows($r);
                                         <th>S.No.</th>
                                         <th>Name</th>
                                         <th>Username</th>
-                                        <th>Role</th>
-                                        <th>Last Login</th>
-                                        <th>Status</th>
-                                        <th>&nbsp;</th>
-                                        <th>&nbsp;</th>
+                                        <th>Customer No.</th>
+                                        <th>Customer Email</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,26 +57,19 @@ $num_rows = sql_num_rows($r);
                                         for($i=1; $o=sql_fetch_object($r); $i++) {
                                             $sr_no = $i.'.';
                                             $id = $o->id;
-                                            $name = $o->name;
-                                            $user_name = $o->username;
-                                            $role = $o->fkRoleId;
-                                            $last_login = $o->lastLogin;
-                                            $status = $o->status;
+                                            $name = $o->custName;
+                                            $user_name = $o->userName;
+                                            $cust_no = $o->custNumber;
+                                            $cust_email = $o->custEmail;
 
-                                            $edit_link = $edit_page."?m=R&id=".$id;
-                                            $del_link = $edit_page."?m=D&id=".$id;
+                                            $role_name = "";
                                             ?>
                                             <tr>
                                                 <td><?php echo $sr_no; ?></td>
                                                 <td><?php echo $name; ?></td>
                                                 <td><?php echo $user_name; ?></td>
-                                                <td><?php echo $role; ?></td>
-                                                <td><?php echo $last_login; ?></td>
-                                                <td><?php echo $status; ?></td>
-                                                <td><a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $edit_link; ?>">Edit</a></td>
-                                                <td>
-                                                    <button onclick="ConfirmDelete('<?php echo $del_link; ?>', 'User')" type="button" class="btn btn-success notika-btn-success waves-effect">Delete</button>
-                                                </td>
+                                                <td><?php echo $cust_no; ?></td>
+                                                <td><?php echo $cust_email; ?></td>
                                             </tr>
                                             <?php                                            
                                         }

@@ -1,6 +1,9 @@
 <?php
-$NO_REDIRECT = 1;
 include '../inc/ad.common.php';
+/*session_destroy();
+echo "<pre>";
+print_r($_SESSION);
+exit;*/
 ?>
 <!doctype html>
 <html class="no-js" lang="">

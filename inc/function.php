@@ -50,4 +50,21 @@ function NextId(){
 	$txt_id = $disp + 1;
 	return $txt_id;
 }
+
+// pop msgs
+function AlertMsg($msg = "", $type = "info"){
+	$mode = "";
+	$str = "";
+
+	if($type == "info") $mode = "alert-info";
+	else if($type == "success") $mode = "alert-success";
+	else if($type == "error") $mode = "alert-danger";
+	else if($type == "alert") $mode = "alert-warning";
+
+	if(!empty($msg))
+		$str = '<div class="alert '.$mode.' alert-mg-b-0" role="alert">'.$msg.'</div>';
+	
+
+	return $str;
+}
 ?>

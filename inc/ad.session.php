@@ -16,18 +16,31 @@ if(isset($_SESSION[AD_SESSION_ID]->log_stat)) // if the session variable has bee
 		$sess_user_id = $_SESSION[AD_SESSION_ID]->user_id;
 		$sess_user_name = $_SESSION[AD_SESSION_ID]->user_name;
 		$sess_user_role = $_SESSION[AD_SESSION_ID]->user_role;
-		$sess_user_sess = $_SESSION[AD_SESSION_ID]->sess;
-		$sess_login_time = $_SESSION[AD_SESSION_ID]->log_time;
-		$sess_user_token = $_SESSION[AD_SESSION_ID]->sess_token;		
-		$sess_user_active = $_SESSION[AD_SESSION_ID]->sess_active;
+		$sess_user_sess = $_SESSION[AD_SESSION_ID]->sess_id;
+		$sess_login_time = $_SESSION[AD_SESSION_ID]->log_time;	
 	}
 }
+
+$sess_info_str = "";
+if($logged){
+	$sess_info = isset($_SESSION[AD_SESSION_ID]->info)? AlertMsg($_SESSION[AD_SESSION_ID]->info, 'info') : '';
+	$sess_success_info = isset($_SESSION[AD_SESSION_ID]->success_info)? AlertMsg($_SESSION[AD_SESSION_ID]->success_info, 'success') : '';	
+	$sess_error_info = isset($_SESSION[AD_SESSION_ID]->error_info)? AlertMsg($_SESSION[AD_SESSION_ID]->error_info, 'error') : '';	
+	$sess_alert_info = isset($_SESSION[AD_SESSION_ID]->alert_info)? AlertMsg($_SESSION[AD_SESSION_ID]->alert_info, 'alert') : '';
+
+	$sess_info_str = $sess_info . $sess_success_info . $sess_error_info .$sess_alert_info;
+	$_SESSION[AD_SESSION_ID]->info = "";
+	$_SESSION[AD_SESSION_ID]->success_info = "";
+	$_SESSION[AD_SESSION_ID]->error_info = "";
+	$_SESSION[AD_SESSION_ID]->alert_info = "";
+}
+
 
 if(!$logged && empty($NO_REDIRECT))
 {
 	ForceOut(6);
 }
-
+// ADMIN MENU 
 // menu
 $menu = array();
 // Home
@@ -97,7 +110,7 @@ $menu[] = array(
 // Customers
 $menu[] = array(
 			'title' => "Customers",
-			'link' => "customers.php",
+			'link' => "customer.php",
 			'icon' => "",
 			'has_dropdown' => "N"
 		);

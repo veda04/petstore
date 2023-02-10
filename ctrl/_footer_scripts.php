@@ -55,6 +55,9 @@
     <!--  todo JS
         ============================================ -->
     <script src="js/todo/jquery.todo.js"></script>
+     <!-- Login JS
+        ============================================ -->
+    <script src="js/login/login-action.js"></script>
     <!-- datapicker JS
         ============================================ -->
     <script src="js/datapicker/bootstrap-datepicker.js"></script>

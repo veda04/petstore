@@ -4631,3 +4631,46 @@ body.box-layout {
 /*----------------------------------------*/
 .mCS-light-1.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{ background-color: #00c292; }
 .mCS-light-1.mCSB_scrollTools .mCSB_draggerRail{ background-color: #ccc; }
+
+
+
+
+/*PETSTORE STYLES*/
+.flex-space{
+    display: flex;
+    justify-content: space-between;
+}
+.flex-space-end{
+    display: flex;
+    justify-content: end;
+}
+.p-10{
+    padding: 0px 12px;
+    color: #a28b8b;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+.radio-area{
+    align-items: center;
+    padding: 0 10px;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    line-height: 1px;
+
+}
+.select-form-control{
+    box-shadow: none;
+    border-top: 0px solid #ccc;
+    border-left: 0px solid #ccc;
+    border-right: 0px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 0px;
+    resize: none;
+    border-radius: 0px;
+    color: #a79090;
+}
+.form-ic-cmp-sel i{
+    color: #a79090;
+}

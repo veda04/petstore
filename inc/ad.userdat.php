@@ -10,8 +10,6 @@ class userdat
 	var $user_id;		// user's id		
 	var $user_name;		// user's name	
 	var $user_role;		// user's role
-	var $user_lastlogin;// user's lastlogin details
-	var $user_ip;		// user's login ip
 
 	///////////////////////////////////////////////
 	var $srch_ctrl_arr = array(); // for use to store filters
