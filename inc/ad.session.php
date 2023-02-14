@@ -61,8 +61,8 @@ $menu[] = array(
 $product_sub = array();
 
 $product_sub[] = array(
-				'title' => "Categories",
-				'link' => "categories.php",
+				'title' => "Category",
+				'link' => "category.php",
 				'icon' => "",
 			);
 
@@ -79,8 +79,8 @@ $product_sub[] = array(
 			);
 // Product
 $menu[] = array(
-			'title' => "Products",
-			'link' => "products.php",
+			'title' => "Product",
+			'link' => "product.php",
 			'icon' => "",
 			'has_dropdown' => "Y",
 			'dropdown' => $product_sub

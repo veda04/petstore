@@ -78,9 +78,12 @@ $num_rows = sql_num_rows($r);
                                                 <td><?php echo $role; ?></td>
                                                 <td><?php echo $last_login; ?></td>
                                                 <td><?php echo $status; ?></td>
-                                                <td><a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $edit_link; ?>">Edit</a></td>
                                                 <td>
-                                                    <button onclick="ConfirmDelete('<?php echo $del_link; ?>', 'User')" type="button" class="btn btn-success notika-btn-success waves-effect">Delete</button>
+                                                    <a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $edit_link; ?>">Edit
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <button onclick="ConfirmDelete('<?php echo $del_link; ?>', 'User')" type="button" class="btn btn-danger danger-icon-notika waves-effect">Delete</button>
                                                 </td>
                                             </tr>
                                             <?php                                            

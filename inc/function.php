@@ -43,12 +43,14 @@ function ForceOutCu($code = 0, $page = "index.php", $sess_destroy="N") {
 }
 
 // Increment the id value while inserting the inputs
-function NextId(){
-	$q1 = "SELECT MAX(id) FROM user";
-	$r1 = sql_query($q1);
-	list($disp) = sql_fetch_row($r1);
-	$txt_id = $disp + 1;
-	return $txt_id;
+function NextId($table_id, $table_name){
+	if(!empty($table_id) && !empty($table_name)){
+		$q1 = "SELECT MAX($table_id) FROM $table_name";
+		$r1 = sql_query($q1);
+		list($disp) = sql_fetch_row($r1);
+		$txt_id = $disp + 1;
+		return $txt_id;
+	}
 }
 
 // pop msgs

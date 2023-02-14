@@ -39,6 +39,9 @@
     <script src="js/sparkline/sparkline-active.js"></script>
     <!-- sparkline JS
 		============================================ -->
+
+    <!-- flot JS
+        ============================================ -->
     <script src="js/flot/jquery.flot.js"></script>
     <script src="js/flot/jquery.flot.resize.js"></script>
     <script src="js/flot/curvedLines.js"></script>
@@ -79,7 +82,7 @@
     <script src="js/summernote/summernote-active.js"></script>
     <!-- dropzone JS
         ============================================ -->
-    <script src="js/dropzone/dropzone.js"></script>
+    <!-- <script src="js/dropzone/dropzone.js"></script> -->
     <!--  wave JS
 		============================================ -->
     <script src="js/wave/waves.min.js"></script>

@@ -9,4 +9,13 @@ define("TAB_SPACE", "\t");
 
 // path defines
 define("LOG_PATH", DOCROOT."logs/"); # path to store logs
+
+
+define("CAT_IMG_PATH", SITE_ADDRESS."images/category_images/"); # path to retrive logs
+define("CAT_IMG_UPLOAD", DOCROOT."images/category_images/"); # path to store logs
+
+define("PROD_IMG_PATH", SITE_ADDRESS."images/product_images/"); # path to retrive logs
+define("PROD_IMG_UPLOAD", DOCROOT."images/product_images/"); # path to store logs
+
+define("BLANK_IMAGE", ADMIN_ADDRESS."img/blank-img.png"); #blank image
 ?>
