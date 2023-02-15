@@ -1,4 +1,7 @@
-
+<!-- Connect File -->
+<?php 
+include 'inc/config.inc.php';
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -91,6 +94,10 @@
      <?php include'_footer_links.php';?>
       <?php include'_footer.php';?>
 
+
+</body>
+
+</html>
 <?php    
 $select_categories = "select * from 'categories'";
 $result_categories = mysqli_query($con,$select_categories);
@@ -101,6 +108,3 @@ while($row_data=mysqli_fetch_assoc($result_categories)){
     echo "";
 }
 ?>
-</body>
-
-</html>
