@@ -82,6 +82,17 @@ function get_dat_arr($id, $name, $table_name, $cond=""){
  	return $arr;
 }
 
+//to get customer details based on id
+function get_det_arr($id){
+	$arr = array();
+
+	$q = "SELECT * FROM `customer` WHERE id = $id";
+	$r = sql_query($q);
+	$arr = sql_get_data($r);
+
+	return $arr;
+} 
+
 // to get the address based on id
 function get_add_arr($id){
 	$arr = array();
@@ -103,6 +114,29 @@ function get_order_arr($id){
 
 	return $arr;
 }
+
+// to get the payment details of customer
+function get_pay_arr($id){
+	$arr = array();
+
+	$q = "SELECT * FROM `customer_payment` WHERE 1 AND fkCustomerId = $id";
+	$r = sql_query($q);
+	$arr = sql_get_data($r);
+
+	return $arr;
+}
+
+//to get order items from order item table
+function get_items_arr($id){
+	$arr = array();
+
+	$q = "SELECT * FROM `order_item` WHERE 1 AND fkOrderId = $id";
+	$r = sql_query($q);
+	$arr = sql_get_data($r);
+
+	return $arr;
+}
+
 
 //print array
 function pr_arr($arr= array()){
@@ -170,6 +204,18 @@ function GetXArrFromYID($q, $mode="1")
 	}
 
 	return $arr;
+}
+
+function GetXFromYID($q, $mode="1")
+{
+	$ret = "";
+	$r = sql_query($q);
+	
+	if(sql_num_rows($r)) {
+		list($ret) = sql_fetch_row($r);
+	}
+
+	return $ret;
 }
 
 function updateProductStock($prod_id) {

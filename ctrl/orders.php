@@ -54,7 +54,6 @@ $name = get_dat_arr("id", "custName", "customer");
                                     <th>Payment Method</th>
                                     <th>Status</th>
                                     <th>&nbsp;</th>
-                                    <th>&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,6 +62,7 @@ $name = get_dat_arr("id", "custName", "customer");
                                     for($i=1; $o=sql_fetch_object($r); $i++) {
                                         $sr_no = $i.'.';
                                         $id = $o->id;
+                                        $cid = $o->fkCustomerId;
                                         $order_type = $o->orderType;
                                         $order_date = $o->orderDate;
                                         $total_amount = $o->totalAmount;
@@ -76,8 +76,8 @@ $name = get_dat_arr("id", "custName", "customer");
                                         ?>
                                         <tr>
                                             <td><?php echo $sr_no; ?></td>
-                                            <td><?php print_r($name[$i]); ?></td>
-                                            <td><?php echo $order_type_str; ?></td>
+                                            <td><?php echo $name[$cid]; ?></td>
+                                            <td><?php echo $order_type; ?></td>
                                             <td><?php echo $order_date; ?></td>
                                             <td><?php echo $total_amount; ?></td>
                                             <td><?php echo $shipping_address; ?></td>
@@ -86,9 +86,6 @@ $name = get_dat_arr("id", "custName", "customer");
                                             <td>
                                                 <a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $edit_link; ?>">Edit
                                                 </a>
-                                            </td>
-                                            <td>
-                                                <button onclick="ConfirmDelete('<?php echo $del_link; ?>', 'Order')" type="button" class="btn btn-danger danger-icon-notika waves-effect">Delete</button>
                                             </td>
                                         </tr>
                                         <?php                                            

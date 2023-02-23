@@ -5,18 +5,13 @@ $PAGE_TITLE = "Customer's Information";
 
 $edit_page = "customer-edit.php";
 $customer_display ="customer.php";
+$order_page ="order-edit.php";
+
 // stores the id of the selected customer
 $txtid = $_GET['id'];
 
-// query to select from customer table
-$q = "SELECT * FROM customer WHERE id='$txtid'";
-$r = sql_query($q);
-$o = sql_fetch_object($r);
-
-// assigning values to respective variables
-$cust_name = $o->custName;
-$cust_no = $o->custNumber;
-$cust_email = $o->custEmail;
+// function call to get details of the customer
+$cust_details = get_det_arr($txtid);
 
 // function call to get address of the customer
 $cust_add = get_add_arr($txtid);
@@ -60,13 +55,20 @@ $cust_order = get_order_arr($txtid);
                                         </div>
                                         <div class="contact-dt">
                                             <ul class="contact-list widget-contact-list">
-                                                <li><b>Name:</b> <?php echo $cust_name?></li>
-                                                <li><b>Phone Number:</b> <?php echo $cust_no?></li>
-                                                <li><b>Email:</b> <?php echo $cust_email?></li>
+                                                <?php
+                                                    //pr_arr($cust_details);
+                                                foreach($cust_details as $arr_ind => $arr_blck){
+                                                    ?>
+                                                    <li><b>Name:</b> <?php echo $arr_blck->custName;?></li>
+                                                    <li><b>Phone Number:</b> <?php echo $arr_blck->custNumber;?></li>
+                                                    <li><b>Email:</b> <?php echo $arr_blck->custEmail;?></li>
+                                                    <?php
+                                                }
+                                                ?>
                                             </ul>
                                         </div>
                                     </div>
-                                </div>b
+                                </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="contact-inner">
                                         <div class="contact-hd widget-ctn-hd">
@@ -75,10 +77,10 @@ $cust_order = get_order_arr($txtid);
                                         <div class="contact-dt">
                                             <ul class="contact-list widget-contact-list">
                                                     <?php
-                                                        // pr_arr($cust_add);
-                                                        foreach($cust_add as $title => $address){
+                                                        //pr_arr($cust_add);
+                                                        foreach($cust_add as $arr_ind => $arr_blck){
                                                             echo '<li>';
-                                                            echo "<b>$address->title: </b>". $address->address;
+                                                            echo "<b>$arr_blck->title: </b>". $arr_blck->address;
                                                             echo '</li>';
                                                         }
                                                     ?>
@@ -92,27 +94,38 @@ $cust_order = get_order_arr($txtid);
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Item Name</th>
                                                     <th>Order Type</th>
                                                     <th>Order Date</th>
                                                     <th>Payment method</th>
+                                                    <th>Shipping Address</th>
                                                     <th>Total Amount</th>
+                                                    <th>&nbsp;</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                // pr_arr($cust_order);
-                                                // exit;
-                                                
+                                                    //pr_arr($cust_order);
+                                                $i=1;
+                                                $order_edit_link = $order_page."?m=R&id=".$txtid;
+                                                foreach($cust_order as $arr_ind => $arr_blck){
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $i;?></td>
+                                                        <td><?php echo $arr_blck->orderType;?></td>
+                                                        <td><?php echo $arr_blck->orderDate;?></td>
+                                                        <td><?php echo $arr_blck->paymentMethod;?></td>
+                                                        <td><?php echo $arr_blck->shippingAddress;?></td>
+                                                        <td><?php echo $arr_blck->totalAmount;?></td>
+                                                        <td>
+                                                            <a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $order_edit_link;?>">
+                                                                View Order
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                    $i++;
+                                                }
                                                 ?>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Crusal Damperal</td>
-                                                    <td>$500</td>
-                                                    <td>$500</td>
-                                                    <td>05</td>
-                                                    <td>$3000</td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
