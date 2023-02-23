@@ -7,7 +7,6 @@
 define('SITE_ADDRESS','http://localhost/petstore/');
 define('DOCROOT','D:/xampp/htdocs/petstore/');
 define('ADMIN_ADDRESS','http://localhost/petstore/ctrl/'); //  */
-
 // Local DB
 define('DB_HOST','localhost');
 define('DB_USERNAME','root');

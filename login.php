@@ -1,100 +1,81 @@
-<!DOCTYPE html>
-<html lang="zxx">
+<?php
+include './inc/cu.common.php';
+@session_start();
+if (isset($_POST['user_login'])) {
+  $u=$_POST['user_username'];
+  $p=$_POST['user_password'];
+  $q="SELECT * FROM customer";
+  $r = sql_query($q);
+  $num_rows = sql_num_rows($r);
+  $row_data= sql_fetch_assoc($r);
 
+  //cart item
+  $q1="SELECT * FROM customer_cart";
+  $r1 = sql_query($q1);
+  $num_rows1 = sql_num_rows($r1);
+     if ($num_rows>0) {
+        $_SESSION['user_username']=$u;
+    if (password_verify($p,$row_data['password'])){
+       if($num_rows == 0 && $num_rows1 == 1){
+        $_SESSION['user_username']=$u;
+          echo "<script>window.open('index.php','_self')</script>";
+       }else{
+        $_SESSION['user_username']=$u;
+         echo "<script>window.open('payment.php','_self')</script>";
+       }
+    }else{
+      echo "<script>alert('Username or password do not match')</script>";
+  }
+   }else{
+    echo "<script>alert('Username or do not match')</script>";
+   }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pet Store</title>
-
-    <?php include'_header_links.php';?>
+     <?php include'header_link.php';?>
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
-    <?php include'_header.php';?>
-   
-           
-    <!-- Header Section End -->
-
-
-<style>
-    #uni_modal .modal-content>.modal-footer,#uni_modal .modal-content>.modal-header{
-        display:none;
-    }
-</style>
-<div  class="contact-form spad">
-    <div class="container-2 col-lg-3">
-        <div class="contact__form__title">
-            <h3 class="text-center">Login</h3>
-            <hr>
-            <form action="" id="login-form">
-                <div "class="col-lg-15">
-                    
-                    <label for="" class="control-label">Email</label>
-                    <input type="email" class="form-control form" name="email" required>
-                 
+       <?php include'header.php';?>
+<div class="container-fluied my-3">
+    <h2 class="text-center">Login</h2>
+    <div class=" row d-flex align-items-center justify-content-center">
+        <div class="col-lg-12 col-xl-6">
+            <form action="" method="post">
+                <div class="form-outline mb-3">
+                    <!-- username field-->
+                    <label for="user_username" class="form-label">Username</label>
+                    <input type="text" id="user_username" placeholder="Userame" class="form-control" name="user_username" autocomplete="off" required="required">
                 </div>
-                <div class="form-group">
-                    <label for="" class="control-label">Password</label>
-                    <input type="password" class="form-control form" name="password" required>
+                <div class="form-outline mb-3">
+                    <!-- password field-->
+                    <label for="user_password">Password</label>
+                    <input type="password" class="form-control" id="user_password" placeholder="Password" name="user_password" autocomplete="off" required="required">
                 </div>
-                 <div class="text-center">
-                        <input type="submit" name="user_login"  class="site-btn" value="Login">
-                    </div>
-                    <p class="text-center">Don't have an account? <a href="./registration.php"> Register</a></p>
+                <div class="text-center">
+                    <!-- login field-->
+                    <input type="submit" value="Login" class="btn btn-primary" name="user_login">
+                </div>
+                <div class="text-center">
+                    <p class="small">Don't have an account? <a href="./registration.php">Register</a></p>
+                </div>
             </form>
+            
         </div>
     </div>
+    
 </div>
- <?php include'_footer_links.php';?>
-      <?php include'_footer.php';?>
 
-<script>
-    $(function(){
-        $('#create_account').click(function(){
-            uni_modal("","registration.php","mid-large")
-        })
-        $('#login-form').submit(function(e){
-            e.preventDefault();
-            start_loader()
-            if($('.err-msg').length > 0)
-                $('.err-msg').remove();
-            $.ajax({
-                url:_base_url_+"classes/Login.php?f=login_user",
-                method:"POST",
-                data:$(this).serialize(),
-                dataType:"json",
-                error:err=>{
-                    console.log(err)
-                    alert_toast("an error occured",'error')
-                    end_loader()
-                },
-                success:function(resp){
-                    if(typeof resp == 'object' && resp.status == 'success'){
-                        alert_toast("Login Successfully",'success')
-                        setTimeout(function(){
-                            location.reload()
-                        },2000)
-                    }else if(!!resp.msg){
-                        var _err_el = $('<div>')
-                            _err_el.addClass("alert alert-danger err-msg").text(resp.msg)
-                        $('#login-form').prepend(_err_el)
-                        end_loader()
-                        
-                    }else{
-                        console.log(resp)
-                        alert_toast("an error occured",'error')
-                        end_loader()
-                    }
-                }
-            })
-        })
-    })
-</script>
+    <!--footer section -->
+<?php include'footer.php';?>
+ <?php include'footer_link.php';?>
+</body>
+
+</html>

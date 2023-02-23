@@ -16,5 +16,6 @@ if(!isset($NO_INCLUDE))
 }
 
 ######	GETCONNECTED
-$CON = GetConnected(); # connection to database
+$CON = ConnectSQL();
+ # connection to database
 ?>
