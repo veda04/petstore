@@ -109,6 +109,40 @@ function pr_arr($arr= array()){
 	echo '<pre/>';
 	print_r($arr); 
 }
+
+function getProductCategory($cond="") {
+	$arr = array();
+	$q = "SELECT `id`, `title`, `image`, `description`, `status` FROM `category` WHERE 1 $cond";
+	$r = sql_query($q);
+
+	if(sql_num_rows($r))
+		$arr = sql_get_data($r);
+
+	return $arr;
+
+}
+
+function GetUrlName($title)
+{
+	$URL_CHAR_ARR = array("%","/",".","#","?","*","!","@","&",":","|",";","=","<",">","^","~","'","\"",",","-","(",")","'",'"','\\');
+	$rurl = trim($title);
+	$rurl = str_replace($URL_CHAR_ARR,'',$title);
+	$rurl = str_replace('   ',' ',$rurl);
+	$rurl = str_replace('  ',' ',$rurl);
+	$rurl = str_replace(' ','-',$rurl);
+	$rurl = trim(strtolower($rurl));
+
+	return $rurl;
+}
+
+function getDataFromTable($table_name, $field_str="*", $cond="", $query = "") {
+	$arr = array();
+	$q = !empty($query) ? $query : "SELECT $field_str FROM $table_name WHERE 1 $cond";
+	$r = sql_query($q);
+
+	if(sql_num_rows($r))
+		$arr = sql_get_data($r);
+
+	return $arr;
+}
 ?>
-
-
