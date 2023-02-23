@@ -24,7 +24,8 @@ if (isset($_POST['user_login'])) {
          echo "<script>window.open('payment.php','_self')</script>";
        }
     }else{
-      echo "<script>alert('Username or password do not match')</script>";
+      //echo "<script>alert('Username or password do not match')</script>";
+         echo "<script>window.open('index.php','_self')</script>";
   }
    }else{
     echo "<script>alert('Username or do not match')</script>";

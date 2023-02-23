@@ -1,4 +1,4 @@
-<div class="container-fluied">
+<!--<div class="container-fluied">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <img src="./img/logo.png" class="logo">
@@ -29,23 +29,23 @@
              </sup></a>
         </li> 
         <?php
-            if (!isset($_SESSION['user_username'])) {
-           echo "<li class='nav-item'>
-           <a class='nav-link' href='login.php'>Login</a><li>"; 
-        }else
-        echo "<li class='nav-item'>
-           <a class='nav-link' href='logout.php'>Logout</a><li>"; 
+        //    if (!isset($_SESSION['user_username'])) {
+       //    echo "<li class='nav-item'>
+      //     <a class='nav-link' href='login.php'>Login</a><li>"; 
+      //  }else
+      //  echo "<li class='nav-item'>
+      //     <a class='nav-link' href='logout.php'>Logout</a><li>"; 
        ?>
 
         <?php
-            if (!isset($_SESSION['user_username'])) {
-           echo "<li class='nav-item'>
-          <a class='nav-link'>Welcome Guest</a>
-        </li>"; 
-        }else
-        echo "<li class='nav-item'>
-          <a class='nav-link'>Welcome ".$_SESSION['user_username']."</a>
-        </li>"; 
+        //    if (!isset($_SESSION['user_username'])) {
+         //  echo "<li class='nav-item'>
+        //  <a class='nav-link'>Welcome Guest</a>
+       // </li>"; 
+       // }else
+       // echo "<li class='nav-item'>
+      //    <a class='nav-link'>Welcome ".$_SESSION['user_username']."</a>
+      //  </li>"; 
        ?>
       </ul>
 
@@ -61,3 +61,67 @@
     overflow-x: hidden;
   }
   </style>
+-->
+<header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><i class="fa fa-envelope"></i> hello@petstore.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__auth">
+                                 <?php
+                                    if (!isset($_SESSION['user_username'])) {
+                                   //echo "                 <a class='nav-link' href='login.php'>Login</a><li>"; 
+                                echo "<a href='login.php'><i class='fa fa-user'></i> Login</a>";
+                                 }else
+                                 echo "<a href='logout.php'><i class='fa fa-user'></i> Logout</a>";
+                                 ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a ><img src="img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li ><a href="index.php">Home</a></li>
+                            <li><a href="about.php">About</a></li>
+                            <li><a href="product.php">Products</a>
+                                
+                            </li>
+                            <li><a href="./contact.php">Contact</a></li><sup></sup>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__cart">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-bag"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+   

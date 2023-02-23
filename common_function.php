@@ -13,7 +13,7 @@ function view_details(){
                    $product_price=$row['productPrice'];
                    $product_desc=$row['productDesc'];
                    $category_id=$row['categoryId'];
-                   echo "<div class='col-md-4 mb-2'>
+                   echo "<div class='col-md-5 mb-2'>
                             <div class='card' >
                                 <img src='./ctrl/images/$product_img' class='card-img-top' alt='$product_name'>
                                   <div class='card-body'>
@@ -42,7 +42,7 @@ function get_all_products() {
                    $product_price=$row['productPrice'];
                    $product_desc=$row['productDesc'];
                    $category_id=$row['categoryId'];
-                   echo "<div class='col-md-4 mb-2'>
+                   echo "<div class='col-md-5 mb-2'>
                             <div class='card' >
                                 <img src='./ctrl/images/$product_img' class='card-img-top' alt='$product_name'>
                                   <div class='card-body'>
@@ -71,7 +71,7 @@ function get_all_products() {
                    $product_price=$row['productPrice'];
                    $product_desc=$row['productDesc'];
                    $category_id=$row['categoryId'];
-                   echo "<div class='col-md-4 mb-2'>
+                   echo "<div class='col-md-5 mb-2'>
                             <div class='card' >
                                 <img src='./ctrl/images/$product_img' class='card-img-top' alt='$product_name'>
                                   <div class='card-body'>
@@ -94,7 +94,7 @@ function get_all_products() {
             while($row=sql_fetch_assoc($result_query)){
                   $category_name=$row['title'];  
                   $category_id=$row['id'];
-                   echo "<a href='product.php?category_id=$category_id' class='nav-link text-light'>$category_name</a>";
+                   echo "<a href='product.php?category_id=$category_id' >$category_name</a>";
                 }
         }
 
