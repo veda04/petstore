@@ -5,7 +5,7 @@ $PAGE_TITLE = "Users";
 
 $edit_page = "user-edit.php";
 
-$q = "SELECT * FROM `user` WHERE fkRoleId > 1";
+$q = "SELECT u.*, ul.title FROM `user` u JOIN user_role ul ON u.fkRoleId=ul.id WHERE u.fkRoleId > 1";
 $r = sql_query($q);
 $num_rows = sql_num_rows($r);
 ?>
@@ -65,6 +65,7 @@ $num_rows = sql_num_rows($r);
                                             $name = $o->name;
                                             $user_name = $o->username;
                                             $role = $o->fkRoleId;
+                                            $title = $o->title;
                                             $last_login = $o->lastLogin;
                                             $status = $o->status;
 
@@ -75,7 +76,7 @@ $num_rows = sql_num_rows($r);
                                                 <td><?php echo $sr_no; ?></td>
                                                 <td><?php echo $name; ?></td>
                                                 <td><?php echo $user_name; ?></td>
-                                                <td><?php echo $role; ?></td>
+                                                <td><?php echo $title; ?></td>
                                                 <td><?php echo $last_login; ?></td>
                                                 <td><?php echo $status; ?></td>
                                                 <td>

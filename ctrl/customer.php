@@ -3,7 +3,7 @@
 include '../inc/ad.common.php';
 $PAGE_TITLE = "Customers";
 
-$edit_page = "user-edit.php";
+$edit_page = "customer-edit.php";
 
 $q = "SELECT * FROM `customer`";//WHERE fkRoleId > 1";
 $r = sql_query($q);
@@ -38,7 +38,6 @@ $num_rows = sql_num_rows($r);
                             <h2>
                                 <?php echo $PAGE_TITLE; ?>
                             </h2>
-                            <a class="btn btn-info info-icon-notika waves-effect" href="<?php echo $edit_page; ?>">Add</a>
                         </div>
                         <div class="table-responsive">
                             <table id="data-table-basic" class="table table-striped">
@@ -49,6 +48,7 @@ $num_rows = sql_num_rows($r);
                                         <th>Username</th>
                                         <th>Customer No.</th>
                                         <th>Customer Email</th>
+                                        <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,7 +62,8 @@ $num_rows = sql_num_rows($r);
                                             $cust_no = $o->custNumber;
                                             $cust_email = $o->custEmail;
 
-                                            $role_name = "";
+                                            $edit_link = $edit_page."?id=".$id;
+
                                             ?>
                                             <tr>
                                                 <td><?php echo $sr_no; ?></td>
@@ -70,8 +71,13 @@ $num_rows = sql_num_rows($r);
                                                 <td><?php echo $user_name; ?></td>
                                                 <td><?php echo $cust_no; ?></td>
                                                 <td><?php echo $cust_email; ?></td>
+                                                <td>
+                                                    <a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $edit_link; ?>">
+                                                        View
+                                                    </a>
+                                                </td>
                                             </tr>
-                                            <?php                                            
+                                            <?php      
                                         }
                                     }
                                     ?>

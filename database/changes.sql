@@ -7,3 +7,12 @@ ALTER TABLE `product_ratings` ADD CONSTRAINT `product_ratings_ibfk_2` FOREIGN KE
 CREATE TABLE user_role (id int NOT NULL, title varchar (255), img varchar (255), desciption txt, status char (3) default 'I', PRIMARY KEY (id) );
 ALTER TABLE product ADD categoryId int;
 ALTER TABLE product ADD FOREIGN KEY (categoryId) REFERENCES category(id);
+
+-- @Veda 2023-02-15: changed product stock table by adding auto increment;
+ALTER TABLE `product_stock` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+-- @Veda 2023-02-23: changed officeAddress to title; 
+ALTER TABLE `customer_address` CHANGE `officeAddress` `title` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+-- @Veda 2023-02-23: changed homeAddress to address; 
+ALTER TABLE `customer_address` CHANGE `homeAddress` `address` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;

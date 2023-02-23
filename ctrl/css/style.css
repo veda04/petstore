@@ -4702,3 +4702,11 @@ body.box-layout {
 .uploaded-img img{
     width: 100%;
 }
+
+.mb-10{
+    margin-bottom: 20px;
+}
+
+.w-500{
+    font-weight: 500;
+}
