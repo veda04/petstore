@@ -5,7 +5,7 @@ $PAGE_TITLE = "Orders";
 $edit_page = "order-edit.php";
 
 //query to select from order table
-$q = "SELECT * FROM `orders`";
+$q = "SELECT * FROM `orders` ORDER BY orderDate desc";
 $r = sql_query($q);
 $num_rows = sql_num_rows($r);     
 //get required attributes in form of array from cutomer table                                                                                                                      
@@ -40,7 +40,6 @@ $name = get_dat_arr("id", "custName", "customer");
                             <?php echo $sess_info_str; ?>
 
                         </h2>
-                        <a class="btn btn-info info-icon-notika waves-effect" href="<?php echo $edit_page; ?>">Add</a>
                     </div>
                     <div class="table-responsive">
                         <table id="data-table-basic" class="table table-striped">

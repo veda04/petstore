@@ -109,6 +109,89 @@ function pr_arr($arr= array()){
 	echo '<pre/>';
 	print_r($arr); 
 }
+
+function getCount($table, $field="COUNT(*)", $cond="") {
+	$count = 0;
+
+	if(!empty($table)) {
+		$q = "SELECT $field FROM $table WHERE 1 $cond";
+		$r = sql_query($q);
+		if(sql_num_rows($r))
+			list($count) = sql_fetch_row($r);
+	}
+
+	return $count;
+}
+
+function randomSparkline($num = 12) {
+	$sparkline_str = "";
+
+	if(!empty($num) && is_numeric($num) ) {
+		for($i=1; $i<=$num; $i++) {
+			$sparkline_str .= rand(1,100).',';
+		}
+
+		$sparkline_str = substr($sparkline_str,0,-1);
+	}
+
+	return $sparkline_str;
+}
+
+function getDataFromTable($table_name, $field_str="*", $cond="", $query = "") {
+	$arr = array();
+	$q = !empty($query) ? $query : "SELECT $field_str FROM $table_name WHERE 1 $cond";
+	$r = sql_query($q);
+
+	if(sql_num_rows($r))
+		$arr = sql_get_data($r);
+
+	return $arr;
+}
+
+function GetXArrFromYID($q, $mode="1")
+{
+	$arr = array();
+	$r = sql_query($q);
+	
+	if(sql_num_rows($r))
+	{
+		if($mode == "2")
+			for($i=0; list($x) = sql_fetch_row($r); $i++)
+				$arr[$i] = $x;
+		else if($mode == "3")
+			for($i=0; list($x, $y) = sql_fetch_row($r); $i++)
+				$arr[$x] = $y;
+		else if($mode == "4")
+			while($a = sql_fetch_assoc($r))
+				$arr[$a['I']] = $a;
+		else
+			while(list($x) = sql_fetch_row($r))
+				$arr[$x] = $x;
+	}
+
+	return $arr;
+}
+
+function updateProductStock($prod_id) {
+	$ret = false;
+
+	if(!empty($prod_id) && is_numeric($prod_id)) {
+		$q = "UPDATE product SET productQty = (SELECT SUM(newQty) from product_stock WHERE fkProductId = $prod_id) WHERE id = $prod_id ";
+		$r = sql_query($q);
+
+		if(sql_affected_rows($r))
+			$ret = true;
+	}
+
+	return $ret;
+}
+
+function validateReference($table_name, $pk_fld, $pk_id) {
+	$c = 0;
+	if(!empty($table_name) && !empty($pk_fld) && !empty($pk_id)) {
+		$c = getCount($table_name, "COUNT(*)", $pk_fld.' = '.$pk_id);
+	}
+
+	return $c;
+}
 ?>
-
-
