@@ -218,7 +218,8 @@ if($mode == 'C' || $mode == 'U') {
                         </div>
                         <div class="form-example-int mg-t-15 flex-space-end">
                             <div>
-                                <a href="<?php echo $category_display ;?>" class="btn btn-warning warning-icon-notika waves-effect">    Back
+                                <a href="<?php echo $category_display ;?>" class="btn btn-warning warning-icon-notika waves-effect">   
+                                     Back
                                 </a>
                                 <button type="submit" name="submit_btn" class="btn btn-success notika-btn-success waves-effect">
                                     Save

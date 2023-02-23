@@ -63,9 +63,52 @@ function AlertMsg($msg = "", $type = "info"){
 	else if($type == "alert") $mode = "alert-warning";
 
 	if(!empty($msg))
-		$str = '<div class="alert '.$mode.' alert-mg-b-0" role="alert">'.$msg.'</div>';
+		$str = '<div class="alert mb-10 '.$mode.' alert-mg-b-0" role="alert">'.$msg.'</div>';
 	
 
 	return $str;
 }
+
+//to get name based on id
+function get_dat_arr($id, $name, $table_name, $cond=""){
+	$arr = array();
+ 	$q = "SELECT $id,  $name FROM `$table_name` WHERE 1 $cond";
+ 	$r = sql_query($q);
+ 	if(sql_num_rows($r)){
+ 		while(list($id, $name) = sql_fetch_row($r)){
+ 			$arr[$id] = $name;
+ 		}
+ 	}
+ 	return $arr;
+}
+
+// to get the address based on id
+function get_add_arr($id){
+	$arr = array();
+	
+	$q = "SELECT * FROM `customer_address` WHERE 1 AND fkCustomerId = $id";
+	$r = sql_query($q);
+	$arr = sql_get_data($r);
+	
+	return $arr;
+}
+
+//to get orders of customer based on id
+function get_order_arr($id){
+	$arr = array();
+
+	$q = "SELECT * FROM `orders` WHERE 1 AND fkCustomerId = $id";
+	$r = sql_query($q);
+	$arr = sql_get_data($r);
+
+	return $arr;
+}
+
+//print array
+function pr_arr($arr= array()){
+	echo '<pre/>';
+	print_r($arr); 
+}
 ?>
+
+

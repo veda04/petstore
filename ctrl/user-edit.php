@@ -159,17 +159,15 @@ else if($mode == "D"){
                                      <div class="nk-int-st">
                                         <select name ="role" class="form-control select-form-control">
                                             <?php
-                                            $q2 = "SELECT id, title FROM user_role WHERE id>1"; 
-                                            $r2 = sql_query($q2);
-                                            $num_rows = sql_num_rows($r2);
-                                            if($num_rows > 0){
-                                                 while($row = sql_fetch_assoc($r2)){
-                                                   $selected = ($row['id']==$role) ? "selected" : ""; 
-                                                   ?>
-                                                   <option <?php echo $selected; ?> value="<?php echo $row['id']; ?>">
-                                                     <?php echo $row['title']; ?></option><?php                    
-                                                    }
-                                                 }
+                                            $name = get_dat_arr("id", "title", "user_role", "AND id>1");
+
+                                            foreach($name as $id =>$title) {
+                                                $selected = ($id==$role) ? "selected" : ""; 
+                                                ?>
+                                                   <option <?php echo $selected; ?> value="<?php echo $id; ?>">
+                                                     <?php echo $title; ?></option>
+                                            <?php                    
+                                            }
                                             ?>
                                         </select>
                                     </div>

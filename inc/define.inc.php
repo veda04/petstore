@@ -4,6 +4,7 @@ define("AD_SESSION_ID", "ECOM_AD"); # admin session management
 define("CU_SESSION_ID", "ECOM_CU"); # customer session management
 define("SQL_ERROR", "1");
 define("NOW", date("Y-m-d H:i:s"));
+define("TODAY", date("Y-m-d"));
 define("NEWLINE", "\n\r");
 define("TAB_SPACE", "\t");
 
