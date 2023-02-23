@@ -67,8 +67,8 @@ $product_sub[] = array(
 			);
 
 $product_sub[] = array(
-				'title' => "Inventory",
-				'link' => "inventory.php",
+				'title' => "Offers",
+				'link' => "offer.php",
 				'icon' => "",
 			);
 
@@ -96,7 +96,7 @@ $vendor_sub[] = array(
 
 $vendor_sub[] = array(
 				'title' => "Vendors",
-				'link' => "change_password.php",
+				'link' => "vendor.php",
 				'icon' => "",
 			);
 // Vendors
