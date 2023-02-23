@@ -19,4 +19,6 @@ define("PROD_IMG_PATH", SITE_ADDRESS."images/product_images/"); # path to retriv
 define("PROD_IMG_UPLOAD", DOCROOT."images/product_images/"); # path to store logs
 
 define("BLANK_IMAGE", ADMIN_ADDRESS."img/blank-img.png"); #blank image
+
+$STATUS_ARR = array("A"=>"Active", "I"=>"Inactive");
 ?>

@@ -29,12 +29,11 @@ $num_rows = sql_num_rows($r);
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <?php echo $sess_info_str; ?>
                 <div class="data-table-list">
                     <div class="basic-tb-hd flex-space">
                         <h2>
                             <?php echo $PAGE_TITLE; ?>
-                            <?php echo $sess_info_str; ?>
-
                         </h2>
                         <a class="btn btn-info info-icon-notika waves-effect" href="<?php echo $edit_page; ?>">Add</a>
                     </div>
@@ -70,7 +69,7 @@ $num_rows = sql_num_rows($r);
                                             <td><?php echo $cat_title; ?></td>
                                             <!-- <td><img src="<?php echo $cat_img; ?>" alt=""  width="50px" /></td> -->
                                             <td><?php echo $cat_desciption; ?></td>
-                                            <td><?php echo $status; ?></td>
+                                            <td><?php echo isset($STATUS_ARR[$status]) ? $STATUS_ARR[$status] : "-"; ?></td>
                                             <td>
                                                 <a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $edit_link; ?>">Edit
                                                 </a>

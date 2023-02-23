@@ -74,8 +74,17 @@ else if($mode == "U"){
     $_SESSION[AD_SESSION_ID]->success_info = "Successfully Updated"; 
 }
 else if($mode == "D"){
-    $q = "DELETE FROM category WHERE id=$txtid";
-    $r = sql_query($q);
+    $ref_arr = [];
+    $ref_arr["Product"] = validateReference("product", "categoryId", $txtid);
+
+    if(!array_sum($ref_arr)) {
+        $q = "DELETE FROM category WHERE id=$txtid";
+        $r = sql_query($q);
+    }
+    else {
+        $dep = Array2String($ref_arr);
+        $_SESSION[AD_SESSION_ID]->alert_info = "Could not delete category due to existing dependencies of ".$dep; 
+    }
 
     header("location: ".$category_display);
     exit;

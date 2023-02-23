@@ -33,7 +33,6 @@ if($mode == 'A'){
     $txtid = 0;
     $prod_name = "";
     $prod_price = "";
-    $prod_qty = "";
     $prod_img = BLANK_IMAGE;
     $prod_desc = "";
     $status = "A";
@@ -53,11 +52,10 @@ else if($mode == 'C'){
     $txtid = NextId("id", "product");
     $prod_name = $_POST["prod_name"];
     $prod_price = $_POST["prod_price"];
-    $prod_qty = $_POST["prod_qty"];
     $prod_desc = $_POST["prod_desc"];
     $status = $_POST["active"];
 
-    $q = "INSERT INTO product(id, productName,productPrice, productQty, productDesc, status) values ('$txtid', '$prod_name', '$prod_price', '$prod_qty', '$prod_desc', '$status')";
+    $q = "INSERT INTO product(id, productName,productPrice, productDesc, status) values ('$txtid', '$prod_name', '$prod_price', '$prod_desc', '$status')";
     $r = sql_query($q);
     $_SESSION[AD_SESSION_ID]->success_info = "New product created Successfully"; 
 }
@@ -70,7 +68,6 @@ else if($mode == "R") {
     $id = $o->id;
     $prod_name = $o->productName;
     $prod_price = $o->productPrice;
-    $prod_qty = $o->productQty;
     $prod_img = !empty($o->productImg)? PROD_IMG_PATH.$o->productImg : BLANK_IMAGE;
     $prod_desc = $o->productDesc;
     $status = $o->status;
@@ -83,11 +80,10 @@ else if($mode == "U"){
     $txtid = $_POST["id"];
     $prod_name = $_POST["prod_name"];
     $prod_price = $_POST["prod_price"];
-    $prod_qty = $_POST["prod_qty"];
     $prod_desc = $_POST["prod_desc"];
     $status = $_POST["active"];
 
-    $q = "UPDATE product SET productName='$prod_name', productPrice='$prod_price', productQty='$prod_qty', productDesc='$prod_desc', status='$status' WHERE id='$txtid'";
+    $q = "UPDATE product SET productName='$prod_name', productPrice='$prod_price', productDesc='$prod_desc', status='$status' WHERE id='$txtid'";
     $r = sql_query($q);
     $_SESSION[AD_SESSION_ID]->success_info = "Successfully Updated"; 
 }
@@ -147,6 +143,7 @@ if($mode == 'ADD_STOCK'){
     if(sql_affected_rows($r)) {
         // success message
         $_SESSION[AD_SESSION_ID]->success_info = "Stock Successfully Updated"; 
+        updateProductStock($txtid);
     }
     else {
         // failure message;
@@ -161,6 +158,7 @@ else if($mode == 'DELETE_STOCK'){
     $q = "DELETE FROM product_stock WHERE id=$psid";
     $r = sql_query($q);
     $_SESSION[AD_SESSION_ID]->success_info = "Inventory Successfully Deleted"; 
+    updateProductStock($txtid);
     header("location: $edit_page?m=R&id=$txtid");
     exit;
 }
@@ -213,7 +211,7 @@ else if($mode == 'DELETE_STOCK'){
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
                                         <i class="notika-icon notika-support"></i>
@@ -222,7 +220,7 @@ else if($mode == 'DELETE_STOCK'){
                                         <input type="text" name="prod_qty" value="<?php echo $prod_qty; ?>" class="form-control" placeholder="Product Quantity" required>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-lg-12 col-md-4 col-sm-4 col-xs-12">
                                 <div class="">
                                     <div class="form-group ic-cmp-int">
@@ -390,7 +388,7 @@ else if($mode == 'DELETE_STOCK'){
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $q3 = "SELECT ps.*, v.vendorName FROM `product_stock` ps JOIN vendor v ON ps.fkVendorId=v.id";
+                                            $q3 = "SELECT ps.*, v.vendorName FROM `product_stock` ps JOIN vendor v ON ps.fkVendorId=v.id WHERE ps.fkProductId = $txtid";
                                             $r3 = sql_query($q3);
                                             $num_rows = sql_num_rows($r3);
                                             if($num_rows > 0) {

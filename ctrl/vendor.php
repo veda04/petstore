@@ -73,7 +73,7 @@ $num_rows = sql_num_rows($r);
                                             <td><?php echo $vendor_address; ?></td>
                                             <td><?php echo $vendor_phone; ?></td>
                                             <td><?php echo $vendor_email; ?></td>
-                                            <td><?php echo $status; ?></td>
+                                            <td><?php echo isset($STATUS_ARR[$status]) ? $STATUS_ARR[$status] : "-"; ?></td>
                                             <td>
                                                 <a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $edit_link; ?>">Edit
                                                 </a>

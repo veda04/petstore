@@ -75,7 +75,7 @@ $num_rows = sql_num_rows($r);
                                             <td><?php echo $prod_qty; ?></td>
                                             <td><img src="<?php echo $prod_img; ?>" alt="" width="50px"/></td>
                                             <td><?php echo $cat_desciption; ?></td>
-                                            <td><?php echo $status; ?></td>
+                                            <td><?php echo isset($STATUS_ARR[$status]) ? $STATUS_ARR[$status] : "-"; ?></td>
                                             <td>
                                                 <a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $edit_link; ?>">
                                                     Edit

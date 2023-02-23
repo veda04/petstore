@@ -78,7 +78,7 @@ $num_rows = sql_num_rows($r);
                                                 <td><?php echo $user_name; ?></td>
                                                 <td><?php echo $title; ?></td>
                                                 <td><?php echo $last_login; ?></td>
-                                                <td><?php echo $status; ?></td>
+                                                <td><?php echo isset($STATUS_ARR[$status]) ? $STATUS_ARR[$status] : "-"; ?></td>
                                                 <td>
                                                     <a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $edit_link; ?>">Edit
                                                     </a>

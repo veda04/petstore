@@ -15,6 +15,7 @@
                                     $icon = $_marr['icon'];
                                     $has_dropdown = $_marr['has_dropdown'];
                                     $dropdown = isset($_marr['dropdown']) ? $_marr['dropdown'] : array();
+                                    $urls = isset($_marr['URLS']) ? $_marr['URLS'] : array();
 
                                     echo '<li>';
                                     echo '<a data-toggle="collapse" data-target="#Charts" href="'.$link.'">'.$title.'</a>';
@@ -54,18 +55,6 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                   
                     <?php
-                    function urlName($str="") {
-                        $urlname = "";
-                        
-                        if(!empty($str)) {
-                            $f_arr = array(" ");
-                            $replace = "-";
-                            $urlname = strtolower( str_replace($f_arr, $replace, $str) );
-
-                        }
-
-                        return $urlname;
-                    }
                     if(!empty($menu)){
                         echo '<ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">';
                             foreach($menu as $_marr){
@@ -74,10 +63,12 @@
                                 $icon = $_marr['icon'];
                                 $has_dropdown = $_marr['has_dropdown'];
                                 $dropdown = isset($_marr['dropdown']) ? $_marr['dropdown'] : array(); 
-                                $tab_name = "tab-".urlName($title);
+                                $urls = isset($_marr['URLS']) ? $_marr['URLS'] : array();
+                                $tab_name = "tab-".GetUrlName($title);
 
                                 // active
-                                $m_active = (basename($_SERVER['PHP_SELF']) == $link) ? "active" : "";
+                                $fname = basename($_SERVER['PHP_SELF']);
+                                $m_active = ($fname == $link || in_array($fname, $urls) ) ? "active" : "";
                                 echo '<li class="'.$m_active.'">';
                                 
                                 if($has_dropdown == "Y") {
@@ -96,7 +87,7 @@
                             $title = $_marr['title'];
                             $has_dropdown = $_marr['has_dropdown'];
                             $dropdown = isset($_marr['dropdown']) ? $_marr['dropdown'] : array();
-                            $tab_name = "tab-".urlName($title);
+                            $tab_name = "tab-".GetUrlName($title);
 
                             if($has_dropdown == 'Y' && !empty($dropdown)) {
 

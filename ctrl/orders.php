@@ -70,18 +70,19 @@ $name = get_dat_arr("id", "custName", "customer");
                                         $payment_method = $o->paymentMethod;
                                         $status = $o->status;
 
+                                        $order_type_str = isset($ORDER_TYPES[$order_type]) ? $ORDER_TYPES[$order_type] : "-";
                                         $edit_link = $edit_page."?m=R&id=".$id;
                                         $del_link = $edit_page."?m=D&id=".$id;
                                         ?>
                                         <tr>
                                             <td><?php echo $sr_no; ?></td>
                                             <td><?php print_r($name[$i]); ?></td>
-                                            <td><?php echo $order_type; ?></td>
+                                            <td><?php echo $order_type_str; ?></td>
                                             <td><?php echo $order_date; ?></td>
                                             <td><?php echo $total_amount; ?></td>
                                             <td><?php echo $shipping_address; ?></td>
                                             <td><?php echo $payment_method; ?></td>
-                                            <td><?php echo $status; ?></td>
+                                            <td><?php echo isset($STATUS_ARR[$status]) ? $STATUS_ARR[$status] : "-"; ?></td>
                                             <td>
                                                 <a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $edit_link; ?>">Edit
                                                 </a>

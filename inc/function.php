@@ -186,12 +186,42 @@ function updateProductStock($prod_id) {
 	return $ret;
 }
 
+function Array2String($arr = array())
+{
+	$str = "";
+
+	if(!empty($arr))
+	{
+		foreach($arr as $_label =>$_count) {
+			if(is_numeric($_count) && $_count!=0) {
+				$str .= $_label.', ';
+			}
+		}
+	}
+
+	return substr($str,0,-2);
+}
+
 function validateReference($table_name, $pk_fld, $pk_id) {
 	$c = 0;
 	if(!empty($table_name) && !empty($pk_fld) && !empty($pk_id)) {
-		$c = getCount($table_name, "COUNT(*)", $pk_fld.' = '.$pk_id);
+		$c = getCount($table_name, "COUNT(*)", " AND ".$pk_fld.' = '.$pk_id);
 	}
 
 	return $c;
 }
+
+function GetUrlName($title)
+{
+	$URL_CHAR_ARR = array("%","/",".","#","?","*","!","@","&",":","|",";","=","<",">","^","~","'","\"",",","-","(",")","'",'"','\\');
+	$rurl = trim($title);
+	$rurl = str_replace($URL_CHAR_ARR,'',$title);
+	$rurl = str_replace('   ',' ',$rurl);
+	$rurl = str_replace('  ',' ',$rurl);
+	$rurl = str_replace(' ','-',$rurl);
+	$rurl = trim(strtolower($rurl));
+
+	return $rurl;
+}
+
 ?>

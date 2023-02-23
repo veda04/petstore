@@ -48,14 +48,16 @@ $menu[] = array(
 			'title' => "Home",
 			'link' => "dashboard.php",
 			'icon' => "",
-			'has_dropdown' => "N"
+			'has_dropdown' => "N",
+			'URLS'=>array()
 		);
 // Orders
 $menu[] = array(
 			'title' => "Orders",
 			'link' => "orders.php",
 			'icon' => "",
-			'has_dropdown' => "N"
+			'has_dropdown' => "N",
+			'URLS'=>array("order-edit.php")
 		);
 // Product Menu
 $product_sub = array();
@@ -83,7 +85,8 @@ $menu[] = array(
 			'link' => "product.php",
 			'icon' => "",
 			'has_dropdown' => "Y",
-			'dropdown' => $product_sub
+			'dropdown' => $product_sub,
+			'URLS'=>array("category.php", "category-edit.php", "offer.php", "offer-edit.php", "items.php", "items-edit.php")
 		);
 // Vendor Sub Menu
 $vendor_sub = array();
@@ -105,21 +108,24 @@ $menu[] = array(
 			'link' => "vendors.php",
 			'icon' => "",
 			'has_dropdown' => "Y",
-			'dropdown' => $vendor_sub
+			'dropdown' => $vendor_sub,
+			'URLS'=>array("vendor.php", "vendor-edit.php")
 		);
 // Customers
 $menu[] = array(
 			'title' => "Customers",
 			'link' => "customer.php",
 			'icon' => "",
-			'has_dropdown' => "N"
+			'has_dropdown' => "N",
+			'URLS'=>array("customer.php", "customer-edit.php")
 		);
 // Users
 $menu[] = array(
 			'title' => "Users",
 			'link' => "users.php",
 			'icon' => "",
-			'has_dropdown' => "N"
+			'has_dropdown' => "N",
+			'URLS'=>array("users.php", "user-edit.php")
 		);
 $communications_sub[] = array(
 				'title' => "Order Email",
@@ -140,7 +146,7 @@ $setting_sub = array();
 $setting_sub[] = array(
 				'title' => "SEO",
 				'link' => "seo.php",
-				'icon' => "",
+				'icon' => ""
 			);
 
 $setting_sub[] = array(
@@ -154,7 +160,8 @@ $menu[] = array(
 			'link' => "settings.php",
 			'icon' => "",
 			'has_dropdown' => "Y",
-			'dropdown' => $setting_sub
+			'dropdown' => $setting_sub,
+			'URLS'=>array("seo.php")
 		);
 
 ?>
