@@ -19,7 +19,7 @@ $productQty = $prodObj->productQty;
 $productDesc = $prodObj->productDesc;
 $productImg = $prodObj->productImg;
 
-$productImgPath = !empty($productImg) ? PROD_IMG_PATH.$productImg : BLANK_IMAGE;
+$productImgPath = (!empty($productImg) && file_exists(PROD_IMG_UPLOAD.$productImg)) ? PROD_IMG_PATH.$productImg : BLANK_IMAGE;
 
 $cat_url = "prouduct.php?cid=".$categoryId;
 
@@ -72,7 +72,7 @@ $relatedProducts = getDataFromTable("product", "*", "and categoryId = $categoryI
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large"
+                            <img class="product__details__pic__item--large" width="20"
                                 src="<?php echo $productImgPath; ?>" alt="<?php echo $productName; ?>">
                         </div>
                         <!-- <div class="product__details__pic__slider owl-carousel">
@@ -175,7 +175,7 @@ $relatedProducts = getDataFromTable("product", "*", "and categoryId = $categoryI
             		$prod_url = "product-detail.php?id=".$prd_id;
             		$cat_name = isset($PROD_CATEGORY_ARR[$PROD_OBJ->categoryId]) ? $PROD_CATEGORY_ARR[$PROD_OBJ->categoryId] : "";
             		$cat_urlname = GetUrlName($cat_name);
-            		$prod_img = !empty($PROD_OBJ->productImg) ? PROD_IMG_PATH.$PROD_OBJ->productImg : BLANK_IMAGE;
+            		$prod_img = (!empty($PROD_OBJ->productImg) && file_exists(PROD_IMG_UPLOAD.$PROD_OBJ)) ? PROD_IMG_PATH.$PROD_OBJ->productImg : BLANK_IMAGE;
             		?>
             		<div class="col-lg-3 col-md-4 col-sm-6">
             		    <div class="product__item">

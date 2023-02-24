@@ -109,7 +109,7 @@ $prod_count = count($PRODUCTS);
                                 $prd_id = $PROD_OBJ->id;
                                 $prod_url = "product-detail.php?id=".$prd_id;
                                 $prod_price = (!empty($PROD_OBJ->productPrice)) ? Rs.$PROD_OBJ->productPrice : "";
-                                $prod_img = !empty($PROD_OBJ->productImg) ? PROD_IMG_PATH.$PROD_OBJ->productImg : BLANK_IMAGE;
+                                $prod_img = (!empty($PROD_OBJ->productImg) && file_exists(PROD_IMG_UPLOAD.$PROD_OBJ->productImg) ) ? PROD_IMG_PATH.$PROD_OBJ->productImg : BLANK_IMAGE;
                                 ?>
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product__item">

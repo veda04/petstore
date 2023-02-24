@@ -73,7 +73,7 @@ include "./inc/cu.common.php";
                     if(!empty($PROD_CATEGORY)) {
                         foreach($PROD_CATEGORY as $P_OBJ) {
                             $c_url = "product.php?cid=".$P_OBJ->id;
-                            $cat_img = !empty($P_OBJ->image) ? $P_OBJ->image : "img/categories/cat-1.jpg";
+                            $cat_img = (!empty($P_OBJ->image) && file_exists(CAT_IMG_UPLOAD.$P_OBJ->image) ) ? CAT_IMG_PATH.$P_OBJ->image : BLANK_IMAGE;
                             ?>
                             <div class="col-lg-3">
                                 <div class="categories__item set-bg" data-setbg="<?php echo $cat_img; ?>">
