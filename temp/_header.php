@@ -11,7 +11,7 @@ $PROD_CATEGORY_ARR =  array();
 // sub categories
 if(!empty($PROD_CATEGORY)) {
     foreach($PROD_CATEGORY as $P_OBJ) {
-        $c_url = "category.php?id=".$P_OBJ->id;
+        $c_url = "product.php?cid=".$P_OBJ->id;
         $M_ARR[3]['SUB'][] = array("title"=>$P_OBJ->title, "href"=>$c_url, "has_sub"=>"N");
         $PROD_CATEGORY_ARR[$P_OBJ->id] = $P_OBJ->title;
     }
