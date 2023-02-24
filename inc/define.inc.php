@@ -24,9 +24,9 @@ define("BLANK_IMAGE", ADMIN_ADDRESS."img/blank-img.png"); #blank image
 define("SITE_EMAIL", "hello@petstore.com");
 define("SHOP_ADR", "University of Huddersfield<br/>Queensgate,<br/>Huddersfield HD8 0WN");
 define("SHOP_PHONE", "+44 12345678890");
-define("FB_LINK", "www.facebook.com");
-define("TW_LINK", "www.twiter.com");
-define("LI_LINK", "www.linkedin.com");
+define("FB_LINK", "https://www.facebook.com");
+define("TW_LINK", "https://www.twiter.com");
+define("LI_LINK", "https://www.linkedin.com");
 define("HEADER_LOGO", SITE_ADDRESS."img/logo.png");
-define("Rs", "&#8377;");
+define("Rs", "&#8377; ");
 ?>

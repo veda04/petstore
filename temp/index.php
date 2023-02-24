@@ -6,11 +6,11 @@ include "../inc/cu.common.php";
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="description" content="Petstore Home">
+    <meta name="keywords" content="Petstore Home">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>Petstore | Home</title>
 
     <?php include "_header_links.php"; ?>
 </head>
@@ -31,7 +31,7 @@ include "../inc/cu.common.php";
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All departments</span>
+                            <span>All categories</span>
                         </div>
                         <ul>
                             <?php
@@ -39,7 +39,7 @@ include "../inc/cu.common.php";
                             if(!empty($PROD_CATEGORY)) {
                                 if($i <= $limit) {
                                     foreach($PROD_CATEGORY as $P_OBJ) {
-                                        $c_url = "category.php?id=".$P_OBJ->id;
+                                        $c_url = "product.php?cid=".$P_OBJ->id;
                                         echo '<li><a href="'.$c_url.'">'.$P_OBJ->title.'</a></li>';
                                         $i ++;
                                     }
@@ -72,7 +72,7 @@ include "../inc/cu.common.php";
                     <?php
                     if(!empty($PROD_CATEGORY)) {
                         foreach($PROD_CATEGORY as $P_OBJ) {
-                            $c_url = "category.php?id=".$P_OBJ->id;
+                            $c_url = "product.php?cid=".$P_OBJ->id;
                             $cat_img = !empty($P_OBJ->image) ? $P_OBJ->image : "img/categories/cat-1.jpg";
                             ?>
                             <div class="col-lg-3">
@@ -120,6 +120,7 @@ include "../inc/cu.common.php";
                 if(!empty($PRODUCTS)) {
                     foreach($PRODUCTS as $PROD_OBJ) {
                         $prd_id = $PROD_OBJ->id;
+                        $prod_url = "product-detail.php?id=".$prd_id;
                         $cat_name = isset($PROD_CATEGORY_ARR[$PROD_OBJ->categoryId]) ? $PROD_CATEGORY_ARR[$PROD_OBJ->categoryId] : "";
                         $cat_urlname = GetUrlName($cat_name);
                 ?>
@@ -133,7 +134,7 @@ include "../inc/cu.common.php";
                                     </ul>
                                 </div>
                                 <div class="featured__item__text">
-                                    <h6><a href="#"><?php echo $PROD_OBJ->productName; ?></a></h6>
+                                    <h6><a href="<?php echo $prod_url; ?>"><?php echo $PROD_OBJ->productName; ?></a></h6>
                                     <h5><?php echo ($PROD_OBJ->productPrice > 0) ? Rs."&nbsp;".$PROD_OBJ->productPrice : ""; ?></h5>
                                 </div>
                             </div>
