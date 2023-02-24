@@ -117,7 +117,7 @@ $cust_order = get_order_arr($txtid);
                                                         <td><?php echo $arr_blck->shippingAddress;?></td>
                                                         <td><?php echo $arr_blck->totalAmount;?></td>
                                                         <td>
-                                                            <a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $order_edit_link;?>">
+                                                            <a class="btn btn-primary notika-btn-primary waves-effect" href="<?php echo $order_edit_link;?>">
                                                                 View Order
                                                             </a>
                                                         </td>

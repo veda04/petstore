@@ -71,7 +71,7 @@ else if($mode == "U"){
                             <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="nk-int-st">
                                         <input type="text" name="seo_title" value="<?php echo $seo_title; ?>" class="form-control" placeholder="Title" required>
@@ -81,7 +81,7 @@ else if($mode == "U"){
                             <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="nk-int-st">
                                         <input type="text" name="seo_keyword" value="<?php echo $seo_keyword; ?>" class="form-control" placeholder="Keywords" required>
@@ -92,7 +92,7 @@ else if($mode == "U"){
                                 <div class="">
                                     <div class="form-group ic-cmp-int">
                                         <div class="form-ic-cmp">
-                                            <i class="notika-icon notika-edit"></i>
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </div>
                                         <div class="nk-int-st">
                                            <label class="lable-style">Description</label>

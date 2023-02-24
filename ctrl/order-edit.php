@@ -61,7 +61,7 @@ $prod_name =  get_dat_arr("id", "productName", "product");
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="normal-table-list table table-bordered">
+                            <div class="normal-table-list table table-bordered nk-light-green txt-white">
                                 <div class="basic-tb-hd">
                                     <h4>Customer Details</h4>
                                 </div>
@@ -126,6 +126,12 @@ $prod_name =  get_dat_arr("id", "productName", "product");
                             <form action="<?php echo $edit_page; ?>" method="post">
                                 <input type="hidden" name="m" value="C_STATUS">
                                  <div class="row">
+                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="basic-tb-hd">
+                                            <br>
+                                            <h4>Order Status</h4>
+                                        </div>
+                                     </div>
                                      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                          <div class="form-group">
                                              <div class="nk-int-st">
@@ -144,7 +150,7 @@ $prod_name =  get_dat_arr("id", "productName", "product");
                                      <div class="col-lg-4 col-md- co4l-sm-12 col-xs-12">
                                          <div class="form-group">
                                              <div class="nk-int-st">
-                                                 <textarea name="order_desciption" class="form-control" rows="2" placeholder="Type here...."></textarea>
+                                                 <textarea name="order_desciption" class="form-control ht-34" rows="2" placeholder="Comments...."></textarea>
                                              </div>
                                          </div>
                                      </div>
@@ -162,6 +168,7 @@ $prod_name =  get_dat_arr("id", "productName", "product");
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="basic-tb-hd">
+                                <br>
                                 <h4>Title</h4>
                             </div>
                             <div class="invoice-sp">

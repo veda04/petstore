@@ -124,7 +124,7 @@ else if($mode == "D"){
                             <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
                                  <div class="form-group ic-cmp-int">
                                      <div class="form-ic-cmp">
-                                         <i class="notika-icon notika-support"></i>
+                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                      </div>
                                      <div class="nk-int-st">
                                          <input type="text" name="name" id="name" value="<?php echo $name; ?>"  class="form-control"  placeholder="Name" required>
@@ -134,7 +134,7 @@ else if($mode == "D"){
                             <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
                                  <div class="form-group ic-cmp-int">
                                      <div class="form-ic-cmp">
-                                         <i class="notika-icon notika-support"></i>
+                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                      </div>
                                      <div class="nk-int-st">
                                          <input type="text" name="username" value="<?php echo $username; ?>" class="form-control" placeholder="Username" required>
@@ -144,7 +144,7 @@ else if($mode == "D"){
                             <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
                                  <div class="form-group ic-cmp-int">
                                      <div class="form-ic-cmp">
-                                         <i class="notika-icon notika-edit"></i>
+                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                      </div>
                                      <div class="nk-int-st">
                                          <input type="text" name="password" value="" class="form-control" placeholder="Password" required>
@@ -154,7 +154,7 @@ else if($mode == "D"){
                             <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
                                  <div class="form-group ic-cmp-int">
                                      <div class="form-ic-cmp form-ic-cmp-sel">
-                                         <i class="notika-icon notika-star"></i>
+                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                      </div>
                                      <div class="nk-int-st">
                                         <select name ="role" class="form-control select-form-control">

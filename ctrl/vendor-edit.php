@@ -124,7 +124,7 @@ else if($mode == "D"){
                             <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="nk-int-st">
                                         <input type="text" name="vendor_name" value="<?php echo $vendor_name; ?>" class="form-control" placeholder="Name" required>
@@ -134,7 +134,7 @@ else if($mode == "D"){
                             <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="nk-int-st">
                                         <input type="text" name="vendor_address" value="<?php echo $vendor_address; ?>" class="form-control" placeholder="Address" required>
@@ -144,7 +144,7 @@ else if($mode == "D"){
                             <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="nk-int-st">
                                         <input type="text" name="vendor_phone" value="<?php echo $vendor_phone; ?>" class="form-control" placeholder="Phone" required>
@@ -154,7 +154,7 @@ else if($mode == "D"){
                             <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="nk-int-st">
                                         <input type="text" name="vendor_email" value="<?php echo $vendor_email; ?>" class="form-control" placeholder="Email" required>

@@ -74,10 +74,10 @@ $fname = basename($_SERVER['PHP_SELF']);
                                 echo '<li class="'.$m_active.'">';
                                 
                                 if($has_dropdown == "Y") {
-                                    echo '<a data-toggle="tab" href="#'.$tab_name.'"><i class="notika-icon notika-house"></i>'.$title.'</a>';
+                                    echo '<a data-toggle="tab" href="#'.$tab_name.'">'.$icon.$title.'</a>';
                                 }
                                 else {
-                                    echo '<a href="'.$link.'"><i class="notika-icon notika-house"></i>'.$title.'</a>';
+                                    echo '<a href="'.$link.'">'.$icon.$title.'</a>';
                                 }
 
                                 echo '</li>';
