@@ -49,7 +49,30 @@ include "./inc/cu.common.php";
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                            <?php
-                                
+                            ?>
+                                <div class="checkout-cust">
+                                    <table class="cust-table">
+                                        <tr>
+                                            <td><b>Customer Name: </b>Veda</td>
+                                            <td><b>Email: </b>Veda</td>
+                                        </tr>
+                                    </table>
+                                    <div class="">
+                                        <br>
+                                        <h5><b>Choose Address</b></h5>
+                                            <div class="add-radio">
+                                                <input type="radio" id="address1" name="address1" value="home">
+                                                <label for="address1"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua.</label>
+                                            </div>
+                                            <div class="add-radio">
+                                                <input type="radio" id="address2" name="address2" value="office">
+                                                <label for="address2"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua.</label>
+                                            </div>
+                                    </div>
+                                </div>
+                            <?php
                            ?>
                         </div>
                         <div class="col-lg-4 col-md-6">
