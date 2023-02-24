@@ -128,6 +128,38 @@ ol {
 .err_inp {
 	border-color: red;
 }
+/*24/02/23*/
+.checkout-cust .cust-table{
+	width: 100%;
+	margin: 0 0 10px;
+}
+.checkout-cust table tr td{
+	border: 0px solid #cacaca;
+	padding: 0px;
+	
+}
+
+.checkout-cust table tr td{
+	width: 50%;
+}
+
+.add-radio {
+	margin: 10px 0;
+	display: flex;
+	padding: 4px 0 10px;
+	border-bottom: 1px solid #cacaca;
+}
+.checkout-cust .site-btn{
+	margin: 12px 0 0 0;
+}
+
+.add-radio input{
+	width: 35px;
+	height: 16px;
+	position: relative;
+	top: 5px;
+	left: -3px;
+}
 
 .section-title {
 	margin-bottom: 50px;
@@ -3649,3 +3681,5 @@ ol {
   from {opacity: .4}
   to {opacity: 1}
 }
+
+
