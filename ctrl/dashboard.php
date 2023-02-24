@@ -5,7 +5,7 @@ $valueSale = GetCount("orders", "SUM(totalAmount)");
 $numOrders = GetCount("orders");
 $numCustomers = GetCount("customer");
 $numProducts = GetCount("product");
-$prod_namearr = GetXArrFromYID("SELECT id, productName from product");
+$prod_namearr = GetXArrFromYID("SELECT id, productName from product", 3);
 
 $sale_arr = GetXArrFromYID("SELECT SUM(totalAmount) from orders GROUP BY orderDate");
 $sale_json = json_encode($sale_arr);
@@ -104,13 +104,13 @@ $sale_json = json_encode($sale_arr);
                                         <?php
                                             $ord_items = getDataFromTable("order_item", "fkProductId, unitPrice", "order by id desc limit 6");
                                             if(!empty($ord_items)) {
-                                                foreach($ord_items as $prod_id=>$price) {
-                                                    $prod_name = isset($prod_namearr[$prod_id]) ? $prod_namearr[$prod_id] : "-";
+                                                foreach($ord_items as $ord_obj) {
+                                                    $prod_name = isset($prod_namearr[$ord_obj->fkProductId]) ? $prod_namearr[$ord_obj->fkProductId] : "-";
                                                     ?>
                                                     <tr>
-                                                        <td class="f-500 c-cyan"><?php echo $prod_id; ?></td>
+                                                        <td class="f-500 c-cyan"><?php echo $ord_obj->fkProductId; ?></td>
                                                         <td><?php echo $prod_name; ?></td>
-                                                        <td class="f-500 c-cyan"><?php echo $price; ?></td>
+                                                        <td class="f-500 c-cyan"><?php echo $ord_obj->unitPrice; ?></td>
                                                     </tr>
                                                     <?php
                                                 }

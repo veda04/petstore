@@ -270,4 +270,16 @@ function GetUrlName($title)
 	return $rurl;
 }
 
+function getProductCategory($cond="") {
+	$arr = array();
+	$q = "SELECT `id`, `title`, `image`, `description`, `status` FROM `category` WHERE 1 $cond";
+	$r = sql_query($q);
+
+	if(sql_num_rows($r))
+		$arr = sql_get_data($r);
+
+	return $arr;
+
+}
+
 ?>

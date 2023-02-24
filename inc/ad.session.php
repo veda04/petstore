@@ -105,9 +105,9 @@ $vendor_sub[] = array(
 // Vendors
 $menu[] = array(
 			'title' => "Vendors",
-			'link' => "vendors.php",
+			'link' => "vendor.php",
 			'icon' => "",
-			'has_dropdown' => "Y",
+			'has_dropdown' => "N",
 			'dropdown' => $vendor_sub,
 			'URLS'=>array("vendor.php", "vendor-edit.php")
 		);
@@ -133,13 +133,13 @@ $communications_sub[] = array(
 				'icon' => "",
 			);
 // Vendors
-$menu[] = array(
+/*$menu[] = array(
 			'title' => "Communications",
 			'link' => "communications.php",
 			'icon' => "",
 			'has_dropdown' => "Y",
 			'dropdown' => $communications_sub
-		);
+		);*/
 // Settings Sub Menu
 $setting_sub = array();
 
@@ -156,11 +156,11 @@ $setting_sub[] = array(
 			);
 // Settings
 $menu[] = array(
-			'title' => "Settings",
-			'link' => "settings.php",
+			'title' => "SEO",
+			'link' => "seo.php",
 			'icon' => "",
-			'has_dropdown' => "Y",
-			'dropdown' => $setting_sub,
+			'has_dropdown' => "N",
+			'dropdown' => array(),
 			'URLS'=>array("seo.php")
 		);
 

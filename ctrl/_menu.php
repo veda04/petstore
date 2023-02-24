@@ -1,3 +1,6 @@
+<?php
+$fname = basename($_SERVER['PHP_SELF']);
+?>
 <!-- Mobile Menu start -->
     <div class="mobile-menu-area">
         <div class="container">
@@ -57,7 +60,7 @@
                     <?php
                     if(!empty($menu)){
                         echo '<ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">';
-                            foreach($menu as $_marr){
+                            foreach($menu as $_marr) {
                                 $title = $_marr['title'];
                                 $link = $_marr['link'];
                                 $icon = $_marr['icon'];
@@ -67,7 +70,6 @@
                                 $tab_name = "tab-".GetUrlName($title);
 
                                 // active
-                                $fname = basename($_SERVER['PHP_SELF']);
                                 $m_active = ($fname == $link || in_array($fname, $urls) ) ? "active" : "";
                                 echo '<li class="'.$m_active.'">';
                                 
@@ -85,13 +87,13 @@
                     
                         foreach($menu as $_marr){
                             $title = $_marr['title'];
+                            $link = $_marr['link'];
                             $has_dropdown = $_marr['has_dropdown'];
                             $dropdown = isset($_marr['dropdown']) ? $_marr['dropdown'] : array();
                             $tab_name = "tab-".GetUrlName($title);
 
                             if($has_dropdown == 'Y' && !empty($dropdown)) {
-
-                                $m_subactive = (basename($_SERVER['PHP_SELF']) == $link) ? "active" : "";
+                                $m_subactive = ($fname == $link) ? "active" : "";
                                 echo '<div id="'.$tab_name.'" class="tab-pane in '.$m_subactive.' notika-tab-menu-bg animated flipInX">';
                                 echo '<ul class="notika-main-menu-dropdown">';
 
