@@ -1,6 +1,5 @@
 <?php
 include "./inc/cu.common.php";
-
 $cat_id = (isset($_GET['cid']) && is_numeric($_GET['cid']) ) ? $_GET['cid'] : "";
 $prod_cond = "";
 $cat_name = GetXFromYID("SELECT title from category WHERE id = '$cat_id' ");

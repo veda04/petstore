@@ -58,72 +58,45 @@ include "./inc/cu.common.php";
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $55.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $110.00
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-2.jpg" alt="">
-                                        <h5>Fresh Garden Vegetable</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $39.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $39.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-3.jpg" alt="">
-                                        <h5>Organic Bananas</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $69.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $69.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
+                                <?php
+                                $q = "SELECT p.id, p.productName, p.productPrice, p.productImg, c.fkCustomerId, c.qty FROM customer_cart c left join product p on c.fkProductId = p.id";
+                                $r = sql_query($q);
+                                $cart_items = sql_get_data($r);
+                                $TOT_AMT = 0;
+                                if(!empty($cart_items) && count($cart_items)) {
+                                    foreach($cart_items as $obj_w) {
+                                        $p_img = (!empty($obj_w->productImg) && file_exists(PROD_IMG_UPLOAD.$obj_w->productImg) ) ? PROD_IMG_PATH.$obj_w->productImg : "img/cart/cart-1.jpg";
+                                        $p_url = "product-detail.php?id=".$obj_w->id;
+
+                                        $tot_amt = $obj_w->qty * $obj_w->productPrice;
+                                        $TOT_AMT += $tot_amt;
+                                        ?>
+                                        <tr>
+                                            <td class="shoping__cart__item">
+                                                <img src="<?php echo $p_img; ?>" alt="<?php echo $obj_w->productName; ?>">
+                                                <h5><?php echo $obj_w->productName; ?></h5>
+                                            </td>
+                                            <td class="shoping__cart__price">
+                                                <?php echo Rs.$obj_w->productPrice; ?>
+                                            </td>
+                                            <td class="shoping__cart__quantity">
+                                                <div class="quantity">
+                                                    <div class="pro-qty">
+                                                        <input type="text" value="<?php echo $obj_w->qty; ?>" />
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="shoping__cart__total">
+                                                <?php echo $tot_amt; ?>
+                                            </td>
+                                            <td class="shoping__cart__item__close">
+                                                <a href="javascript:;" onclick="removeFromCart(this,'<?php echo $obj_w->id; ?>', '<?php echo $obj_w->fkCustomerId; ?>');"  class="icon_close"></span>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -139,20 +112,52 @@ include "./inc/cu.common.php";
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <!-- <li>Subtotal <span>$454.98</span></li> -->
-                            <li>Total <span>$454.98</span></li>
+                            <li>Total <span><?php echo Rs.$TOT_AMT; ?></span></li>
                         </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="javascript:;" onclick="validateCart('<?php echo $sess_cust_id; ?>');" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
-            <?php } ?>
-            <p>You are not logged in. Please <a href="login.php">login</a> to view your shopping bag.</p>
+            <?php }
+            else {
+                echo '<p>You are not logged in. Please <a href="login.php">login</a> to view your shopping bag.</p>';
+            } 
+            ?>
         </div>
     </section>
     <!-- Shoping Cart Section End -->
 
 
     <?php include "_footer.php"; ?>
+    <script type="text/javascript">
+        function validateCart(cust_id) {
+            if(cust_id != "") {
+                $.ajax({
+                    url: ajax_url,
+                    type: "post",
+                    data: {mode:"CHECKOUT_CART", cid:cust_id},
+                    async: false,
+                    success: function(result) {
+                        res = JSON.parse(result);
+                        ret = (res.code == '1') ? true : false;
+                        if(res.code == '0') {
+                            showMessage(res.message);
+                        }
+                    },
+                    error: function(errores) {
+                        console.log(errores.responseText);
+                    }
+                });
+
+                if(ret) {
+                    window.location.href = "checkout.php";
+                }
+            }
+        }
+
+        function removeFromCart() {
+
+        }
+    </script>
 </body>
 </html>

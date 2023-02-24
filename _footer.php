@@ -78,10 +78,19 @@
 <!-- Footer Section End -->
 
 <?php include "_footer_links.php"; ?>
+<script type="text/javascript" src="js/gritter/js/jquery.gritter.js"></script>
 <script type="text/javascript">
     var ajax_url  = "<?php echo SITE_ADDRESS.'inc/ajax.inc.php'; ?>";
     function showMessage(msg="",type="error") {
-
+        if(msg != "") {
+            $.gritter.add({
+                title: 'Information!',
+                text: msg,
+                sticky: false,
+                class_name: "",
+                time: 1200
+            });
+        }
     }
 
     function lbl_info(msg, type="") {
@@ -116,8 +125,26 @@
 
     }
 
-    function validate_username() {
+    function validate_username(uname) {
+        var ret = false;
+        $.ajax({
+            url: ajax_url,
+            type: "post",
+            data: {mode:"VALIDATE_CUSTOMER", username:uname},
+            async: false,
+            success: function(result) {
+                res = JSON.parse(result);
+                ret = (res.code == '1') ? true : false;
+                if(res.code == '0') {
+                    showMessage(res.message);
+                }
+            },
+            error: function(errores) {
+                console.log(errores.responseText);
+            }
+        });
 
+        return ret;
     }
 
     function validiate_password(password_one, password_two) {

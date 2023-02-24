@@ -23,7 +23,9 @@ $productImgPath = (!empty($productImg) && file_exists(PROD_IMG_UPLOAD.$productIm
 
 $cat_url = "prouduct.php?cid=".$categoryId;
 
-$relatedProducts = getDataFromTable("product", "*", "and categoryId = $categoryId and id <> $prod_id");
+$relatedProducts = array();
+if(!empty($categoryId) && !empty($prod_id))
+    $relatedProducts = getDataFromTable("product", "*", "and categoryId = $categoryId and id <> $prod_id");
 ?>
 <!DOCTYPE html>
 <html>

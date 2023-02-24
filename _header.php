@@ -57,14 +57,18 @@ $d_str .= "<ul>";
     </div>
     <div class="humberger__menu__cart">
         <ul>
-            <li><a href="wishlist.php"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="cart.php"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            <li><a href="wishlist.php"><i class="fa fa-heart"></i> <span><?php echo $sess_cust_wishlist; ?></span></a></li>
+            <li><a href="cart.php"><i class="fa fa-shopping-bag"></i> <span><?php echo $sess_cust_cart; ?></span></a></li>
         </ul>
-        <div class="header__cart__price">item: <span class="userCartTotal"><?php echo Rs." 0.00"; ?></span></div>
+        <div class="header__cart__price">item: <span class="userCartTotal"><?php echo Rs.$sess_cust_cart_total; ?></span></div>
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__auth">
+            <?php if($cust_logged) { ?>
+            <a href="logout.php"><i class="fa fa-user"></i> <?php echo $sess_cust_name; ?></a>
+            <?php } else { ?>
             <a href="login.php"><i class="fa fa-user"></i> Login</a>
+            <?php } ?>
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
@@ -79,7 +83,7 @@ $d_str .= "<ul>";
     <div class="humberger__menu__contact">
         <ul>
             <li><i class="fa fa-envelope"></i> <?php echo SITE_EMAIL; ?></li>
-            <li>All your pet requirements at one stop</li>
+            <li>All your pet requirements at one stop | With the ease of COD!</li>
         </ul>
     </div>
 </div>
@@ -94,7 +98,7 @@ $d_str .= "<ul>";
                     <div class="header__top__left">
                         <ul>
                             <li><i class="fa fa-envelope"></i> <?php echo SITE_EMAIL; ?></li>
-                            <li>All your pet requirements at one stop</li>
+                            <li>All your pet requirements at one stop | With the ease of COD!</li>
                         </ul>
                     </div>
                 </div>
@@ -106,7 +110,11 @@ $d_str .= "<ul>";
                             <a href="<?php echo LI_LINK; ?>"><i class="fa fa-linkedin"></i></a>
                         </div>
                         <div class="header__top__right__auth">
+                            <?php if($cust_logged) { ?>
+                            <a href="logout.php"><i class="fa fa-user"></i> <?php echo "Hello, ".$sess_cust_name; ?></a>
+                            <?php } else { ?>
                             <a href="login.php"><i class="fa fa-user"></i> Login</a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -128,10 +136,10 @@ $d_str .= "<ul>";
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="wishlist.php"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="cart.php"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="wishlist.php"><i class="fa fa-heart"></i> <span><?php echo $sess_cust_wishlist; ?></span></a></li>
+                        <li><a href="cart.php"><i class="fa fa-shopping-bag"></i> <span><?php echo $sess_cust_cart; ?></span></a></li>
                     </ul>
-                    <div class="header__cart__price">item: <span class="userCartTotal"><?php echo Rs." 0.00"; ?></span></div>
+                    <div class="header__cart__price">item: <span class="userCartTotal"><?php echo Rs.$sess_cust_cart_total; ?></span></div>
                 </div>
             </div>
         </div>

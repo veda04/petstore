@@ -4,7 +4,10 @@ include "./inc/cu.common.php";
 $msg = "";
 if(isset($_GET['err']) && !empty($_GET['err'])) {
     $er = $_GET['err'];
-    if($er == '2') {
+    if($er == '1') {
+        $msg = "Registered successfully! Login to continue.";
+    }
+    else if($er == '2') {
         $msg = "No password entered.";
     }
     else if($er == "3") {
@@ -24,11 +27,11 @@ if(isset($_GET['err']) && !empty($_GET['err'])) {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Petstore Products">
-    <meta name="keywords" content="Petstore Products">
+    <meta name="description" content="Petstore Login">
+    <meta name="keywords" content="Petstore Login">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Petstore | Products</title>
+    <title>Petstore | Login</title>
 
     <?php include "_header_links.php"; ?>
 </head>

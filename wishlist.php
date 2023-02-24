@@ -49,20 +49,29 @@ include "./inc/cu.common.php";
                     <div class="shoping__cart__table">
                         <table>
                             <tbody>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
-                                    </td>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
-                                    </td>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
-                                    </td>
-                                </tr>
+                                <?php
+                                $q = "SELECT p.id, p.productName, p.productPrice, p.productImg FROM `customer_wishlist` cw left join product p on cw.fkProductId = p.id";
+                                $r = sql_query($q);
+                                $wishlist_items = sql_get_data($r);
+                                $c = 1;
+                                if(!empty($wishlist_items) && count($wishlist_items)) {
+                                    foreach($wishlist_items as $obj_w) {
+                                        $p_img = (!empty($obj_w->productImg) && file_exists(PROD_IMG_UPLOAD.$obj_w->productImg) ) ? PROD_IMG_PATH.$obj_w->productImg : "img/cart/cart-1.jpg";
+                                        $p_url = "product-detail.php?id=".$obj_w->id;
+                                        echo ($c % 4 == 0) ? "<tr>": "";
+                                        ?>
+                                        <td class="shoping__cart__item">
+                                            <a href="<?php echo $p_url; ?>">
+                                                <img src="<?php echo $p_img; ?>" alt="">
+                                                <h5><?php echo $obj_w->productName; ?></h5>
+                                            </a>
+                                        </td>
+                                        <?php
+                                        echo ($c % 4 == 0) ? "</tr>": "";
+                                        $c ++;
+                                    }
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -76,8 +85,11 @@ include "./inc/cu.common.php";
                     </div>
                 </div>
             </div>
-            <?php } ?>
-            <p>You are not logged in. Please <a href="login.php">login</a> to view your wishlist.</p>
+            <?php } 
+            else {
+                echo '<p>You are not logged in. Please <a href="login.php">login</a> to view your wishlist.</p>';
+            }
+            ?>
         </div>
     </section>
     <!-- Shoping Cart Section End -->

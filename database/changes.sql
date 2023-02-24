@@ -16,3 +16,7 @@ ALTER TABLE `customer_address` CHANGE `officeAddress` `title` VARCHAR(255) CHARA
 
 -- @Veda 2023-02-23: changed homeAddress to address; 
 ALTER TABLE `customer_address` CHANGE `homeAddress` `address` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+-- @Veda 2023-02-23: auto increment id
+ALTER TABLE `customer_address` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `customer_cart` CHANGE `cartItems` `qty` INT NULL;

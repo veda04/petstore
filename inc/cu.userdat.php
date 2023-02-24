@@ -11,6 +11,9 @@ class userdat
 	var $cust_name;		// customer's name	
 	var $cust_lastlogin;// customer's lastlogin
 	var $cust_ip;		// customer's login ip
+	var $cust_wishlist;	
+	var $cust_cart;	
+	var $cust_cart_total;	
 	///////////////////////////////////////////////
 	var $srch_ctrl_arr = array();
 

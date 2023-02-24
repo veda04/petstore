@@ -22,12 +22,15 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 					session_destroy();
 					session_start();
 
-					$_SESSION[AD_SESSION_ID] = new userdat;
-					$_SESSION[AD_SESSION_ID]->log_stat = "A";
-					$_SESSION[AD_SESSION_ID]->cust_id = $u_id;
-					$_SESSION[AD_SESSION_ID]->cust_name = $u_name;
-					$_SESSION[AD_SESSION_ID]->sess_id = session_id();
-					$_SESSION[AD_SESSION_ID]->log_time = NOW;
+					$_SESSION[CU_SESSION_ID] = new userdat;
+					$_SESSION[CU_SESSION_ID]->log_stat = "A";
+					$_SESSION[CU_SESSION_ID]->cust_id = $u_id;
+					$_SESSION[CU_SESSION_ID]->cust_name = $u_name;
+					$_SESSION[CU_SESSION_ID]->sess_id = session_id();
+					$_SESSION[CU_SESSION_ID]->log_time = NOW;
+					$_SESSION[CU_SESSION_ID]->cust_wishlist = GetCount("customer_wishlist", "*", "and fkCustomerId = ".$u_id);
+					$_SESSION[CU_SESSION_ID]->cust_cart = GetCount("customer_cart", "*", "and fkCustomerId = ".$u_id);
+					$_SESSION[CU_SESSION_ID]->cust_cart_total = GetXFromYID("SELECT SUM(p.productPrice) FROM `customer_cart` c left join product p on c.fkProductId=p.id");
 
 					header("location:product.php");
 					exit;
