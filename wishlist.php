@@ -50,7 +50,7 @@ include "./inc/cu.common.php";
                         <table>
                             <tbody>
                                 <?php
-                                $q = "SELECT p.id, p.productName, p.productPrice, p.productImg FROM `customer_wishlist` cw left join product p on cw.fkProductId = p.id";
+                                $q = "SELECT p.id, p.productName, p.productPrice, p.productImg FROM `customer_wishlist` cw left join product p on cw.fkProductId = p.id WHERE cw.fkCustomerId = $sess_cust_id";
                                 $r = sql_query($q);
                                 $wishlist_items = sql_get_data($r);
                                 $c = 1;

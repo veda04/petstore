@@ -2,9 +2,9 @@
 $fileName =  basename($_SERVER["SCRIPT_NAME"]);
 $M_ARR = array();
 
-$M_ARR[1] = array("title"=>"Home", "href"=>"index.php", "has_sub"=>"N");
-$M_ARR[2] = array("title"=>"Product", "href"=>"product.php", "has_sub"=>"N");
-$M_ARR[3] = array("title"=>"Category", "href"=>"javascript:;", "has_sub"=>"Y");
+$M_ARR[1] = array("title"=>"Home", "href"=>"index.php", "has_sub"=>"N", "urls"=>array());
+$M_ARR[2] = array("title"=>"Product", "href"=>"product.php", "has_sub"=>"N", "urls"=>array("product-detail.php"));
+$M_ARR[3] = array("title"=>"Category", "href"=>"javascript:;", "has_sub"=>"Y", "urls"=>array());
 
 $PROD_CATEGORY = getProductCategory();
 $PROD_CATEGORY_ARR =  array();
@@ -17,14 +17,20 @@ if(!empty($PROD_CATEGORY)) {
     }
 }
 
-$M_ARR[4] = array("title"=>"Contact", "href"=>"contact.php", "has_sub"=>"N");
+$M_ARR[4] = array("title"=>"Contact", "href"=>"contact.php", "has_sub"=>"N", "urls"=>array());
 
 $d_str = "<ul>";
 if(!empty($M_ARR)) {
     $d_str .= "<ul>";
     
     foreach($M_ARR as $_KEY => $MENU) {
-        $d_selected = ( $MENU['href'] == $fileName ) ? "active" : "";
+        $d_selected = ( $MENU['href'] == $fileName || in_array($fileName, $MENU['urls']) ) ? "active" : "";
+
+        // in case of category
+        $c_fname = basename($_SERVER["REQUEST_URI"]);
+        if( strpos($c_fname, "?cid=") )
+            $fileName = "javascript:;";
+
         $d_str .= '<li class="'.$d_selected.'"><a href="'.$MENU['href'].'">'.$MENU['title'].'</a>';
 
         if($MENU['has_sub'] == "Y") {

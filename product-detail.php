@@ -177,7 +177,7 @@ if(!empty($categoryId) && !empty($prod_id))
             		$prod_url = "product-detail.php?id=".$prd_id;
             		$cat_name = isset($PROD_CATEGORY_ARR[$PROD_OBJ->categoryId]) ? $PROD_CATEGORY_ARR[$PROD_OBJ->categoryId] : "";
             		$cat_urlname = GetUrlName($cat_name);
-            		$prod_img = (!empty($PROD_OBJ->productImg) && file_exists(PROD_IMG_UPLOAD.$PROD_OBJ)) ? PROD_IMG_PATH.$PROD_OBJ->productImg : BLANK_IMAGE;
+            		$prod_img = (!empty($PROD_OBJ->productImg) && file_exists(PROD_IMG_UPLOAD.$PROD_OBJ->productImg)) ? PROD_IMG_PATH.$PROD_OBJ->productImg : BLANK_IMAGE;
             		?>
             		<div class="col-lg-3 col-md-4 col-sm-6">
             		    <div class="product__item">
