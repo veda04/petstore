@@ -1,16 +1,16 @@
 <?php 
-require_once('../inc/cu.common.php');
+require_once('./inc/cu.common.php');
 
 if($_SERVER['REQUEST_METHOD']=="POST"){
 
-	if(isset($_POST["txtusername"]) && isset($_POST["txtpassword"])){
-		$username = $_POST['txtusername'];
-		$password = $_POST['txtpassword'];
+	if(isset($_POST["user_username"]) && isset($_POST["user_password"])){
+		$username = $_POST['user_username'];
+		$password = $_POST['user_password'];
 
 		if($password=='')
-			ForceOutCu(2);
+			ForceOutCu(2, "login.php");
 		elseif($username=='')
-			ForceOutCu(3);
+			ForceOutCu(3, "login.php");
 		else{
 			$q = "SELECT id, custName, username, password FROM customer WHERE username='$username' ";
 			$r = sql_query($q);
@@ -34,12 +34,12 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 				}
 				else{
 					// incorrect password
-					ForceOutCu(4);
+					ForceOutCu(4, "login.php");
 				}
 				
 			}
 			else{
-				ForceOutCu(5);
+				ForceOutCu(5, "login.php");
 			}
 		}
 	}

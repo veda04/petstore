@@ -118,6 +118,17 @@ ol {
   Helper CSS
 -----------------------*/
 
+
+.err_info {
+	color: red !important;
+}
+.success_info {
+	color: green;	
+}
+.err_inp {
+	border-color: red;
+}
+
 .section-title {
 	margin-bottom: 50px;
 	text-align: center;

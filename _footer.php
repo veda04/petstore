@@ -84,6 +84,13 @@
 
     }
 
+    function lbl_info(msg, type="") {
+        if(msg != "") {
+            erHtml = "<span class='err_info'>"+msg+"</span>";
+            $('#LBL_INFO').html(erHtml);
+        }
+    }
+
     function registerNewsletter() {
         return false;
     }
