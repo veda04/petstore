@@ -1,4 +1,5 @@
     <!-- End Footer area-->
+    <script src="https://kit.fontawesome.com/0927ed441f.js" crossorigin="anonymous"></script>
     <!-- jquery
 		============================================ -->
     <script src="js/vendor/jquery-1.12.4.min.js"></script>

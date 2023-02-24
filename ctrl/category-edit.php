@@ -154,7 +154,7 @@ if($mode == 'C' || $mode == 'U') {
                             <div class="col-lg-12 col-md-4 col-sm-4 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="nk-int-st">
                                         <input type="text" name="cat_title" value="<?php echo $cat_title; ?>" class="form-control" placeholder="Category Title" required>
@@ -165,7 +165,7 @@ if($mode == 'C' || $mode == 'U') {
                                 <div class="">
                                     <div class="form-group ic-cmp-int">
                                         <div class="form-ic-cmp">
-                                            <i class="notika-icon notika-edit"></i>
+                                            <i class="fa fa-file-text" aria-hidden="true"></i>
                                         </div>
                                         <div class="nk-int-st">
                                            <label class="lable-style">Category Description</label>
@@ -183,7 +183,7 @@ if($mode == 'C' || $mode == 'U') {
                                 <div class="form-group ">
                                         <div class="form-group ic-cmp-int">
                                             <div class="form-ic-cmp">
-                                                <i class="notika-icon notika-edit"></i>
+                                                <i class="fa fa-file-image-o" aria-hidden="true"></i>
                                             </div>
                                             <div class="nk-int-st">
                                                <label class="lable-style">Upload Image</label>
@@ -204,7 +204,7 @@ if($mode == 'C' || $mode == 'U') {
                                 <div class="form-group">
                                     <div class="radio-area">
                                         <div class="">
-                                            Status: 
+                                            <b>Status:</b>
                                         </div>
                                         <div class="fm-checkbox">
                                             <label>

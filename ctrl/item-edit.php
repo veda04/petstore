@@ -194,7 +194,7 @@ else if($mode == 'DELETE_STOCK'){
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="nk-int-st">
                                         <input type="text" name="prod_name" value="<?php echo $prod_name; ?>" class="form-control" placeholder="Product Title" required>
@@ -204,7 +204,7 @@ else if($mode == 'DELETE_STOCK'){
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="nk-int-st">
                                         <input type="text" name="prod_price" value="<?php echo $prod_price; ?>" class="form-control" placeholder="Product Price" required>
@@ -225,7 +225,7 @@ else if($mode == 'DELETE_STOCK'){
                                 <div class="">
                                     <div class="form-group ic-cmp-int">
                                         <div class="form-ic-cmp">
-                                            <i class="notika-icon notika-edit"></i>
+                                            <i class="fa fa-file-text" aria-hidden="true"></i>
                                         </div>
                                         <div class="nk-int-st">
                                            <label class="lable-style">Product Description</label>
@@ -243,7 +243,7 @@ else if($mode == 'DELETE_STOCK'){
                                 <div class="form-group ">
                                         <div class="form-group ic-cmp-int">
                                             <div class="form-ic-cmp">
-                                                <i class="notika-icon notika-edit"></i>
+                                                <i class="fa fa-file-image-o" aria-hidden="true"></i>
                                             </div>
                                             <div class="nk-int-st">
                                                <label class="lable-style">Upload Image</label>
@@ -318,7 +318,7 @@ else if($mode == 'DELETE_STOCK'){
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="nk-int-st">
                                         <input type="date" name="date_of_pruch" value="<?php echo TODAY; ?>" class="form-control">
@@ -328,7 +328,7 @@ else if($mode == 'DELETE_STOCK'){
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                        <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
                                     </div>
                                     <div class="nk-int-st">
                                         <select name="fk_vendor_id"  class="form-control select-form-control">
@@ -354,7 +354,7 @@ else if($mode == 'DELETE_STOCK'){
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group ic-cmp-int">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                        <i class="fa fa-circle" aria-hidden="true"></i>
                                     </div>
                                     <div class="nk-int-st">
                                         <input type="number" min="1" name="new_qty" value="" class="form-control" placeholder=" Quantity" required>

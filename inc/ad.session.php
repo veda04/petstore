@@ -47,7 +47,7 @@ $menu = array();
 $menu[] = array(
 			'title' => "Home",
 			'link' => "dashboard.php",
-			'icon' => "",
+			'icon' => '<i class="fa fa-home" aria-hidden="true"></i>',
 			'has_dropdown' => "N",
 			'URLS'=>array()
 		);
@@ -55,7 +55,7 @@ $menu[] = array(
 $menu[] = array(
 			'title' => "Orders",
 			'link' => "orders.php",
-			'icon' => "",
+			'icon' => '<i class="fa fa-first-order" aria-hidden="true"></i>',
 			'has_dropdown' => "N",
 			'URLS'=>array("order-edit.php")
 		);
@@ -83,7 +83,7 @@ $product_sub[] = array(
 $menu[] = array(
 			'title' => "Product",
 			'link' => "product.php",
-			'icon' => "",
+			'icon' => '<i class="fa fa-product-hunt" aria-hidden="true"></i>',
 			'has_dropdown' => "Y",
 			'dropdown' => $product_sub,
 			'URLS'=>array("category.php", "category-edit.php", "offer.php", "offer-edit.php", "items.php", "items-edit.php")
@@ -106,7 +106,7 @@ $vendor_sub[] = array(
 $menu[] = array(
 			'title' => "Vendors",
 			'link' => "vendor.php",
-			'icon' => "",
+			'icon' => '<i class="fa fa-truck" aria-hidden="true"></i>',
 			'has_dropdown' => "N",
 			'dropdown' => $vendor_sub,
 			'URLS'=>array("vendor.php", "vendor-edit.php")
@@ -115,7 +115,7 @@ $menu[] = array(
 $menu[] = array(
 			'title' => "Customers",
 			'link' => "customer.php",
-			'icon' => "",
+			'icon' => '<i class="fa fa-users" aria-hidden="true"></i>',
 			'has_dropdown' => "N",
 			'URLS'=>array("customer.php", "customer-edit.php")
 		);
@@ -123,7 +123,7 @@ $menu[] = array(
 $menu[] = array(
 			'title' => "Users",
 			'link' => "users.php",
-			'icon' => "",
+			'icon' => '<i class="fa fa-user" aria-hidden="true"></i>',
 			'has_dropdown' => "N",
 			'URLS'=>array("users.php", "user-edit.php")
 		);
@@ -146,7 +146,7 @@ $setting_sub = array();
 $setting_sub[] = array(
 				'title' => "SEO",
 				'link' => "seo.php",
-				'icon' => ""
+				'icon' => '',
 			);
 
 $setting_sub[] = array(
@@ -158,7 +158,7 @@ $setting_sub[] = array(
 $menu[] = array(
 			'title' => "SEO",
 			'link' => "seo.php",
-			'icon' => "",
+			'icon' => '<i class="fa fa-cog" aria-hidden="true"></i>',
 			'has_dropdown' => "N",
 			'dropdown' => array(),
 			'URLS'=>array("seo.php")
