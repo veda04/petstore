@@ -1,5 +1,5 @@
 <?php
-include "../inc/cu.common.php";
+include "./inc/cu.common.php";
 ?>
 <!DOCTYPE html>
 <html>

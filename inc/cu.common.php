@@ -21,6 +21,7 @@ $CON = ConnectSQL(); # connection to database
 
 // Customer session
 $cust_logged = 0;
+$sess_cust_id = 0;
 if(isset($_SESSION[CU_SESSION_ID]->log_stat)) // if the session variable has been set...
 {	
 	if($_SESSION[CU_SESSION_ID]->log_stat == "A")

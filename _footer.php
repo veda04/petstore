@@ -79,15 +79,41 @@
 
 <?php include "_footer_links.php"; ?>
 <script type="text/javascript">
+    var ajax_url  = "<?php echo SITE_ADDRESS.'inc/ajax.inc.php'; ?>";
+    function showMessage(msg="",type="error") {
+
+    }
+
     function registerNewsletter() {
         return false;
     }
 
-    function addToWishlist(productId) {
-        
+    function addToWishlist(productId, cust_id) {
+        $.ajax({
+            url: ajax_url,
+            type: "post",
+            data: {mode:"ADD_TO_WISHLIST", pid:productId, cid:cust_id},
+            async: false,
+            success: function(result) {
+                if(result.code) {
+                    // result
+                }
+            },
+            error: function(errores) {
+                console.log(errores.responseText);
+            }
+        });
     }
 
-    function addToCart(productId) {
+    function addToCart(productId, cust_id) {
+
+    }
+
+    function validate_username() {
+
+    }
+
+    function validiate_password(password_one, password_two) {
 
     }
 </script>

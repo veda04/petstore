@@ -1,28 +1,36 @@
 <?php
-session_start();
-
-  
+include "./inc/cu.common.php";
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Petstore Contact">
+    <meta name="keywords" content="Petstore Contact">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Store</title>
-     <?php include'header_link.php';?>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Petstore | Contact</title>
+
+    <?php include "_header_links.php"; ?>
 </head>
+
 <body>
-       <?php include'header.php';?>
-        <!-- Breadcrumb Section Begin -->
-  <section class="breadcrumb-section set-bg about-bg" style="background: url('img/background.jpg');">
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <?php include "_header.php"; ?>
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
                         <h2>Contact Us</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.php">Home</a>
+                            <a href="index.php">Home</a>
                             <span>Contact Us</span>
                         </div>
                     </div>
@@ -32,41 +40,60 @@ session_start();
     </section>
     <!-- Breadcrumb Section End -->
 
-   <section class="contact spad">
+    <!-- Contact Section Begin -->
+    <section class="contact spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_phone"></span>
                         <h4>Phone</h4>
-                        <p>+44-8888-6868</p>
+                        <p><?php echo SHOP_PHONE; ?></p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_pin_alt"></span>
                         <h4>Address</h4>
-                        <p>Kings Bridge Road, Huddersfield, UK, HD1 3DG</p>
+                        <p><?php echo SHOP_ADR; ?></p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_clock_alt"></span>
                         <h4>Open time</h4>
-                        <p>09:00 am to 23:00 pm</p>
+                        <p>10:00 am to 23:00 pm</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_mail_alt"></span>
                         <h4>Email</h4>
-                        <p>hello@petstore.com</p>
+                        <p><?php echo SITE_EMAIL; ?></p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Contact Section End -->
+
+    <!-- Map Begin -->
+    <div class="map">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2365.232384060989!2d-1.7802867842781218!3d53.64282848004225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bdc7316c83381%3A0x622f032b6c8b151f!2sUniversity%20of%20Huddersfield%20Queensgate%20Campus!5e0!3m2!1sen!2suk!4v1677236641508!5m2!1sen!2suk"
+            height="500" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        <div class="map-inside">
+            <i class="icon_pin"></i>
+            <div class="inside-widget">
+                <h4>Petstore Shop</h4>
+                <ul>
+                    <li>Phone: <?php echo SHOP_PHONE; ?></li>
+                    <li>Add: <?php echo SHOP_ADR; ?></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Map End -->
 
     <!-- Contact Form Begin -->
     <div class="contact-form spad">
@@ -88,16 +115,14 @@ session_start();
                     </div>
                     <div class="col-lg-12 text-center">
                         <textarea placeholder="Your message"></textarea>
-                        <button type="submit" class="site-btn ">SEND MESSAGE</button>
+                        <button type="submit" class="site-btn">SEND MESSAGE</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-   
-    <!--footer section -->
-<?php include'footer.php';?>
- <?php include'footer_link.php';?>
-</body>
+    <!-- Contact Form End -->
 
+    <?php include "_footer.php"; ?>
+</body>
 </html>
