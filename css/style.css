@@ -963,6 +963,8 @@ ol {
 
 .featured__item__pic {
 	height: 270px;
+	border: 1.5px solid #cacaca;
+  border-radius: 7px;
 	position: relative;
 	overflow: hidden;
 	background-position: center center;
