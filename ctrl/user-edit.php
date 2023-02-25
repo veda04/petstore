@@ -80,7 +80,7 @@ else if($mode == "U"){
 
     $q = "UPDATE user SET name='$name', username='$username', password=md5('$password'), fkRoleId='$role', status='$status' WHERE id='$txtid'";
     $r = sql_query($q);
-    $_SESSION[AD_SESSION_ID]->success_info = "Successfully Updated"; 
+    $_SESSION[AD_SESSION_ID]->success_info = "User successfully updated"; 
 
     header("location: ".$edit_page."?m=R&id=".$txtid);
     exit;
@@ -88,7 +88,7 @@ else if($mode == "U"){
 else if($mode == "D"){
     $q = "DELETE FROM user WHERE id=$txtid";
     $r = sql_query($q);
-
+    $_SESSION[AD_SESSION_ID]->success_info = "User successfully deleted"; 
     header("location: ".$user_display);
     exit;
 }
@@ -112,10 +112,10 @@ else if($mode == "D"){
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <?php echo $sess_info_str; ?>
                 <div class="form-element-list">
                     <div class="basic-tb-hd">
                         <h2><?php echo $PAGE_TITLE; ?></h2>
-                        <?php echo $sess_info_str; ?>
                     </div>
                     <form action="<?php echo $edit_page; ?>" method="post">
                         <input type="hidden" name="m" value="<?php echo $form_mode; ?>">

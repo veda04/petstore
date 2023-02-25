@@ -57,7 +57,7 @@ else if($mode == 'C'){
 
     $q = "INSERT INTO product(id, productName,productPrice, productDesc, status) values ('$txtid', '$prod_name', '$prod_price', '$prod_desc', '$status')";
     $r = sql_query($q);
-    $_SESSION[AD_SESSION_ID]->success_info = "New product created Successfully"; 
+    $_SESSION[AD_SESSION_ID]->success_info = "New product created successfully"; 
 }
 else if($mode == "R") {
     //edit
@@ -85,12 +85,13 @@ else if($mode == "U"){
 
     $q = "UPDATE product SET productName='$prod_name', productPrice='$prod_price', productDesc='$prod_desc', status='$status' WHERE id='$txtid'";
     $r = sql_query($q);
-    $_SESSION[AD_SESSION_ID]->success_info = "Successfully Updated"; 
+    $_SESSION[AD_SESSION_ID]->success_info = "Product successfully Updated"; 
 }
 else if($mode == "D"){
     $q = "DELETE FROM product WHERE id=$txtid";
     $r = sql_query($q);
-
+    
+    $_SESSION[AD_SESSION_ID]->success_info = "Product successfully deleted"; 
     header("location: ".$item_display);
     exit;
 }
@@ -142,12 +143,12 @@ if($mode == 'ADD_STOCK'){
 
     if(sql_affected_rows($r)) {
         // success message
-        $_SESSION[AD_SESSION_ID]->success_info = "Stock Successfully Updated"; 
+        $_SESSION[AD_SESSION_ID]->success_info = "Stock successfully Updated"; 
         updateProductStock($txtid);
     }
     else {
         // failure message;
-        $_SESSION[AD_SESSION_ID]->success_info = "Unable to update stock"; 
+        $_SESSION[AD_SESSION_ID]->alert_info = "Unable to update stock"; 
     }
 
     header("location: $edit_page?m=R&id=$txtid");
@@ -157,7 +158,7 @@ else if($mode == 'DELETE_STOCK'){
     $psid = $_GET['psid'];
     $q = "DELETE FROM product_stock WHERE id=$psid";
     $r = sql_query($q);
-    $_SESSION[AD_SESSION_ID]->success_info = "Inventory Successfully Deleted"; 
+    $_SESSION[AD_SESSION_ID]->success_info = "Inventory successfully deleted"; 
     updateProductStock($txtid);
     header("location: $edit_page?m=R&id=$txtid");
     exit;

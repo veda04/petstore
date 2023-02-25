@@ -4726,3 +4726,7 @@ body.box-layout {
 .ht-34{
     height: 34px !important;
 }
+.error-msg {
+    color: #f00;
+    text-decoration: underline;
+}

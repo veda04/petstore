@@ -30,7 +30,7 @@ $ACCESS_ARR = array();
 // for role 3
 $ACCESS_ARR['3'] = array("users.php", "user-edit.php", "seo.php");
 // for role 4
-$ACCESS_ARR["4"] = array("category-edit.php", "dashboard.php", "offer-edit.php", "vendor-edit.php", "items-edit.php");
+$ACCESS_ARR["4"] = array("category-edit.php", "dashboard.php", "offer-edit.php", "vendor-edit.php", "item-edit.php");
 
 ##############// FRONT-END DEFINES
 define("SITE_EMAIL", "hello@petstore.com");

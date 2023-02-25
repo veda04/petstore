@@ -49,7 +49,7 @@ else if($mode == 'C'){
 
     $q = "INSERT INTO offers(id, offerName, offerDesc, offerVal,offertype, status) values ('$txtid', '$offer_name', '$offer_description', '$offer_value','$offer_type', '$status')";
     $r = sql_query($q);
-    $_SESSION[AD_SESSION_ID]->success_info = "New offer created Successfully"; 
+    $_SESSION[AD_SESSION_ID]->success_info = "New offer created successfully"; 
 
     header("location: ".$edit_page."?m=R&id=".$txtid);
     exit;
@@ -80,7 +80,7 @@ else if($mode == "U"){
 
     $q = "UPDATE offers SET offerName ='$offer_name', offerDesc ='$offer_description', offerVal ='$offer_value', offertype ='$offer_type', status='$status' WHERE id='$txtid'";
     $r = sql_query($q);
-    $_SESSION[AD_SESSION_ID]->success_info = "Successfully Updated"; 
+    $_SESSION[AD_SESSION_ID]->success_info = "Order successfully Updated"; 
 
     header("location: ".$edit_page."?m=R&id=".$txtid);
     exit;
@@ -88,7 +88,7 @@ else if($mode == "U"){
 else if($mode == "D"){
     $q = "DELETE FROM offers WHERE id=$txtid";
     $r = sql_query($q);
-
+    $_SESSION[AD_SESSION_ID]->success_info = "Order successfully deleted"; 
     header("location: ".$offer_display);
     exit;
 }
@@ -114,10 +114,10 @@ else if($mode == "D"){
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <?php echo $sess_info_str; ?>
                 <div class="form-element-list">
                     <div class="basic-tb-hd">
                         <h2><?php echo $PAGE_TITLE; ?></h2>
-                        <?php echo $sess_info_str; ?>
                     </div>
                     <form action="<?php echo $edit_page; ?>" method="post" enctype = "multipart/form-data">
                         <input type="hidden" name="m" value="<?php echo $form_mode; ?>">

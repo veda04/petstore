@@ -48,10 +48,10 @@ include "./inc/cu.common.php";
                 <div class="col-lg-9">
                     <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
                         <div class="hero__text">
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
+                            <span>ALL PET PRODUCTS</span>
+                            <h2>Unleash Petstore's<br />Paw-some Deals!</h2>
                             <p>Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
+                            <a href="product.php" class="primary-btn">SHOP NOW</a>
                         </div>
                     </div>
                 </div>

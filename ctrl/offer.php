@@ -29,12 +29,11 @@ $num_rows = sql_num_rows($r);
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <?php echo $sess_info_str; ?>
                 <div class="data-table-list">
                     <div class="basic-tb-hd flex-space">
                         <h2>
                             <?php echo $PAGE_TITLE; ?>
-                            <?php echo $sess_info_str; ?>
-
                         </h2>
                         <?php if(!$is_support) { ?>
                         <a class="btn btn-info info-icon-notika waves-effect" href="<?php echo $edit_page; ?>">Add</a>

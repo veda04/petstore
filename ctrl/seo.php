@@ -36,7 +36,7 @@ else if($mode == "U"){
 
     $q = "UPDATE site_seo SET title='$seo_title', keyword='$seo_keyword', description='$seo_desc' WHERE id='$txtid'";
     $r = sql_query($q);
-    $_SESSION[AD_SESSION_ID]->success_info = "Successfully Updated";
+    $_SESSION[AD_SESSION_ID]->success_info = "SEO successfully updated";
     header("location: ".$edit_page);
     exit; 
 }

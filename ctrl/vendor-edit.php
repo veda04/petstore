@@ -49,7 +49,7 @@ else if($mode == 'C'){
 
     $q = "INSERT INTO vendor(id, vendorName, vendorAddress, vendorPhone,vendorEmail, status) values ('$txtid', '$vendor_name', '$vendor_address', '$vendor_phone','$vendor_email', '$status')";
     $r = sql_query($q);
-    $_SESSION[AD_SESSION_ID]->success_info = "New vendor created Successfully"; 
+    $_SESSION[AD_SESSION_ID]->success_info = "New vendor created successfully"; 
 
     header("location: ".$edit_page."?m=R&id=".$txtid);
     exit;
@@ -80,7 +80,7 @@ else if($mode == "U"){
 
     $q = "UPDATE vendor SET vendorName ='$vendor_name', vendorAddress ='$vendor_address', vendorPhone ='$vendor_phone', vendorEmail ='$vendor_email', status='$status' WHERE id='$txtid'";
     $r = sql_query($q);
-    $_SESSION[AD_SESSION_ID]->success_info = "Successfully Updated"; 
+    $_SESSION[AD_SESSION_ID]->success_info = "Vendor successfully updated"; 
 
     header("location: ".$edit_page."?m=R&id=".$txtid);
     exit;
@@ -89,6 +89,7 @@ else if($mode == "D"){
     $q = "DELETE FROM vendor WHERE id=$txtid";
     $r = sql_query($q);
 
+    $_SESSION[AD_SESSION_ID]->success_info = "Vendor successfully deleted"; 
     header("location: ".$vendor_display);
     exit;
 }
@@ -112,10 +113,10 @@ else if($mode == "D"){
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <?php echo $sess_info_str; ?>
                 <div class="form-element-list">
                     <div class="basic-tb-hd">
                         <h2><?php echo $PAGE_TITLE; ?></h2>
-                        <?php echo $sess_info_str; ?>
                     </div>
                     <form action="<?php echo $edit_page; ?>" method="post" enctype = "multipart/form-data">
                         <input type="hidden" name="m" value="<?php echo $form_mode; ?>">
