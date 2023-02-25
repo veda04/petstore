@@ -92,6 +92,7 @@ else if($mode == "D"){
 }
 
 if($mode == 'C' || $mode == 'U') {
+    // for image create and update
     if(is_uploaded_file($_FILES["cat_img"]["tmp_name"])) {
         $uploaded_pic = $_FILES["cat_img"]["name"];
         $name = basename($_FILES['cat_img']['name']);

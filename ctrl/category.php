@@ -4,7 +4,7 @@ include '../inc/ad.common.php';
 $PAGE_TITLE = "Category";
 
 $edit_page = "category-edit.php";
-
+// query to select from category table
 $q = "SELECT * FROM `category`";
 $r = sql_query($q);
 $num_rows = sql_num_rows($r);
@@ -57,6 +57,7 @@ $num_rows = sql_num_rows($r);
                             <tbody>
                                 <?php
                                 if($num_rows > 0) {
+                                    // displays all the data from the table
                                     for($i=1; $o=sql_fetch_object($r); $i++) {
                                         $sr_no = $i.'.';
                                         $id = $o->id;
@@ -71,7 +72,6 @@ $num_rows = sql_num_rows($r);
                                         <tr>
                                             <td><?php echo $sr_no; ?></td>
                                             <td><?php echo $cat_title; ?></td>
-                                            <!-- <td><img src="<?php echo $cat_img; ?>" alt=""  width="50px" /></td> -->
                                             <td><?php echo $cat_desciption; ?></td>
                                             <td><?php echo isset($STATUS_ARR[$status]) ? $STATUS_ARR[$status] : "-"; ?></td>
                                             <?php if(!$is_support) { ?>

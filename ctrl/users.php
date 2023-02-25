@@ -58,6 +58,7 @@ $num_rows = sql_num_rows($r);
                                 <tbody>
                                     <?php
                                     if($num_rows > 0) {
+                                        // retrives data from database
                                         for($i=1; $o=sql_fetch_object($r); $i++) {
                                             $sr_no = $i.'.';
                                             $id = $o->id;

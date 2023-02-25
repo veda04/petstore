@@ -1,7 +1,7 @@
 <?php
 $PAGE_TITLE = "Login";
 $dashboard_page ="dashboard.php";
-
+//validate
 $msg = "";
 if(isset($_GET['err']) && !empty($_GET["err"]))  {
     if(is_numeric($_GET['err'])) $msg = "Invalid Username or Password";

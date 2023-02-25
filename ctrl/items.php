@@ -4,7 +4,7 @@ include '../inc/ad.common.php';
 $PAGE_TITLE = "Products";
 //items = products
 $edit_page = "item-edit.php";
-
+//query 
 $q = "SELECT * FROM `product`";
 $r = sql_query($q);
 $num_rows = sql_num_rows($r);
@@ -59,6 +59,7 @@ $num_rows = sql_num_rows($r);
                             <tbody>
                                 <?php
                                 if($num_rows > 0) {
+                                    //displays the data from database table
                                     for($i=1; $o=sql_fetch_object($r); $i++) {
                                         $sr_no = $i.'.';
                                         $id = $o->id;

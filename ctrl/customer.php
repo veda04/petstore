@@ -4,7 +4,7 @@ include '../inc/ad.common.php';
 $PAGE_TITLE = "Customers";
 
 $edit_page = "customer-edit.php";
-
+//query 
 $q = "SELECT * FROM `customer`";//WHERE fkRoleId > 1";
 $r = sql_query($q);
 $num_rows = sql_num_rows($r);
@@ -21,10 +21,6 @@ $num_rows = sql_num_rows($r);
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <!-- Start Header Top Area -->
     <?php include "_header.php"; ?>
     <?php include "_menu.php"; ?>
 
@@ -54,6 +50,7 @@ $num_rows = sql_num_rows($r);
                                 <tbody>
                                     <?php
                                     if($num_rows > 0) {
+                                        // displays the items
                                         for($i=1; $o=sql_fetch_object($r); $i++) {
                                             $sr_no = $i.'.';
                                             $id = $o->id;

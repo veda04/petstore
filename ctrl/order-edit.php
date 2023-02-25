@@ -77,7 +77,6 @@ $or_status = get_status_arr($or_id);
                                 </div>
                                 <div class="invoice-ds-int">
                                     <?php
-                                        //pr_arr($cust_details);
                                     foreach($cust_details as $arr_ind => $arr_blck){
                                      ?>
                                         <div><b>Name:</b> <?php echo $arr_blck->custName;?></div>
