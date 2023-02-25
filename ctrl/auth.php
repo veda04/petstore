@@ -8,9 +8,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 		$username = $_POST['txtusername'];
 		$password = $_POST['txtpassword'];
 
-		/*echo $username;
-		echo $password;*/
-
 		if($password=='')
 			ForceOut(5);
 		elseif($username=='')
@@ -37,7 +34,12 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 					$q = "UPDATE user set lastLogin='".NOW."' WHERE id=$u_id";
 					$r = sql_query($q);
 
-					header("location:dashboard.php");
+					$loc_url = "dashboard.php";
+
+					if($u_role == '4')
+						$loc_url = "orders.php";
+
+					header("location:$loc_url");
 					exit;
 				}
 				else{

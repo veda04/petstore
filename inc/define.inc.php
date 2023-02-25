@@ -24,6 +24,14 @@ $STATUS_ARR = array("A"=>"Active", "I"=>"Inactive");
 $ORDER_STATUSES = array('A'=>'Accepted Order', 'I'=>'Order on Hold', 'ORD'=>"Order Received", 'PACK'=>"Order Packed", 'DELIV'=>"Order Delivered");
 $ORDER_TYPES = array('ORD'=>"Order", 'RET'=>"Order Returned", 'REF'=>"Order Refund", 'REP'=>"Order Replaced");
 
+
+$ACCESS_ARR = array();
+
+// for role 3
+$ACCESS_ARR['3'] = array("users.php", "user-edit.php", "seo.php");
+// for role 4
+$ACCESS_ARR["4"] = array("category-edit.php", "dashboard.php", "offer-edit.php", "vendor-edit.php", "items-edit.php");
+
 ##############// FRONT-END DEFINES
 define("SITE_EMAIL", "hello@petstore.com");
 define("SHOP_ADR", "University of Huddersfield<br/>Queensgate,<br/>Huddersfield HD8 0WN");

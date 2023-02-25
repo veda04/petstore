@@ -304,28 +304,30 @@ function site_seo($title="", $keyword="", $desc="", $image="") {
 	$s_desc = !empty($desc) ? $desc : "PETSTORE offers a wide range of high-quality pet supplies for all your furry, feathered, and aquatic friends. From premium dog food to colorful cat toys, aquariums to bird cages, we have everything you need to keep your pets happy and healthy. Shop online or visit our store today!";
 	$s_image = !empty($image) ? $image : SITE_ADDRESS."/img/site-logo-b.png";
 
-	$str .= '<!-- Primary Meta Tags -->';
-	$str .= '<meta name="title" content="'.$s_title.'">';
-	$str .= '<meta name="description" content="'.$s_desc.'">';
-	$str .= '<meta name="keywords" content="'.$s_keyword.'">';
-	$str .= '<meta name="robots" content="index, follow">';
-	$str .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
-	$str .= '<meta name="language" content="English">';
-	$str .= '<meta name="revisit-after" content="30 days">';
+	$str .= '<!-- Primary Meta Tags -->'.NEWLINE;
+	$str .= '<meta name="title" content="'.$s_title.'">'.NEWLINE;
+	$str .= '<meta name="description" content="'.$s_desc.'">'.NEWLINE;
+	$str .= '<meta name="keywords" content="'.$s_keyword.'">'.NEWLINE;
+	$str .= '<meta name="robots" content="index, follow">'.NEWLINE;
+	$str .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'.NEWLINE;
+	$str .= '<meta name="language" content="English">'.NEWLINE;
+	$str .= '<meta name="revisit-after" content="30 days">'.NEWLINE;
 
-	$str .= '<!-- Open Graph / Facebook -->';
-	$str .= '<meta property="og:type" content="website">';
-	$str .= '<meta property="og:url" content="'.SITE_ADDRESS.'">';
-	$str .= '<meta property="og:title" content="'.$s_title.'">';
-	$str .= '<meta property="og:description" content="'.$s_desc.'">';
-	$str .= '<meta property="og:image" content="'.$s_image.'">';
+	$str .= '<!-- Open Graph / Facebook -->'.NEWLINE;
+	$str .= '<meta property="og:type" content="website">'.NEWLINE;
+	$str .= '<meta property="og:url" content="'.SITE_ADDRESS.'">'.NEWLINE;
+	$str .= '<meta property="og:title" content="'.$s_title.'">'.NEWLINE;
+	$str .= '<meta property="og:description" content="'.$s_desc.'">'.NEWLINE;
+	$str .= '<meta property="og:image" content="'.$s_image.'">'.NEWLINE;
 
-	$str .= '<!-- Twitter -->';
-	$str .= '<meta property="twitter:card" content="summary_large_image">';
-	$str .= '<meta property="twitter:url" content="'.SITE_ADDRESS.'">';
-	$str .= '<meta property="twitter:title" content="'.$s_title.'">';
-	$str .= '<meta property="twitter:description" content="'.$s_desc.'">';
-	$str .= '<meta property="twitter:image" content="'.$s_image.'">';
+	$str .= '<!-- Twitter -->'.NEWLINE;
+	$str .= '<meta property="twitter:card" content="summary_large_image">'.NEWLINE;
+	$str .= '<meta property="twitter:url" content="'.SITE_ADDRESS.'">'.NEWLINE;
+	$str .= '<meta property="twitter:title" content="'.$s_title.'">'.NEWLINE;
+	$str .= '<meta property="twitter:description" content="'.$s_desc.'">'.NEWLINE;
+	$str .= '<meta property="twitter:image" content="'.$s_image.'">'.NEWLINE;
+
+	$str .= '<title>'.$s_title.'</title>'.NEWLINE;
 
 	echo $str;
 }
@@ -350,5 +352,19 @@ function decode_value($encoded) {
     return $value;
 }
 
-
+function access_matrix($user_role, $filename) {
+	global $ACCESS_ARR;
+	$USER_ROLES = GetXArrFromYID("SELECT id from user_role");
+	if(!empty($user_role) && isset($USER_ROLES[$user_role]) && !empty($filename)) {
+		$access_menu = isset($ACCESS_ARR[$user_role]) ? $ACCESS_ARR[$user_role] : array();
+		if(in_array($filename, $access_menu)) {
+			ForceOut("B");
+			exit;
+		}
+	}
+	else {
+		ForceOut("A");
+		exit;
+	}
+}
 ?>

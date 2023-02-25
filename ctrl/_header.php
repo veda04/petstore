@@ -10,9 +10,13 @@
                 <div class="header-top-menu">
                     <ul class="nav navbar-nav notika-top-nav mt-9">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="javascript:;" class="nav-link">
                                 <span>
-                                    Hello  <?php echo $sess_user_name?>
+                                    <?php 
+                                        $roles = GetXArrFromYID("SELECT id, title FROM user_role", 3);
+                                        echo 'Hello '.$sess_user_name;
+                                        echo isset($roles[$sess_user_role]) ? " (".$roles[$sess_user_role].") " : "";
+                                    ?>
                                 </span>
                             </a>
                         </li>

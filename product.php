@@ -15,7 +15,7 @@ $prod_count = count($PRODUCTS);
 
 <head>
     <?php 
-        site_seo();
+        site_seo($cat_name);
         include "_header_links.php"; 
     ?>
 </head>

@@ -36,7 +36,9 @@ $num_rows = sql_num_rows($r);
                             <?php echo $sess_info_str; ?>
 
                         </h2>
+                        <?php if(!$is_support) { ?>
                         <a class="btn btn-info info-icon-notika waves-effect" href="<?php echo $edit_page; ?>">Add</a>
+                        <?php } ?>
                     </div>
                     <div class="table-responsive">
                         <table id="data-table-basic" class="table table-striped">
@@ -48,8 +50,10 @@ $num_rows = sql_num_rows($r);
                                     <th>Phone No.</th>
                                     <th>Email</th>
                                     <th>Status</th>
+                                    <?php if(!$is_support) { ?>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
+                                    <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,6 +78,7 @@ $num_rows = sql_num_rows($r);
                                             <td><?php echo $vendor_phone; ?></td>
                                             <td><?php echo $vendor_email; ?></td>
                                             <td><?php echo isset($STATUS_ARR[$status]) ? $STATUS_ARR[$status] : "-"; ?></td>
+                                            <?php if(!$is_support) { ?>
                                             <td>
                                                 <a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $edit_link; ?>">Edit
                                                 </a>
@@ -81,6 +86,7 @@ $num_rows = sql_num_rows($r);
                                             <td>
                                                 <button onclick="ConfirmDelete('<?php echo $del_link; ?>', 'Category')" type="button" class="btn btn-danger danger-icon-notika waves-effect">Delete</button>
                                             </td>
+                                            <?php } ?>
                                         </tr>
                                         <?php                                            
                                     }

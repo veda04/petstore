@@ -9,6 +9,7 @@ $prod_namearr = GetXArrFromYID("SELECT id, productName from product", 3);
 
 $sale_arr = GetXArrFromYID("SELECT SUM(totalAmount) from orders GROUP BY orderDate");
 $sale_json = json_encode($sale_arr);
+
 ?>
 <!doctype html>
 <html class="no-js" lang="">

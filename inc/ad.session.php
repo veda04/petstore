@@ -5,7 +5,14 @@
 ######	ConnectSQL
 $CON = ConnectSQL();
 
+###### User Roles
+$SUPER_ADMIN = 1;
+$ADMIN = 2;
+$MANAGER = 3;
+$CU_SUPPORT = 4;
+
 ######	SESSION VARIABLES
+$is_super_admin = $is_admin = $is_manager = $is_support = false;
 $logged = 0;
 
 if(isset($_SESSION[AD_SESSION_ID]->log_stat)) // if the session variable has been set...
@@ -18,6 +25,14 @@ if(isset($_SESSION[AD_SESSION_ID]->log_stat)) // if the session variable has bee
 		$sess_user_role = $_SESSION[AD_SESSION_ID]->user_role;
 		$sess_user_sess = $_SESSION[AD_SESSION_ID]->sess_id;
 		$sess_login_time = $_SESSION[AD_SESSION_ID]->log_time;	
+
+		switch($sess_user_role)
+		{		
+			case $SUPER_ADMIN: { $is_super_admin = true; break; }
+			case $ADMIN: { $is_admin = true; break; }
+			case $MANAGER: { $is_manager = true; break; }
+			case $CU_SUPPORT: { $is_support = true; break; }
+		}
 	}
 }
 
@@ -33,6 +48,9 @@ if($logged){
 	$_SESSION[AD_SESSION_ID]->success_info = "";
 	$_SESSION[AD_SESSION_ID]->error_info = "";
 	$_SESSION[AD_SESSION_ID]->alert_info = "";
+
+	$fname = basename($_SERVER['PHP_SELF']);
+	access_matrix($sess_user_role, $fname); // restriceted access to user
 }
 
 
@@ -44,6 +62,8 @@ if(!$logged && empty($NO_REDIRECT))
 // menu
 $menu = array();
 // Home
+
+if(!$is_support) {
 $menu[] = array(
 			'title' => "Home",
 			'link' => "dashboard.php",
@@ -51,6 +71,7 @@ $menu[] = array(
 			'has_dropdown' => "N",
 			'URLS'=>array()
 		);
+}
 // Orders
 $menu[] = array(
 			'title' => "Orders",
@@ -119,49 +140,53 @@ $menu[] = array(
 			'has_dropdown' => "N",
 			'URLS'=>array("customer.php", "customer-edit.php")
 		);
-// Users
-$menu[] = array(
-			'title' => "Users",
-			'link' => "users.php",
-			'icon' => '<i class="fa fa-user" aria-hidden="true"></i>',
-			'has_dropdown' => "N",
-			'URLS'=>array("users.php", "user-edit.php")
-		);
-$communications_sub[] = array(
-				'title' => "Order Email",
-				'link' => "order_email.php",
-				'icon' => "",
-			);
-// Vendors
-/*$menu[] = array(
-			'title' => "Communications",
-			'link' => "communications.php",
-			'icon' => "",
-			'has_dropdown' => "Y",
-			'dropdown' => $communications_sub
-		);*/
-// Settings Sub Menu
-$setting_sub = array();
 
-$setting_sub[] = array(
+if($is_admin || $is_super_admin) {
+	// Users
+	$menu[] = array(
+				'title' => "Users",
+				'link' => "users.php",
+				'icon' => '<i class="fa fa-user" aria-hidden="true"></i>',
+				'has_dropdown' => "N",
+				'URLS'=>array("users.php", "user-edit.php")
+			);
+	$communications_sub[] = array(
+					'title' => "Order Email",
+					'link' => "order_email.php",
+					'icon' => "",
+				);
+
+	// Vendors
+	/*$menu[] = array(
+				'title' => "Communications",
+				'link' => "communications.php",
+				'icon' => "",
+				'has_dropdown' => "Y",
+				'dropdown' => $communications_sub
+			);*/
+	// Settings Sub Menu
+	$setting_sub = array();
+
+	$setting_sub[] = array(
+					'title' => "SEO",
+					'link' => "seo.php",
+					'icon' => '',
+				);
+
+	$setting_sub[] = array(
+					'title' => "Services",
+					'link' => "services.php",
+					'icon' => "",
+				);
+	// Settings
+	$menu[] = array(
 				'title' => "SEO",
 				'link' => "seo.php",
-				'icon' => '',
+				'icon' => '<i class="fa fa-cog" aria-hidden="true"></i>',
+				'has_dropdown' => "N",
+				'dropdown' => array(),
+				'URLS'=>array("seo.php")
 			);
-
-$setting_sub[] = array(
-				'title' => "Services",
-				'link' => "services.php",
-				'icon' => "",
-			);
-// Settings
-$menu[] = array(
-			'title' => "SEO",
-			'link' => "seo.php",
-			'icon' => '<i class="fa fa-cog" aria-hidden="true"></i>',
-			'has_dropdown' => "N",
-			'dropdown' => array(),
-			'URLS'=>array("seo.php")
-		);
+}
 
 ?>

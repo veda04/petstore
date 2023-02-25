@@ -1,6 +1,3 @@
-<?php
-$fname = basename($_SERVER['PHP_SELF']);
-?>
 <!-- Mobile Menu start -->
     <div class="mobile-menu-area">
         <div class="container">
@@ -90,10 +87,11 @@ $fname = basename($_SERVER['PHP_SELF']);
                             $link = $_marr['link'];
                             $has_dropdown = $_marr['has_dropdown'];
                             $dropdown = isset($_marr['dropdown']) ? $_marr['dropdown'] : array();
+                            $urls = isset($_marr['URLS']) ? $_marr['URLS'] : array();
                             $tab_name = "tab-".GetUrlName($title);
 
                             if($has_dropdown == 'Y' && !empty($dropdown)) {
-                                $m_subactive = ($fname == $link) ? "active" : "";
+                                $m_subactive = ($fname == $link || in_array($fname, $urls)) ? "active" : "";
                                 echo '<div id="'.$tab_name.'" class="tab-pane in '.$m_subactive.' notika-tab-menu-bg animated flipInX">';
                                 echo '<ul class="notika-main-menu-dropdown">';
 

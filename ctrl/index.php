@@ -4,7 +4,8 @@ $dashboard_page ="dashboard.php";
 
 $msg = "";
 if(isset($_GET['err']) && !empty($_GET["err"]))  {
-    $msg = "Invalid Username or Password";
+    if(is_numeric($_GET['err'])) $msg = "Invalid Username or Password";
+    else $msg = "Access is resitricted!";
 }
 ?>
 
@@ -26,12 +27,12 @@ if(isset($_GET['err']) && !empty($_GET["err"]))  {
         <div class="nk-block toggled" id="l-login">
             <div class="nk-form">
                 <h2><?php echo $PAGE_TITLE; ?></h2>
-                <form action="auth.php" method="post">
-                    <?php echo $msg; ?>
+                <form action="auth.php" method="post" autocomplete="off" >
+                    <span class="text-danger"><?php echo $msg; ?></span>
                     <div class="input-group">
                         <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
                         <div class="nk-int-st">
-                            <input type="text" class="form-control" placeholder="Username" name="txtusername" value="" required>
+                            <input type="text" class="form-control" placeholder="Username" name="txtusername" value="" required autofocus>
                         </div>
                     </div>
                     <div class="input-group mg-t-15">
