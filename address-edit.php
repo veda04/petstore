@@ -45,18 +45,23 @@ if(!$cust_logged || !is_numeric($sess_cust_id)) {
     <!-- Breadcrumb Section End -->
 
      <!-- Product Section Begin -->
-    <section class="product spad">
+    <section class="product spad address contact-form ">
         <div class="container">
             <div class="row">
                 <?php include "_account_menu.php"; ?>
                 <div class="col-lg-9 col-md-7">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-6 col-sm-6">
-                            <div class="form-cover">
-                                
+                    <form action="#">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-6">
+                                <input type="text" placeholder="Title">
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <textarea placeholder="Address"></textarea>
+                                <button type="submit" class="site-btn float-left">SAVE</button>
+                                <div class="clearfix"></div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -6,10 +6,10 @@
                 <?php
                 ?>
                 <li>
-                    <a href="#">Address</a>
+                    <a href="address.php">Address</a>
                 </li>
                 <li>
-                    <a href="#">Orders</a>
+                    <a href="order-listing.php">Orders</a>
                 </li> 
                 <li>
                     <a href="logout.php">Logout</a>
