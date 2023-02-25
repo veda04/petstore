@@ -20,3 +20,6 @@ ALTER TABLE `customer_address` CHANGE `homeAddress` `address` VARCHAR(255) CHARA
 -- @Veda 2023-02-23: auto increment id
 ALTER TABLE `customer_address` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `customer_cart` CHANGE `cartItems` `qty` INT NULL;
+
+-- @Veda 2023-02-24: added column in order_status table
+ALTER TABLE order_status ADD comments text;

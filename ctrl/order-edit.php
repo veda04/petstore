@@ -3,29 +3,32 @@ include '../inc/ad.common.php';
 $PAGE_TITLE = "View Order";
 //$ORDER_TITLE = "Product Inventory";
 
+
 $edit_page = "order-edit.php";
 $del_page = $edit_page."?m=D&id=";
 $order_display = "orders.php";
 
-$or_id = $_GET['id'];
+if(isset($_GET['id'])) {
+    $or_id = $_GET['id'];
+}
+else if(isset($_POST['id'])) {
+    $or_id = $_POST['id'];
+}
 
 if(empty($or_id) || !is_numeric($or_id)) {
-    header("location: $order_display");
+    // header("location: $order_display");
     exit;
 }
 
 $cust_id = GetXFromYID("SELECT fkCustomerId from orders where id = $or_id");
 
-if(isset($_POST['C_STATUS'])){
+if(isset($_POST['m'])){
     $order_status = $_POST['order_status'];
     $order_desc = $_POST['order_desciption'];
-    $q = "INSERT INTO order_status(orderStatusName) values('$order_status')";
+    $txtid = NextId('id', "order_status");
+    $q = "INSERT INTO order_status(id,fkOrderId, orderStatusName, comments) values('$txtid', '$or_id', '$order_status', '$order_desc')";
     $r = sql_query($q);
-
 }
-
-// function call to get details of customer payment
-//$cust_payment = get_pay_arr($txtid);
 
 // function call to get details of the customer
 $cust_details = get_det_arr($cust_id);
@@ -33,7 +36,11 @@ $cust_details = get_det_arr($cust_id);
 // function call to get details of order items
 $order_items = get_items_arr($or_id);
 
+// function call to get details of product
 $prod_name =  get_dat_arr("id", "productName", "product");
+
+// function call to get status of order 
+$or_status = get_status_arr($or_id);
 
 ?> 
 <!doctype html>
@@ -86,7 +93,7 @@ $prod_name =  get_dat_arr("id", "productName", "product");
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Product Id</th>
+                                            <th>Product Name</th>
                                             <th>Unit Price</th>
                                             <th>Quantity</th>
                                             <th>Total</th>
@@ -108,6 +115,7 @@ $prod_name =  get_dat_arr("id", "productName", "product");
                                                 <td><?php echo $arr_blck->totalPrice; ?></td>
                                             </tr>
                                             <?php
+                                            $i++;
                                         }
                                         ?>
                                         <tr>
@@ -125,6 +133,7 @@ $prod_name =  get_dat_arr("id", "productName", "product");
                             <hr>
                             <form action="<?php echo $edit_page; ?>" method="post">
                                 <input type="hidden" name="m" value="C_STATUS">
+                                <input type="hidden" name="id" value="<?php echo $or_id; ?>">
                                  <div class="row">
                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="basic-tb-hd">
@@ -175,21 +184,22 @@ $prod_name =  get_dat_arr("id", "productName", "product");
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Item Name</th>
-                                            <th>Unit Price</th>
-                                            <th>Quantity</th>
-                                            <th>Total</th>
+                                            <th>Order Status</th>
+                                            <th>Comment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Crusal Damperal</td>
-                                            <td>$500</td>
-                                            <td>05</td>
-                                            <td>$3000</td>
-                                        </tr>
+                                        <?php 
+                                            foreach($or_status as $arr_ind => $arr_blck){
+                                                $type = $ORDER_STATUSES[$arr_blck->orderStatusName];
+                                             ?>
+                                                <tr>
+                                                    <td><?php echo $type; ?></td>
+                                                    <td><?php echo $arr_blck->comments; ?></td>
+                                                </tr>
+                                        <?php
+                                            }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

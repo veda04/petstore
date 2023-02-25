@@ -60,10 +60,11 @@ $name = get_dat_arr("id", "custName", "customer");
                                 <?php
                                 if($num_rows > 0) {
                                     for($i=1; $o=sql_fetch_object($r); $i++) {
+                                        $type = $ORDER_TYPES[$o->orderType];
                                         $sr_no = $i.'.';
                                         $id = $o->id;
                                         $cid = $o->fkCustomerId;
-                                        $order_type = $o->orderType;
+                                        $order_type = $type;
                                         $order_date = $o->orderDate;
                                         $total_amount = $o->totalAmount;
                                         $shipping_address = $o->shippingAddress;

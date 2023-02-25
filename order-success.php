@@ -10,7 +10,7 @@ include "./inc/cu.common.php";
     <meta name="keywords" content="Petstore Contact">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Petstore | Contact</title>
+    <title>Petstore | Order Success</title>
 
     <?php include "_header_links.php"; ?>
 </head>

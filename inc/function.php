@@ -136,7 +136,16 @@ function get_items_arr($id){
 
 	return $arr;
 }
+//to get order items from order item table
+function get_status_arr($id){
+	$arr = array();
 
+	$q = "SELECT * FROM `order_status` WHERE 1 AND fkOrderId = $id";
+	$r = sql_query($q);
+	$arr = sql_get_data($r);
+
+	return $arr;
+}
 
 //print array
 function pr_arr($arr= array()){
