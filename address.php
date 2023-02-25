@@ -47,6 +47,11 @@ if(!$cust_logged || !is_numeric($sess_cust_id)) {
                 <?php include "_account_menu.php"; ?>
                 <div class="col-lg-9 col-md-7">
                     <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <a href="address-edit.php" class="site-btn">ADD ADDRESS</a>
+                        </div>
+                    </div>
+                    <div class="row">
                         <?php
                         $addresses = getDataFromTable("customer_address", "id, address, title", "and fkCustomerId = $sess_cust_id");
 

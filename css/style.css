@@ -101,7 +101,7 @@ a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #ffffff;
+	color: #000;
 }
 
 ul,
@@ -205,8 +205,12 @@ ol {
 }
 .order-listing table tr td{
 		 width: 20% !important;
-
 }
+.c-delete{
+	  background: #ca0707 !important;
+    margin: 0 0 0 15px;
+}
+
 /**/
 /**/
 .section-title {

@@ -128,12 +128,12 @@ else if($mode == "D"){
                         <input type="hidden" name="id" value="<?php echo $txtid; ?>">
                         <div class="row">
                             <div class="col-lg-12 col-md-6">
-                                <input type="text" placeholder="Title" name="label" id="label" value="<?php echo $label; ?>">
+                                <input type="text" placeholder="Title (eg: Home, Office)" name="label" id="label" value="<?php echo $label; ?>">
                             </div>
                             <div class="col-lg-12 text-center">
                                 <textarea placeholder="Address" name="address" id="address"><?php echo $address; ?></textarea>
                                 <button type="submit" class="site-btn float-left">SAVE</button>
-                                <button onclick="ConfirmDelete('<?php echo $del_page.$txtid; ?>', 'Address')" type="button" class="site-btn float-left">Delete</button>
+                                <button onclick="ConfirmDelete('<?php echo $del_page.$txtid; ?>', 'Address')" type="button" class="site-btn float-left c-delete">Delete</button>
                                 <div class="clearfix"></div>
                             </div>
                         </div>

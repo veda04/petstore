@@ -8,7 +8,7 @@ if(!$cust_logged || !is_numeric($sess_cust_id)) {
 
 $cust_email = GetXFromYID("SELECT custEmail from customer WHERE id = $sess_cust_id");
 
-$q = "SELECT p.id, p.productName, p.productPrice, p.productImg, c.fkCustomerId, c.qty FROM customer_cart c left join product p on c.fkProductId = p.id";
+$q = "SELECT p.id, p.productName, p.productPrice, p.productImg, c.fkCustomerId, c.qty FROM customer_cart c left join product p on c.fkProductId = p.id WHERE c.fkCustomerId = $sess_cust_id";
 $r = sql_query($q);
 $cart_items = sql_get_data($r);
 ?>

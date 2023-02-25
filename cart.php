@@ -55,7 +55,7 @@ include "./inc/cu.common.php";
                             </thead>
                             <tbody>
                                 <?php
-                                $q = "SELECT p.id, c.id as 'cart_id', p.productName, p.productPrice, p.productImg, c.fkCustomerId, c.qty FROM customer_cart c left join product p on c.fkProductId = p.id";
+                                $q = "SELECT p.id, c.id as 'cart_id', p.productName, p.productPrice, p.productImg, c.fkCustomerId, c.qty FROM customer_cart c left join product p on c.fkProductId = p.id WHERE c.fkCustomerId = $sess_cust_id";
                                 $r = sql_query($q);
                                 $cart_items = sql_get_data($r);
                                 $TOT_AMT = 0;
