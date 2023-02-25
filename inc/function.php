@@ -291,4 +291,9 @@ function getProductCategory($cond="") {
 
 }
 
+function removeFromCart($pk_id) {
+	if(!empty($pk_id) && is_numeric($pk_id)) {
+		sql_query("DELETE FROM customer_cart WHERE id = $pk_id");
+	}
+}
 ?>

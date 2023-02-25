@@ -59,7 +59,7 @@ include "./inc/cu.common.php";
                             </thead>
                             <tbody>
                                 <?php
-                                $q = "SELECT p.id, p.productName, p.productPrice, p.productImg, c.fkCustomerId, c.qty FROM customer_cart c left join product p on c.fkProductId = p.id";
+                                $q = "SELECT p.id, c.id as 'cart_id', p.productName, p.productPrice, p.productImg, c.fkCustomerId, c.qty FROM customer_cart c left join product p on c.fkProductId = p.id";
                                 $r = sql_query($q);
                                 $cart_items = sql_get_data($r);
                                 $TOT_AMT = 0;
@@ -90,11 +90,14 @@ include "./inc/cu.common.php";
                                                 <?php echo $tot_amt; ?>
                                             </td>
                                             <td class="shoping__cart__item__close">
-                                                <a href="javascript:;" onclick="removeFromCart(this,'<?php echo $obj_w->id; ?>', '<?php echo $obj_w->fkCustomerId; ?>');"  class="icon_close"></span>
+                                                <a href="javascript:;" onclick="removeFromCart(this,'<?php echo $obj_w->cart_id; ?>', '<?php echo $obj_w->fkCustomerId; ?>');"  class="icon_close"></span>
                                             </td>
                                         </tr>
                                         <?php
                                     }
+                                }
+                                else {
+                                    echo "<tr><td colspan='5'>No items added to cart.</td></tr>";
                                 }
                                 ?>
                             </tbody>
@@ -108,6 +111,7 @@ include "./inc/cu.common.php";
                         <a href="product.php" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
                     </div>
                 </div>
+                <?php if($TOT_AMT > 0) { ?>
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
@@ -117,6 +121,7 @@ include "./inc/cu.common.php";
                         <a href="javascript:;" onclick="validateCart('<?php echo $sess_cust_id; ?>');" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
+                <?php } ?>
             </div>
             <?php }
             else {
@@ -155,8 +160,29 @@ include "./inc/cu.common.php";
             }
         }
 
-        function removeFromCart() {
+        function removeFromCart(elm, id, cust_id) {
+            if(id != "") {
+                $.ajax({
+                    url: ajax_url,
+                    type: "post",
+                    data: {mode:"REMOVE_FROM_CART", id:id, cid:cust_id},
+                    async: false,
+                    success: function(result) {
+                        res = JSON.parse(result);
+                        if(res.code) {
+                            showMessage(res.message);
+                            $(elm).closest("tr").remove();
+                        }
+                    },
+                    error: function(errores) {
+                        console.log(errores.responseText);
+                    }
+                });
 
+                if(ret) {
+                    window.location.href = "checkout.php";
+                }
+            }
         }
     </script>
 </body>

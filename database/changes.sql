@@ -23,3 +23,6 @@ ALTER TABLE `customer_cart` CHANGE `cartItems` `qty` INT NULL;
 
 -- @Veda 2023-02-24: added column in order_status table
 ALTER TABLE order_status ADD comments text;
+-- @Veda 2023-02-24: auto increment id
+ALTER TABLE `order_item` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `customer_cart` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;

@@ -104,15 +104,16 @@
         return false;
     }
 
-    function addToWishlist(productId, cust_id) {
+    function addToWishlist(elm, productId, cust_id) {
         $.ajax({
             url: ajax_url,
             type: "post",
             data: {mode:"ADD_TO_WISHLIST", pid:productId, cid:cust_id},
             async: false,
             success: function(result) {
-                if(result.code) {
-                    // result
+                res = JSON.parse(result);
+                if(res.code) {
+                    showMessage(res.message);
                 }
             },
             error: function(errores) {
@@ -121,8 +122,22 @@
         });
     }
 
-    function addToCart(productId, cust_id) {
-
+    function addToCart(elm, productId, cust_id) {
+        $.ajax({
+            url: ajax_url,
+            type: "post",
+            data: {mode:"ADD_TO_CART", pid:productId, cid:cust_id},
+            async: false,
+            success: function(result) {
+                res = JSON.parse(result);
+                if(res.code) {
+                    showMessage(res.message);
+                }
+            },
+            error: function(errores) {
+                console.log(errores.responseText);
+            }
+        });
     }
 
     function validate_username(uname) {

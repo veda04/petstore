@@ -54,7 +54,7 @@ include "./inc/cu.common.php";
             <div>
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <button class="site-btn">CONTINUE SHOPPING</button>
+                        <a href="product.php" class="site-btn">CONTINUE SHOPPING</a>
                     </div>
                 </div>
             </div>

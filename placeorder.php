@@ -1,9 +1,5 @@
 <?php
 include "inc/cu.common.php";
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
-exit;
 
 if(!$cust_logged || !isset($sess_cust_id) || !is_numeric($sess_cust_id)) {
 	ForceOutCu(3);
@@ -14,20 +10,20 @@ $rdaddress = isset($_POST['rdaddress']) ? $_POST['rdaddress'] : "";
 $shipping_address = GetXFromYID("SELECT address FROM customer_address WHERE id = $rdaddress");
 
 // lock tables
+/*sql_query("LOCK TABLE orders READ");
 sql_query("LOCK TABLE orders WRITE");
 sql_query("LOCK TABLE order_item WRITE");
 sql_query("LOCK TABLE order_status WRITE");
 sql_query("LOCK TABLE customer WRITE");
 sql_query("LOCK TABLE customer_cart WRITE");
-sql_query("LOCK TABLE customer_address WRITE");
+sql_query("LOCK TABLE customer_address WRITE");*/
 
 $ordid = NextId("id", "orders");
-$q = "INSERT INTO orders(id, fkCustomerId, orderType, orderDate, totalAmount, shippingAddress, paymentMethod, status) VALUES ($ordid, 'ORD', '".TODAY."', '$shipping_address', 'COD')";
+$q = "INSERT INTO orders(id, fkCustomerId, orderType, orderDate, shippingAddress, paymentMethod, status) VALUES ($ordid, $sess_cust_id, 'ORD', '".TODAY."', '$shipping_address', 'COD', 'A')";
 $r = sql_query($q);
 
 if(sql_affected_rows($r)) {
-	$ord_i = NextId("id", "order_item");
-	$q1 = "INSERT INTO order_item(id, fkOrderId, fkProductId, unitPrice, itemQuantity, totalPrice) SELECT  $ord_i, $ordid, c.fkProductId, p.productPrice, c.qty, (p.productPrice * c.qty) FROM customer_cart c left join product p on c.fkProductId = p.id WHERE fkCustomerId = $sess_cust_id";
+	$q1 = "INSERT INTO order_item(fkOrderId, fkProductId, unitPrice, itemQuantity, totalPrice) SELECT $ordid, c.fkProductId, SUM(p.productPrice), SUM(c.qty), (SUM(p.productPrice) * SUM(c.qty)) FROM customer_cart c left join product p on c.fkProductId = p.id WHERE fkCustomerId = $sess_cust_id GROUP BY c.fkProductId";
 	$r1 = sql_query($q1);
 
 	if(sql_affected_rows($r1)) {
@@ -41,6 +37,12 @@ if(sql_affected_rows($r)) {
 sql_query("UNLOCK TABLES");
 
 if($redirect) {
+	// clear cart
+	sql_query("DELETE FROM customer_cart WHERE fkCustomerId = $sess_cust_id");
+
+	$_SESSION[CU_SESSION_ID]->cust_cart = getCount("customer_cart", "COUNT(*)", "and fkCustomerId = ".$sess_cust_id);
+	$_SESSION[CU_SESSION_ID]->cust_cart_total = GetXFromYID("SELECT SUM(p.productPrice) FROM customer_cart c left join product p on c.fkProductId=p.id WHERE fkCustomerId = $sess_cust_id"); 
+
 	header("location: order-success.php");
 	exit;
 }

@@ -1,25 +1,20 @@
 <?php
 include "./inc/cu.common.php";
-$cat_id = (isset($_GET['cid']) && is_numeric($_GET['cid']) ) ? $_GET['cid'] : "";
-$prod_cond = "";
-$cat_name = GetXFromYID("SELECT title from category WHERE id = '$cat_id' ");
-if(!empty($cat_id) && !empty($cat_name)) {
-    $prod_cond = " AND categoryId = $cat_id";
+if(!$cust_logged || !is_numeric($sess_cust_id)) {
+    ForceOutCu(3);
+    exit;
 }
-
-$PRODUCTS = getDataFromTable("product", "*", $prod_cond);
-$prod_count = count($PRODUCTS);
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Petstore Products">
-    <meta name="keywords" content="Petstore Products">
+    <meta name="description" content="Petstore My Account">
+    <meta name="keywords" content="Petstore My Account">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Petstore | Products</title>
+    <title>Petstore | My Account</title>
 
     <?php include "_header_links.php"; ?>
 </head>
@@ -37,13 +32,10 @@ $prod_count = count($PRODUCTS);
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Petstore Shop</h2>
+                        <h2>My Account</h2>
                         <div class="breadcrumb__option">
                             <a href="index.php">Home</a>
-                            <?php
-                            echo !empty($cat_name) ? "<a href='product.php?cid=".$cat_id."'>".$cat_name."</a>" : "";
-                            ?>
-                            <span>Products</span>
+                            <span>Account</span>
                         </div>
                     </div>
                 </div>
@@ -56,35 +48,12 @@ $prod_count = count($PRODUCTS);
     <section class="product spad">
         <div class="container">
             <div class="row">
-                <?php if(empty($cat_id)) { ?>
-                <div class="col-lg-3 col-md-5">
-                    <div class="sidebar">
-                        <div class="sidebar__item">
-                            <h4>My Account</h4>
-                            <ul>
-                                <?php
-                                ?>
-                                <li>
-                                    <a href="#">Address</a>
-                                </li>
-                                <li>
-                                    <a href="#">Orders</a>
-                                </li> 
-                                <li>
-                                    <a href="#">Logout</a>
-                                </li>
-                                <?php
-                                ?>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <?php } ?>
-                <div class="<?php echo empty($cat_id) ? 'col-lg-9 col-md-7' : 'col-lg-12 col-md-12'; ?>" >
+                <?php include "_account_menu.php"; ?>
+                <div class="col-lg-9 col-md-7">
                     <div class="row">
                         <div class="col-lg-12 col-md-6 col-sm-6">
                             <div class="form-cover">
-                                Paste here :P
+                                
                             </div>
                         </div>
                     </div>

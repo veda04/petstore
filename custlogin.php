@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 					$_SESSION[CU_SESSION_ID]->log_time = NOW;
 					$_SESSION[CU_SESSION_ID]->cust_wishlist = getCount("customer_wishlist", "COUNT(*)", "and fkCustomerId = ".$u_id);
 					$_SESSION[CU_SESSION_ID]->cust_cart = getCount("customer_cart", "COUNT(*)", "and fkCustomerId = ".$u_id);
-					$_SESSION[CU_SESSION_ID]->cust_cart_total = GetXFromYID("SELECT SUM(p.productPrice) FROM `customer_cart` c left join product p on c.fkProductId=p.id");
+					$_SESSION[CU_SESSION_ID]->cust_cart_total = GetXFromYID("SELECT SUM(p.productPrice) FROM `customer_cart` c left join product p on c.fkProductId=p.id WHERE fkCustomerId = $u_id");
 
 					header("location:product.php");
 					exit;
