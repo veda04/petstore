@@ -1,8 +1,15 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
 		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-    <!-- Google Fonts
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/icons/favicon-16x16.png">
+    <link rel="manifest" href="../img/icons/site.webmanifest">
+    <link rel="mask-icon" href="../img/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="../img/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="../img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">    <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
     <!-- Bootstrap CSS
