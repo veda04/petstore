@@ -296,4 +296,59 @@ function removeFromCart($pk_id) {
 		sql_query("DELETE FROM customer_cart WHERE id = $pk_id");
 	}
 }
+
+function site_seo($title="", $keyword="", $desc="", $image="") {
+	$str = "";
+	$s_title = !empty($title) ? $title : "Your One-Stop Shop for Pet Supplies";
+	$s_keyword = !empty($keyword) ? $keyword : "pet store, pet supplies, dog food, cat toys, aquariums, bird cages";
+	$s_desc = !empty($desc) ? $desc : "PETSTORE offers a wide range of high-quality pet supplies for all your furry, feathered, and aquatic friends. From premium dog food to colorful cat toys, aquariums to bird cages, we have everything you need to keep your pets happy and healthy. Shop online or visit our store today!";
+	$s_image = !empty($image) ? $image : SITE_ADDRESS."/img/site-logo-b.png";
+
+	$str .= '<!-- Primary Meta Tags -->';
+	$str .= '<meta name="title" content="'.$s_title.'">';
+	$str .= '<meta name="description" content="'.$s_desc.'">';
+	$str .= '<meta name="keywords" content="'.$s_keyword.'">';
+	$str .= '<meta name="robots" content="index, follow">';
+	$str .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
+	$str .= '<meta name="language" content="English">';
+	$str .= '<meta name="revisit-after" content="30 days">';
+
+	$str .= '<!-- Open Graph / Facebook -->';
+	$str .= '<meta property="og:type" content="website">';
+	$str .= '<meta property="og:url" content="'.SITE_ADDRESS.'">';
+	$str .= '<meta property="og:title" content="'.$s_title.'">';
+	$str .= '<meta property="og:description" content="'.$s_desc.'">';
+	$str .= '<meta property="og:image" content="'.$s_image.'">';
+
+	$str .= '<!-- Twitter -->';
+	$str .= '<meta property="twitter:card" content="summary_large_image">';
+	$str .= '<meta property="twitter:url" content="'.SITE_ADDRESS.'">';
+	$str .= '<meta property="twitter:title" content="'.$s_title.'">';
+	$str .= '<meta property="twitter:description" content="'.$s_desc.'">';
+	$str .= '<meta property="twitter:image" content="'.$s_image.'">';
+
+	echo $str;
+}
+
+function encode_value($value) {
+    $key = 'ABCDEF1234'; // 10-digit alphanumeric key
+    $encoded = strtoupper(substr(md5($value ^ $key), 0, 10)); // XOR, MD5, and substring
+    return $encoded;
+}
+
+function decode_value($encoded) {
+    $key = 'ABCDEF1234'; // 10-digit alphanumeric key
+    $decoded = md5($encoded ^ $key); // XOR and MD5
+    $value = 0;
+    $base = 16;
+    $exp = 0;
+    for ($i = strlen($decoded) - 1; $i >= 0; $i--) {
+        $digit = hexdec($decoded[$i]);
+        $value += $digit * pow($base, $exp);
+        $exp++;
+    }
+    return $value;
+}
+
+
 ?>

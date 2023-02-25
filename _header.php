@@ -71,7 +71,7 @@ $d_str .= "<ul>";
     <div class="humberger__menu__widget">
         <div class="header__top__right__auth">
             <?php if($cust_logged) { ?>
-            <a href="account.php"><i class="fa fa-user"></i> <?php echo $sess_cust_name; ?></a>
+            <a href="orders.php"><i class="fa fa-user"></i> <?php echo $sess_cust_name; ?></a>
             <?php } else { ?>
             <a href="login.php"><i class="fa fa-user"></i> Login</a>
             <?php } ?>
@@ -117,7 +117,7 @@ $d_str .= "<ul>";
                         </div>
                         <div class="header__top__right__auth">
                             <?php if($cust_logged) { ?>
-                            <a href="account.php"><i class="fa fa-user"></i> <?php echo "Hello, ".$sess_cust_name; ?></a>
+                            <a href="orders.php"><i class="fa fa-user"></i> <?php echo "Hello, ".$sess_cust_name; ?></a>
                             <?php } else { ?>
                             <a href="login.php"><i class="fa fa-user"></i> Login</a>
                             <?php } ?>

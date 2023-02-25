@@ -16,7 +16,7 @@ else if(isset($_POST['id'])) {
 }
 
 if(empty($or_id) || !is_numeric($or_id)) {
-    // header("location: $order_display");
+    header("location: $order_display");
     exit;
 }
 
@@ -28,6 +28,9 @@ if(isset($_POST['m'])){
     $txtid = NextId('id', "order_status");
     $q = "INSERT INTO order_status(id,fkOrderId, orderStatusName, comments) values('$txtid', '$or_id', '$order_status', '$order_desc')";
     $r = sql_query($q);
+
+    // update order status
+    sql_query("UPDATE orders SET status = '$order_status' WHERE id = $or_id");
 }
 
 // function call to get details of the customer

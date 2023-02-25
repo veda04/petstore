@@ -31,14 +31,10 @@ if(!empty($categoryId) && !empty($prod_id))
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Petstore | Products | <?php echo $productDesc; ?>">
-    <meta name="keywords" content="Petstore | Products | <?php echo $productName; ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Petstore | Products | <?php echo $productName; ?></title>
-
-    <?php include "_header_links.php"; ?>
+    <?php 
+        site_seo($productName, '', $productDesc, $productImgPath);
+        include "_header_links.php"; 
+    ?>
 </head>
 
 <body>

@@ -4,19 +4,92 @@ if(!$cust_logged || !is_numeric($sess_cust_id)) {
     ForceOutCu(3);
     exit;
 }
+
+$msg = "";
+$edit_page = "address-edit.php";
+$disp_page = "address.php";
+$del_page = $edit_page."?m=D&id=";
+
+// initiall value of m is ""
+if(isset($_POST["mode"]) && !empty($_POST['mode'])) {
+    $mode = $_POST["mode"];
+}
+else if(isset($_GET["mode"]) && !empty($_GET['mode'])) {
+    $mode =$_GET["mode"];
+}
+else{
+    $mode = "A";
+}
+
+//id
+if(isset($_POST['id']) && is_numeric($_POST['id'])) {
+    $txtid = $_POST['id'];
+} 
+else if(isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $txtid = $_GET['id'];
+}
+else {
+    $mode = "A";
+}
+
+if($mode == 'A'){
+    $txtid = 0;
+    $label = "";
+    $address = "";
+    $form_mode = 'C';
+}
+else if($mode == 'C') {
+    //insert
+    $txtid = NextId("id", "customer_address");
+    $label = $_POST["label"];
+    $address = $_POST["address"];
+    
+    $q = "INSERT INTO customer_address(id, fkCustomerId, address, title) VALUES ($txtid, $sess_cust_id, '$address', '$label')";
+    $r = sql_query($q);
+    $msg = "New address has been adde"; 
+    
+    header("location: ".$edit_page."?mode=R&id=".$txtid);
+    exit;
+}
+else if($mode == "R") {
+    //edit
+    $q = "SELECT * FROM customer_address WHERE id='$txtid'";
+    $r = sql_query($q);
+    $o = sql_fetch_object($r);
+
+    $txtid = $o->id;
+    $label = $o->title;
+    $address = $o->address;
+    $form_mode = "U";
+}
+else if($mode == "U"){
+    //update
+    $label = $_POST["label"];
+    $address = $_POST["address"];
+    
+    $q = "UPDATE customer_address SET title='$label', address='$address' WHERE id='$txtid'";
+    $r = sql_query($q);
+    $msg =  "Address has been updated"; 
+
+    header("location: ".$edit_page."?mode=R&id=".$txtid);
+    exit;
+}
+else if($mode == "D"){
+    $q = "DELETE FROM customer_address WHERE id=$txtid";
+    $r = sql_query($q);
+
+    header("location: ".$user_display);
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Petstore My Account">
-    <meta name="keywords" content="Petstore My Account">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Petstore | My Account</title>
-
-    <?php include "_header_links.php"; ?>
+    <?php 
+        site_seo();
+        include "_header_links.php"; 
+    ?>
 </head>
 
 <body>
@@ -32,10 +105,10 @@ if(!$cust_logged || !is_numeric($sess_cust_id)) {
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>My Account</h2>
+                        <h2>Edit Addresses</h2>
                         <div class="breadcrumb__option">
                             <a href="index.php">Home</a>
-                            <span>Account</span>
+                            <span>Addresses</span>
                         </div>
                     </div>
                 </div>
@@ -50,14 +123,17 @@ if(!$cust_logged || !is_numeric($sess_cust_id)) {
             <div class="row">
                 <?php include "_account_menu.php"; ?>
                 <div class="col-lg-9 col-md-7">
-                    <form action="#">
+                    <form action="<?php echo $edit_page; ?>" method="post">
+                        <input type="hidden" name="mode" value="<?php echo $form_mode; ?>">
+                        <input type="hidden" name="id" value="<?php echo $txtid; ?>">
                         <div class="row">
                             <div class="col-lg-12 col-md-6">
-                                <input type="text" placeholder="Title">
+                                <input type="text" placeholder="Title" name="label" id="label" value="<?php echo $label; ?>">
                             </div>
                             <div class="col-lg-12 text-center">
-                                <textarea placeholder="Address"></textarea>
+                                <textarea placeholder="Address" name="address" id="address"><?php echo $address; ?></textarea>
                                 <button type="submit" class="site-btn float-left">SAVE</button>
+                                <button onclick="ConfirmDelete('<?php echo $del_page.$txtid; ?>', 'Address')" type="button" class="site-btn float-left">Delete</button>
                                 <div class="clearfix"></div>
                             </div>
                         </div>

@@ -83,7 +83,7 @@ $name = get_dat_arr("id", "custName", "customer");
                                             <td><?php echo $total_amount; ?></td>
                                             <td><?php echo $shipping_address; ?></td>
                                             <td><?php echo $payment_method; ?></td>
-                                            <td><?php echo isset($STATUS_ARR[$status]) ? $STATUS_ARR[$status] : "-"; ?></td>
+                                            <td><?php echo isset($ORDER_STATUSES[$status]) ? $ORDER_STATUSES[$status] : "-"; ?></td>
                                             <td>
                                                 <a class="btn btn-warning notika-btn-success waves-effect" href="<?php echo $edit_link; ?>">Edit
                                                 </a>

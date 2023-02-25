@@ -16,14 +16,10 @@ $cart_items = sql_get_data($r);
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Petstore Checkout">
-    <meta name="keywords" content="Petstore Checkout">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Petstore | Checkout</title>
-
-    <?php include "_header_links.php"; ?>
+    <?php 
+        site_seo();
+        include "_header_links.php"; 
+    ?>
 </head>
 
 <body>

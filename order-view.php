@@ -1,22 +1,33 @@
 <?php
 include "./inc/cu.common.php";
+$ord_id = isset($_GET['id']) ? $_GET['id'] : "";
+// $ord_id =  decode_value($encord_id);
+
 if(!$cust_logged || !is_numeric($sess_cust_id)) {
     ForceOutCu(3);
     exit;
 }
+
+if(empty($ord_id) || !is_numeric($ord_id)) {
+    header("location: orders.php");
+    exit;
+}
+
+// function call to get details of the customer
+$status = GetXFromYID("SELECT status from orders WHERE id = $ord_id");
+$order_status = isset($ORDER_STATUSES[$status]) ? $ORDER_STATUSES[$status] : "Not Available";
+$prod_name = GetXArrFromYID("SELECT id, productName from product", "3");
+$cust_details = get_det_arr($sess_cust_id);
+$order_items = get_items_arr($ord_id);
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Petstore My Account">
-    <meta name="keywords" content="Petstore My Account">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Petstore | My Account</title>
-
-    <?php include "_header_links.php"; ?>
+    <?php 
+        site_seo();
+        include "_header_links.php"; 
+    ?>
 </head>
 
 <body>
@@ -32,10 +43,10 @@ if(!$cust_logged || !is_numeric($sess_cust_id)) {
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>My Account</h2>
+                        <h2>Order <?php echo '#'.encode_value($ord_id); ?></h2>
                         <div class="breadcrumb__option">
                             <a href="index.php">Home</a>
-                            <span>Account</span>
+                            <span>Orders</span>
                         </div>
                     </div>
                 </div>
@@ -57,9 +68,21 @@ if(!$cust_logged || !is_numeric($sess_cust_id)) {
                                     <div class="col-lg-12">
                                        <div class="checkout-cust">
                                            <table class="cust-table">
+                                                <tr>
+                                                    <td colspan="2"><b>Order Status: </b><?php echo $order_status; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><b>Order Id: </b><?php echo '#'.encode_value($ord_id); ?></td>
+                                                </tr>
                                                <tr>
-                                                   <td><b>Customer Name: </b>Veda</td>
-                                                   <td><b>Email: </b>Veda</td>
+                                                <?php
+                                                foreach($cust_details as $arr_ind => $arr_blck){
+                                                ?>
+                                                    <td><b>Customer Name: </b><?php echo $arr_blck->custName;?></td>
+                                                    <td><b>Email: </b><?php echo $arr_blck->custEmail;?></td>
+                                                <?php
+                                                }
+                                                ?>
                                                </tr>
                                            </table>
                                            <hr>
@@ -72,25 +95,31 @@ if(!$cust_logged || !is_numeric($sess_cust_id)) {
                                             <table>
                                                 <thead>
                                                     <tr>
-                                                        <th>Order Date</th>
-                                                        <th>Order Type</th>
-                                                        <th>Total Amount</th>
-                                                        <th>Payment Method</th>
+                                                        <th>#</th>
+                                                        <th>Product Name</th>
+                                                        <th>Unit Price</th>
+                                                        <th>Quantity</th>
+                                                        <th>Total</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>22/01/22</td>
-                                                        <td>Return Order</td>
-                                                        <td>200000</td>
-                                                        <td>COD</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>22/01/22</td>
-                                                        <td>Return Order</td>
-                                                        <td>200000</td>
-                                                        <td>COD</td>
-                                                    </tr>
+                                                    <?php
+                                                    $i=1;
+                                                    foreach($order_items as $arr_ind => $arr_blck){
+                                                        $prod_name_str = isset($prod_name[$arr_blck->fkProductId])? $prod_name[$arr_blck->fkProductId]: '-';
+                                                        // $total_price += $arr_blck->totalPrice;
+                                                        ?>
+                                                        <tr>
+                                                            <td><?php echo $i; ?></td>
+                                                            <td><?php echo $prod_name_str; ?></td>
+                                                            <td><?php echo $arr_blck->unitPrice; ?></td>
+                                                            <td><?php echo $arr_blck->itemQuantity; ?></td>
+                                                            <td><?php echo $arr_blck->totalPrice; ?></td>
+                                                        </tr>
+                                                        <?php
+                                                        $i++;
+                                                    }
+                                                    ?>
                                                 </tbody>
                                             </table>
                                         </div>

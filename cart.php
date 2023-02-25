@@ -5,14 +5,10 @@ include "./inc/cu.common.php";
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Petstore Shopping Bag">
-    <meta name="keywords" content="Petstore Shopping Bag">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Petstore | Shopping Bag</title>
-
-    <?php include "_header_links.php"; ?>
+    <?php 
+        site_seo();
+        include "_header_links.php"; 
+    ?>
 </head>
 
 <body>

@@ -3,19 +3,15 @@
         <div class="sidebar__item">
             <h4>My Account</h4>
             <ul>
-                <?php
-                ?>
+                <li>
+                    <a href="orders.php">Orders</a>
+                </li> 
                 <li>
                     <a href="address.php">Address</a>
                 </li>
                 <li>
-                    <a href="order-listing.php">Orders</a>
-                </li> 
-                <li>
                     <a href="logout.php">Logout</a>
                 </li>
-                <?php
-                ?>
             </ul>
         </div>
     </div>

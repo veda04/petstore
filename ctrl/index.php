@@ -1,6 +1,11 @@
 <?php
 $PAGE_TITLE = "Login";
 $dashboard_page ="dashboard.php";
+
+$msg = "";
+if(isset($_GET['err']) && !empty($_GET["err"]))  {
+    $msg = "Invalid Username or Password";
+}
 ?>
 
 <!doctype html>
@@ -22,6 +27,7 @@ $dashboard_page ="dashboard.php";
             <div class="nk-form">
                 <h2><?php echo $PAGE_TITLE; ?></h2>
                 <form action="auth.php" method="post">
+                    <?php echo $msg; ?>
                     <div class="input-group">
                         <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
                         <div class="nk-int-st">

@@ -1,20 +1,23 @@
 <?php
-session_start();
+include "inc/cu.common.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Store</title>
-     <?php include'header_link.php';?>
+    <?php 
+        site_seo();
+        include'_header_links.php';
+    ?>
 </head>
 <body>
-       <?php include'header.php';?>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <?php include'_header.php';?>
     
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg about-bg" style="background: url('img/background.jpg');">
+    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -53,8 +56,6 @@ session_start();
     </div>
     </section>
     <!--footer section -->
-<?php include'footer.php';?>
- <?php include'footer_link.php';?>
+    <?php include'_footer.php';?>
 </body>
-
 </html>
