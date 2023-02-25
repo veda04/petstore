@@ -40,5 +40,5 @@ define("FB_LINK", "https://www.facebook.com");
 define("TW_LINK", "https://www.twiter.com");
 define("LI_LINK", "https://www.linkedin.com");
 define("HEADER_LOGO", SITE_ADDRESS."img/logo.png");
-define("Rs", "&#8377; ");
+define("Rs", "&#163; ");
 ?>
