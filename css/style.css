@@ -963,7 +963,9 @@ ol {
 
 .featured__item__pic {
 	height: 270px;
-	border: 1.5px solid #cacaca;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(202,202,202,1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(202,202,202,1);
+	box-shadow: 0px 0px 5px 0px rgba(202,202,202,1);
   border-radius: 7px;
 	position: relative;
 	overflow: hidden;
@@ -1642,6 +1644,10 @@ ol {
 
 .product__item__pic {
 	height: 270px;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(202,202,202,1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(202,202,202,1);
+	box-shadow: 0px 0px 5px 0px rgba(202,202,202,1);
+  border-radius: 7px;
 	position: relative;
 	overflow: hidden;
 }
