@@ -6,13 +6,13 @@
 UPDATE 
   customer 
 SET 
-  custName = 'Samrudhi Usapkar' 
+  custName = 'Rebecca Smith' 
 WHERE 
   id = 1;
 -- DELETE
 -- removes the record with id=2 from `orders` table
 DELETE FROM 
-  orders 
+  order_item
 WHERE 
   id = 2;
 -- SELECT *
@@ -86,7 +86,7 @@ SELECT
 FROM 
   `customer` 
 WHERE 
-  `userName` = "SAMRU";
+  `userName` = "janedoe";
 --   <>  
 SELECT 
   * 
@@ -100,7 +100,7 @@ SELECT
 FROM 
   `user` 
 WHERE 
-  `newQty` = "sysadmin" 
+  `username` = "sysadmin" 
   AND fkRoleId = "1";
 --   OR
 SELECT 
@@ -153,39 +153,42 @@ SELECT
 FROM 
   `customer` 
 WHERE 
-  `custName` LIKE "%sam%";
+  `custName` LIKE "%reb%";
 SELECT 
   * 
 FROM 
   `customer` 
 WHERE 
-  `custName` LIKE "%sam";
+  `custName` LIKE "%doe";
 SELECT 
   * 
 FROM 
   `customer` 
 WHERE 
-  `custName` LIKE "sam%";
+  `custName` LIKE "Reb%";
 SELECT 
   * 
 FROM 
   `customer` 
 WHERE 
-  `custName` LIKE "s_m%";
+  `custName` LIKE "s_p%";
 SELECT 
   * 
 FROM 
   `customer` 
 WHERE 
-  `custName` LIKE "s_m%" 
-  AND `userName` LIKE "s_m%";
+  `custName` LIKE "j_n%" 
+  AND `userName` LIKE "j_n%";
+
+
+-- FROM HERE ONWARD
 SELECT 
   * 
 FROM 
   `customer_address` 
 WHERE 
-  `homeAddress` LIKE "s_m%" 
-  OR `officeAddress` LIKE "s_m%";
+  `homeAddress` LIKE "p_e%" 
+  OR `officeAddress` LIKE "p_e%";
 --   NULL
 SELECT 
   * 
