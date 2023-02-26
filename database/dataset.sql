@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 26, 2023 at 10:40 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Host: localhost:3306
+-- Generation Time: Feb 26, 2023 at 10:13 PM
+-- Server version: 8.0.32-0ubuntu0.20.04.2
+-- PHP Version: 7.4.3-4ubuntu2.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -20,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `petstore`
 --
+CREATE DATABASE IF NOT EXISTS `petstore` DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci;
+USE `petstore`;
 
 -- --------------------------------------------------------
 
@@ -28,12 +31,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `category` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   `status` char(3) DEFAULT 'I'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `category`
@@ -58,13 +61,13 @@ INSERT INTO `category` (`id`, `title`, `image`, `description`, `status`) VALUES
 --
 
 CREATE TABLE `customer` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `custName` varchar(255) DEFAULT NULL,
   `userName` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `custNumber` varchar(255) DEFAULT NULL,
   `custEmail` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `customer`
@@ -111,7 +114,9 @@ INSERT INTO `customer` (`id`, `custName`, `userName`, `password`, `custNumber`, 
 (38, 'Evelyn Davis', 'evelyndavis', '4854b3e3b357e501c34675fbbf942b44', NULL, 'evelyndavis@example.com'),
 (39, 'Logan Rodriguez', 'loganrodriguez', '5510679901097aa70fe903c7272f3f8e', NULL, 'loganrodriguez@example.com'),
 (40, 'Addison Martin', 'addisonmartin', 'cf71ae66cf7dcb6b54b0d4e9ce0a2c82', NULL, 'addisonmartin@example.com'),
-(41, 'Gulger Mallik', 'gulzar', '1a00c02a21550953468822a503524ee7', '', 'gulgermallik@user.com');
+(41, 'Gulger Mallik', 'gulzar', '1a00c02a21550953468822a503524ee7', '', 'gulgermallik@user.com'),
+(42, 'Veda Salkar', 'veda', '6bbb59950bf85bc2413fe9754e584027', '', 'veda@user.com'),
+(43, 'Riddhi Tailor', 'riddhi', '827ccb0eea8a706c4c34a16891f84e7b', '', 'u2273114@unimail.hud.ac.uk');
 
 -- --------------------------------------------------------
 
@@ -120,11 +125,11 @@ INSERT INTO `customer` (`id`, `custName`, `userName`, `password`, `custNumber`, 
 --
 
 CREATE TABLE `customer_address` (
-  `id` int(11) NOT NULL,
-  `fkCustomerId` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `fkCustomerId` int NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `customer_address`
@@ -201,7 +206,10 @@ INSERT INTO `customer_address` (`id`, `fkCustomerId`, `address`, `title`) VALUES
 (68, 40, '8888 Magnolia Dr, Phoenix, AZ 85001', 'Work'),
 (69, 40, '9999 Cedar Rd, Phoenix, AZ 85001', 'Other'),
 (70, 40, '5555 Oak Ln, Phoenix, AZ 85001', 'Other'),
-(71, 41, 'Storthes Hall Lane, Storthes Hall Park, Kirkburton, Huddersfield, HD8 0WN', 'Default');
+(71, 41, 'Storthes Hall Lane, Storthes Hall Park, Kirkburton, Huddersfield, HD8 0WN', 'Default'),
+(72, 42, 'Storthes Hall Lane,\r\nStorthes Hall Park Myers B.3\r\nKirkburton, Huddersfield\r\nHD8 0WN', 'Default'),
+(73, 43, 'Moorbottom Road, Huddersfield', 'Default'),
+(74, 43, 'Moorbottom Road, Huddersfield', 'HOME');
 
 -- --------------------------------------------------------
 
@@ -210,11 +218,11 @@ INSERT INTO `customer_address` (`id`, `fkCustomerId`, `address`, `title`) VALUES
 --
 
 CREATE TABLE `customer_cart` (
-  `id` int(11) NOT NULL,
-  `fkCustomerId` int(11) NOT NULL,
-  `fkProductId` int(11) NOT NULL,
-  `qty` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `fkCustomerId` int NOT NULL,
+  `fkProductId` int NOT NULL,
+  `qty` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `customer_cart`
@@ -525,10 +533,10 @@ INSERT INTO `customer_cart` (`id`, `fkCustomerId`, `fkProductId`, `qty`) VALUES
 --
 
 CREATE TABLE `customer_payment` (
-  `id` int(11) NOT NULL,
-  `fkCustomerId` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `fkCustomerId` int NOT NULL,
   `paymentMethod` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -537,10 +545,10 @@ CREATE TABLE `customer_payment` (
 --
 
 CREATE TABLE `customer_wishlist` (
-  `id` int(11) NOT NULL,
-  `fkCustomerId` int(11) NOT NULL,
-  `fkProductId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `fkCustomerId` int NOT NULL,
+  `fkProductId` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `customer_wishlist`
@@ -843,7 +851,8 @@ INSERT INTO `customer_wishlist` (`id`, `fkCustomerId`, `fkProductId`) VALUES
 (297, 23, 41),
 (298, 7, 25),
 (299, 29, 49),
-(300, 14, 91);
+(300, 14, 91),
+(301, 43, 2);
 
 -- --------------------------------------------------------
 
@@ -852,13 +861,13 @@ INSERT INTO `customer_wishlist` (`id`, `fkCustomerId`, `fkProductId`) VALUES
 --
 
 CREATE TABLE `offers` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `offerName` varchar(255) DEFAULT NULL,
   `offerDesc` varchar(255) DEFAULT NULL,
-  `offerVal` int(11) NOT NULL,
+  `offerVal` int NOT NULL,
   `offertype` char(10) NOT NULL,
   `status` char(3) DEFAULT 'I'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `offers`
@@ -896,15 +905,15 @@ INSERT INTO `offers` (`id`, `offerName`, `offerDesc`, `offerVal`, `offertype`, `
 --
 
 CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
-  `fkCustomerId` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `fkCustomerId` int NOT NULL,
   `orderType` char(10) NOT NULL,
   `orderDate` date DEFAULT NULL,
-  `totalAmount` int(11) DEFAULT NULL,
+  `totalAmount` int DEFAULT NULL,
   `shippingAddress` varchar(255) DEFAULT NULL,
   `paymentMethod` varchar(255) DEFAULT NULL,
   `status` char(3) DEFAULT 'I'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `orders`
@@ -10928,7 +10937,11 @@ INSERT INTO `orders` (`id`, `fkCustomerId`, `orderType`, `orderDate`, `totalAmou
 (9998, 11, 'RET', '2022-12-12', 2870, '5555 Walnut St, Las Vegas, NV 89101', 'COD', 'PAC'),
 (9999, 20, 'REP', '2022-03-14', 554, '3333 Maple Ln, Los Angeles, CA 90001', 'COD', 'ORD'),
 (10000, 28, 'RET', '2022-03-14', 1785, '1111 Oak Ln, San Diego, CA 92101', 'COD', 'I'),
-(10001, 41, 'ORD', '2023-02-26', 98, 'Storthes Hall Lane, Storthes Hall Park, Kirkburton, Huddersfield, HD8 0WN', 'COD', 'A');
+(10001, 41, 'ORD', '2023-02-26', 98, 'Storthes Hall Lane, Storthes Hall Park, Kirkburton, Huddersfield, HD8 0WN', 'COD', 'A'),
+(10002, 41, 'ORD', '2023-02-26', 50, 'Storthes Hall Lane, Storthes Hall Park, Kirkburton, Huddersfield, HD8 0WN', 'COD', 'A'),
+(10003, 42, 'ORD', '2023-02-26', 76, 'Storthes Hall Lane,\r\nStorthes Hall Park Myers B.3\r\nKirkburton, Huddersfield\r\nHD8 0WN', 'COD', 'A'),
+(10004, 43, 'ORD', '2023-02-26', 177, 'Moorbottom Road, Huddersfield', 'COD', 'A'),
+(10005, 43, 'ORD', '2023-02-26', 177, 'Moorbottom Road, Huddersfield', 'COD', 'A');
 
 -- --------------------------------------------------------
 
@@ -10937,14 +10950,14 @@ INSERT INTO `orders` (`id`, `fkCustomerId`, `orderType`, `orderDate`, `totalAmou
 --
 
 CREATE TABLE `order_email` (
-  `id` int(11) NOT NULL,
-  `fkOrderId` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `fkOrderId` int NOT NULL,
   `emailType` varchar(255) DEFAULT NULL,
   `emailTo` varchar(255) DEFAULT NULL,
   `emailSubject` varchar(255) DEFAULT NULL,
   `emailBody` varchar(255) DEFAULT NULL,
   `status` char(3) DEFAULT 'I'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -10953,13 +10966,13 @@ CREATE TABLE `order_email` (
 --
 
 CREATE TABLE `order_item` (
-  `id` int(11) NOT NULL,
-  `fkOrderId` int(11) NOT NULL,
-  `fkProductId` int(11) NOT NULL,
-  `unitPrice` int(11) DEFAULT NULL,
-  `itemQuantity` int(11) DEFAULT NULL,
-  `totalPrice` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `fkOrderId` int NOT NULL,
+  `fkProductId` int NOT NULL,
+  `unitPrice` int DEFAULT NULL,
+  `itemQuantity` int DEFAULT NULL,
+  `totalPrice` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `order_item`
@@ -65845,7 +65858,13 @@ INSERT INTO `order_item` (`id`, `fkOrderId`, `fkProductId`, `unitPrice`, `itemQu
 (54846, 10000, 7, 88, 4, 352),
 (54847, 10000, 37, 53, 5, 265),
 (54848, 10000, 6, 22, 3, 66),
-(54849, 10001, 2, 98, 1, 98);
+(54849, 10001, 2, 98, 1, 98),
+(54850, 10002, 9, 50, 1, 50),
+(54851, 10003, 3, 76, 1, 76),
+(54852, 10004, 1, 79, 1, 79),
+(54853, 10004, 2, 98, 1, 98),
+(54855, 10005, 2, 98, 1, 98),
+(54856, 10005, 1, 79, 1, 79);
 
 -- --------------------------------------------------------
 
@@ -65854,11 +65873,11 @@ INSERT INTO `order_item` (`id`, `fkOrderId`, `fkProductId`, `unitPrice`, `itemQu
 --
 
 CREATE TABLE `order_status` (
-  `id` int(11) NOT NULL,
-  `fkOrderId` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `fkOrderId` int NOT NULL,
   `orderStatusName` varchar(255) DEFAULT NULL,
-  `comments` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `comments` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -65867,19 +65886,19 @@ CREATE TABLE `order_status` (
 --
 
 CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
-  `categoryId` int(11) DEFAULT NULL,
+  `id` int NOT NULL,
+  `categoryId` int DEFAULT NULL,
   `productName` varchar(255) DEFAULT NULL,
-  `productPrice` int(11) DEFAULT NULL,
-  `productQty` int(11) DEFAULT NULL,
-  `productDesc` text DEFAULT NULL,
+  `productPrice` int DEFAULT NULL,
+  `productQty` int DEFAULT NULL,
+  `productDesc` text,
   `productImg` varchar(255) DEFAULT NULL,
   `dateCreated` date DEFAULT NULL,
-  `useridCreated` int(11) NOT NULL,
+  `useridCreated` int NOT NULL,
   `dateUpdated` varchar(255) DEFAULT NULL,
   `useridUpdated` varchar(255) DEFAULT NULL,
   `status` char(3) DEFAULT 'I'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `product`
@@ -65993,12 +66012,12 @@ INSERT INTO `product` (`id`, `categoryId`, `productName`, `productPrice`, `produ
 --
 
 CREATE TABLE `product_ratings` (
-  `id` int(11) NOT NULL,
-  `fkProductId` int(11) NOT NULL,
-  `fkCustomerID` int(11) NOT NULL,
-  `ratings` int(11) DEFAULT NULL,
-  `review` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `fkProductId` int NOT NULL,
+  `fkCustomerID` int NOT NULL,
+  `ratings` int DEFAULT NULL,
+  `review` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -66007,15 +66026,15 @@ CREATE TABLE `product_ratings` (
 --
 
 CREATE TABLE `product_stock` (
-  `id` int(11) NOT NULL,
-  `fkProductId` int(11) NOT NULL,
-  `fkVendorId` int(11) NOT NULL,
-  `qtyOnHand` int(11) DEFAULT NULL,
-  `newQty` int(11) DEFAULT NULL,
-  `totalQty` int(11) DEFAULT NULL,
+  `id` int NOT NULL,
+  `fkProductId` int NOT NULL,
+  `fkVendorId` int NOT NULL,
+  `qtyOnHand` int DEFAULT NULL,
+  `newQty` int DEFAULT NULL,
+  `totalQty` int DEFAULT NULL,
   `dateOfPruch` date DEFAULT NULL,
   `status` char(3) DEFAULT 'I'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `product_stock`
@@ -66129,11 +66148,11 @@ INSERT INTO `product_stock` (`id`, `fkProductId`, `fkVendorId`, `qtyOnHand`, `ne
 --
 
 CREATE TABLE `site_seo` (
-  `id` int(12) NOT NULL,
+  `id` int NOT NULL,
   `title` varchar(255) NOT NULL,
   `keyword` varchar(255) NOT NULL,
   `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `site_seo`
@@ -66149,12 +66168,12 @@ INSERT INTO `site_seo` (`id`, `title`, `keyword`, `description`) VALUES
 --
 
 CREATE TABLE `stock_request` (
-  `id` int(11) NOT NULL,
-  `fkVendor` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `fkVendor` int NOT NULL,
   `status` char(3) DEFAULT 'I',
   `requestDate` datetime DEFAULT NULL,
-  `noOfItems` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `noOfItems` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -66163,11 +66182,11 @@ CREATE TABLE `stock_request` (
 --
 
 CREATE TABLE `stock_request_prod` (
-  `id` int(11) NOT NULL,
-  `fkProductId` int(11) NOT NULL,
-  `fkStockRequest` int(11) NOT NULL,
-  `requestStock` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `fkProductId` int NOT NULL,
+  `fkStockRequest` int NOT NULL,
+  `requestStock` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -66176,11 +66195,11 @@ CREATE TABLE `stock_request_prod` (
 --
 
 CREATE TABLE `stock_request_status` (
-  `id` int(11) NOT NULL,
-  `fkStockRequest` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `fkStockRequest` int NOT NULL,
   `requestStatusName` varchar(255) DEFAULT NULL,
   `status` char(3) DEFAULT 'I'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -66189,9 +66208,9 @@ CREATE TABLE `stock_request_status` (
 --
 
 CREATE TABLE `test` (
-  `name` int(11) NOT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `name` int NOT NULL,
+  `id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -66200,14 +66219,14 @@ CREATE TABLE `test` (
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `fkRoleId` int(11) DEFAULT NULL,
+  `fkRoleId` int DEFAULT NULL,
   `lastLogin` datetime DEFAULT NULL,
   `status` char(3) DEFAULT 'I'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user`
@@ -66215,9 +66234,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `username`, `password`, `fkRoleId`, `lastLogin`, `status`) VALUES
 (1, 'System Admin', 'sysadmin', '4acb4bc224acbbe3c2bfdcaa39a4324e', 1, NULL, 'A'),
-(2, 'Veda Salkar', 'veda', 'f32ec4d353635f57e4cb21927f5adf9e', 2, '2023-02-25 13:21:38', 'A'),
-(3, 'Riddhi Tailor', 'riddhi', 'b5b00d3e7a2756c936a0118124032818', 3, '2023-02-25 13:22:27', 'A'),
-(4, 'Muhammad Ali', 'ali', '86318e52f5ed4801abe1d13d509443de', 4, '2023-02-25 13:30:25', 'A');
+(2, 'Veda Salkar', 'veda', 'c0b3cb0d652fbf07a7225e6949142d6e', 2, '2023-02-26 17:47:14', 'A'),
+(3, 'Riddhi Tailor', 'riddhi', '3060ba030d3b90371f4f14151fd4932d', 3, '2023-02-25 13:22:27', 'A'),
+(4, 'Muhammad Ali', 'ali', '03003434d5dfae788e6d8930b8d8a8c6', 4, '2023-02-26 17:47:50', 'A');
 
 -- --------------------------------------------------------
 
@@ -66226,10 +66245,10 @@ INSERT INTO `user` (`id`, `name`, `username`, `password`, `fkRoleId`, `lastLogin
 --
 
 CREATE TABLE `user_role` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `status` char(3) DEFAULT 'I'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user_role`
@@ -66248,13 +66267,13 @@ INSERT INTO `user_role` (`id`, `title`, `status`) VALUES
 --
 
 CREATE TABLE `vendor` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `vendorName` varchar(255) DEFAULT NULL,
   `vendorAddress` varchar(255) DEFAULT NULL,
   `vendorPhone` varchar(255) DEFAULT NULL,
   `vendorEmail` varchar(255) DEFAULT NULL,
   `status` char(3) DEFAULT 'I'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `vendor`
@@ -66425,25 +66444,25 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `customer_address`
 --
 ALTER TABLE `customer_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `customer_cart`
 --
 ALTER TABLE `customer_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=302;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
 
 --
 -- AUTO_INCREMENT for table `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54850;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54858;
 
 --
 -- AUTO_INCREMENT for table `product_stock`
 --
 ALTER TABLE `product_stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- Constraints for dumped tables
